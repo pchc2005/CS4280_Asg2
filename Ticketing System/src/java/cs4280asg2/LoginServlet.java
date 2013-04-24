@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 	else {
 	    userId = request.getParameter("userName");
 	    password = request.getParameter("password");
-	
+	    
 	    LoginService loginService = new LoginService();
 	    boolean result = loginService.authenticate(userId, password);
 	    if (result) {
