@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/Ticketing_System"/>
+<Context antiJARLocking="true" path="/Ticketing_System">
+    <Resource name="jdbc/ticketing_system" auth="Container" type="javax.sql.DataSource" 
+	maxActive="20" maxIdle="5" maxWait="3000" removeAbandoned="true" username="aiad064" password="aiad064"
+	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	url="jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad064_db;" />
+</Context>

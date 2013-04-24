@@ -1,0 +1,52 @@
+﻿.movie{
+	float: left;
+	margin:5px;
+}
+
+.movie img {
+	width: 230px;
+	border:solid 1px;
+	display:block;
+	margin: 0px;
+}
+
+.movie-big{
+	float: left;
+	margin:8px;
+}
+
+.movie-big img{
+	width: 470px;
+}
+
+
+.movie-text {  
+	font-size: 10px;
+	color:#FFF;
+	background-color:#0597B6;
+	width: 230px;
+	margin: 0px;
+	display:block;
+	margin: 10px 4px 10px 4px;
+	text-align:center;
+	font-family:arial, helvetica, sans-serif;
+	font-weight:bold;
+	height:20px;
+}
+
+.movie-text:hover, .movie-big-text:hover{  
+	background-color:#045066;
+}
+
+.movie-big-text {  
+	font-size: 20px;
+	color:#FFF;
+	background-color:#0597B6;
+	width: 480px;
+	margin: 8px;
+	display:block;
+	text-align:center;
+	font-family:arial, helvetica, sans-serif;
+	font-weight:bold;
+	height:30px;
+}

@@ -1,0 +1,182 @@
+﻿body {
+	font-family:arial, helvetica, sans-serif;
+}
+
+body, html {
+	margin:0;
+	padding:0;
+}
+
+h1{
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+h2{
+	font-size: 15px;
+	color:#FFF;
+	width:200px;
+	background-color:#09C;
+	text-align:center;
+	height:25px;
+	vertical-align:central;
+}
+
+h3{
+	font-size: 10px;
+	color:#666;
+	margin:0px;
+	font-weight:lighter;
+}
+
+h4{
+	font-size: 15px;
+	color:#000;
+	margin:0px;
+	margin-bottom:10px;
+}
+
+h5 {  
+	font-size: 30px;
+	color:#078DB4;
+	margin:10px;
+	margin-left:15px;
+	text-align:left;
+	border-bottom:2px solid #078DB4;
+}
+
+#header-main{
+	background-image:url(../image/bg2.jpg);
+	background-position:top center;
+	width:100%;
+}
+
+#header{
+	width: 1000px;
+	margin: auto;
+	height:150px;
+	background-image:url(../image/bg.jpg);
+}
+
+#header p{
+	color:#FFFFFF;
+	font-size:10px;
+}
+
+#header-nav{
+	height:auto;
+	background-color:#0597B6;
+	margin: auto;
+}
+
+#header-nav-inner{
+	background-color:#0597B6;
+	width: 1000px;
+	margin: auto;
+	height:inherit;
+}
+#header-nav li {
+	display:inline;
+	padding:0;
+	margin:2px;
+	text-align:center;
+}
+
+#header-nav a:link,
+#header-nav a:visited {
+	color:#FFF;
+	text-align:center;
+}
+
+
+ul {
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul li {
+	display: block;
+	position: relative;
+	float: left;
+}
+
+li ul {
+	display: none;
+}
+
+ul li a {
+	display: block;
+	text-decoration: none;
+	color: #ffffff;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	padding:0;
+	margin: 0px;
+	width:100px;
+}
+
+ul li a:hover {
+	background: #3b3b3b;
+}
+
+li:hover ul {
+	display: block;
+	position: absolute;
+}
+
+li:hover li {
+	float: none;
+	font-size: 11px;
+}
+
+li:hover a { 
+	background: #3b3b3b; }
+
+li:hover li a:hover {
+	background: #1e7c9a;
+} 
+
+#language{
+	text-align:right;
+	font-family:arial, helvetica, sans-serif;
+	font-size: 12px;
+	color:#FFFFFF;
+}
+
+#content2{
+	background-color:#FFF;
+	width: 1000px;
+	margin: auto;
+	height: auto;
+}
+
+#content-left{
+	float:left;
+	background-color:#FFF;
+	height:inherit;
+}
+
+#content-right{
+	
+	width:77%;
+	background-color:#FFF;
+	height:inherit;
+	padding-left: 23%;
+}
+
+#footer {
+	background:#0597B6;
+	text-align:left;
+	color:#FFF;
+	clear:both;
+}
+
+#footer-inner{
+	width: 1000px;
+	margin: auto;
+	color:#FFFFFF;
+	font-size: 10px;
+}
