@@ -19,26 +19,35 @@ import javax.sql.DataSource;
  */
 public class LoginService {
     
-    public boolean authenticate(String userId, String password){
+    public boolean authenticate(String userId, String password, String userType){
 	try {
 	    Context initCtx = new InitialContext();
 	    Context envCtx = (Context)initCtx.lookup("java:comp/env");
 	    DataSource ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    Connection con = ds.getConnection();
-	    String procedure = "{ call getPassword(?) }";
+	    String procedureMember = "{ call getPassword(?) }";
+	    String procedureStaff = "{ call getPasswordStaff(?) }";
 	    String pw = null;
-	    CallableStatement cstmt = con.prepareCall(procedure, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    cstmt.setString(1, userId);
-	    ResultSet rs = cstmt.executeQuery();
-	    rs.first();
-	    pw = rs.getString(1);
-	    if (!pw.equals(password)) {
-		return false;
+	    CallableStatement cstmt = null;
+	    if (userType.equals("Member")) {
+		cstmt = con.prepareCall(procedureMember, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    }
+	    else if (userType.equals("Staff")) {
+		cstmt = con.prepareCall(procedureStaff, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    }
+	    if (cstmt != null) {
+		cstmt.setString(1, userId);
+		ResultSet rs = cstmt.executeQuery();
+		rs.first();
+		pw = rs.getString(1);
+		if (!pw.equals(password)) {
+		    return false;
+		}
+		return true;
 	    }
 	    else {
-		
+		return false;
 	    }
-	    return true;
 	    } catch (NamingException e) {
 		return false;
 	    } catch (SQLException e) {
