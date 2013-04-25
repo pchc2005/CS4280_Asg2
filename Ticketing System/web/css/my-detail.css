@@ -1,0 +1,33 @@
+/* 
+    Document   : my-detail
+    Created on : Apr 25, 2013, 3:47:13 PM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+#detail td{
+	width:250px;
+	margin-bottom:30px;
+	margin-top:30px;
+	border-bottom: 1px solid #D7EBFF;
+	height:40px;
+}
+
+#detail{
+	margin-left:150px;	
+	margin-bottom:150px;
+	margin-top: 40px;	
+}
+
+#detail th{
+	text-align:right;
+	width:150px;
+	color:#005CB9;
+	background:#D7EBFF;
+}

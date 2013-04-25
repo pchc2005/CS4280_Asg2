@@ -1,0 +1,35 @@
+/* 
+    Document   : movie-detail
+    Created on : Apr 25, 2013, 3:43:54 PM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.movie-detail{
+	margin-left:30px;
+	margin-right:30px;
+}
+
+.movie-detail th{
+	text-align:right;
+	width:100px;
+	color:#005CB9;
+}
+
+.movie-detail img{
+	width:200px;
+}
+.movie-detail p{
+	text-align:center;
+}
+
+.movie-detail select{
+	width:300px;
+	font-size:12px;
+	height:20px;
+}
+
+.ticket{
+    text-align: center;
+}

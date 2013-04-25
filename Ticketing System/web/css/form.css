@@ -11,7 +11,12 @@ root {
 }
 
 input[type=text]{
+	width:135px;
+}
+
+iput[type=password]{
 	width:100px;
+	background:#F00;
 }
 
 .box{

@@ -22,83 +22,9 @@
         
     <div id="content2">
 	<div id="content-left">
-	    <div class="box">
- 		<h2>LOGIN</h2>
-		    <form name="login" action="login" method="post">
-  			<p>
-			    <input type="radio" name="member-type" value="Member" />
-			    <label for="member-type">Member</label>
-			    <input type="radio" name="staff-type" value="Staff" />
-			    <label for="staff-type">Staff</label>
-			    <br /><br />
-			    <label for="UserName">User Name:</label>
-			    <input type="text" name="UserName" /><br/>
-			    <label for="Password">Password:</label>
-			    <input type="password" name="Password" /><br/><br/>
-			    <input type="submit" value="Submit" class="button" />
-			    <input type="reset" onclick="formReset()" value="Reset" class="button" />
-			</p>
-		    </form>
-		    <p id="sign_up"><a href="#">Sign up now!</a></p>
-	    </div>
-	    <div class="box">
-		<h2>BOOK NOW</h2>
-                <form name="booking" action="login" method="get">
-                    <label for="movie">Please choose the Movie you want:</label>
-                    <select name="movie">
-                        <option value="movie1">movie1</option>
-                        <option value="movie2">movie2</option>
-                        <option value="movie3">movie3</option>
-                    </select>
-		    <br/><br/>
-                    <label for="house">Please choose the House:</label>
-                    <select name="house">
-                        <option value="house1">house1</option>
-                        <option value="house2">house2</option>
-                        <option value="house3">house3</option>
-                    </select>
-		    <br/><br/>
-		    <label for="day">Please choose the Day:</label>
-		    <select name="day">
-			<option value="day1">day1</option>
-                        <option value="day2">day2</option>
-                        <option value="day3">day3</option>
-                    </select>
-                    <br/><br/>
-                    <label for="time">Please choose the Time:</label>
-                    <select name="time">
-                        <option value="time1">time1</option>
-                        <option value="time2">time2</option>
-                        <option value="time3">time3</option>
-                    </select> 
-                    <br/><br/> 
-                    <input type="submit" value="Book Now!" class="button" />
-                    <input type="reset" onclick="formReset()" value="Reset" class="button" />
-		</form>
-	    </div>
-	    <div class="box">
-                <h2>TOP 10 Movie</h2>
-                <h3>Top1 movie</h3>
-                <h4>Hello World!</h4>
-                <h3>Top2 movie</h3>
-                <h4>Hello World2!</h4>
-                <h3>Top3 movie</h3>
-                <h4>Hello World3!</h4>
-                <h3>Top4 movie</h3>
-                <h4>Hello World4!</h4>
-                <h3>Top5 movie</h3>
-                <h4>Hello World5!</h4>
-                <h3>Top6 movie</h3>
-                <h4>Hello World6!</h4>
-                <h3>Top7 movie</h3>
-                <h4>Hello World7!</h4>
-                <h3>Top8 movie</h3>
-                <h4>Hello World8!</h4>
-                <h3>Top9 movie</h3>
-                <h4>Hello World9!</h4>
-                <h3>Top10 movie</h3>
-                <h4>Hello World10!</h4>
-	    </div>
+	    <%@ include file="include/login.jsp"%>
+	    <%@ include file="include/quick-booking.jsp"%>
+            <%@ include file="include/top-movie.jsp"%>	    
 	</div>
 
 	<div id="content-right">

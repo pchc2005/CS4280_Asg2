@@ -13,15 +13,15 @@
     <div id="header-nav">
         <div id="header-nav-inner">
 	    <ul>
-                <li><a href="">HOME</a></li>
-                <li><a href="">HOUSE</a></li>
-                <li><a href="">MOVIE</a></li>
+                <li><a href="index.jsp">HOME</a></li>
+                <li><a href="house.jsp">HOUSE</a></li>
+                <li><a href="movie.jsp">MOVIE</a></li>
 	    </ul>
 	    <div id="language">
 		Language : 
 		<select name="Lang">
-		    <option>Chinese</option>
 		    <option>English</option>
+		    <option>Chinese</option>
 		</select>
 	    </div>
 	</div>

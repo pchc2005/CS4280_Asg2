@@ -1,0 +1,43 @@
+/* 
+    Document   : registration
+    Created on : Apr 25, 2013, 3:47:38 PM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+form[name=sign-up]{
+	margin-top:30px;
+}
+
+form[name=sign-up] label{
+	display:inline-block;
+	width:100px;
+	text-align:right;
+	margin-left:40px;
+}
+
+input[type=text]{
+	width:140px;
+}
+
+form[name=sign-up] input[type=submit]{
+	margin-left:200px;
+	margin-bottom:20px;
+}
+
+fieldset{
+	width:600px;
+	margin-left:50px;
+	font-size:14px;
+	color:#666;
+}
+
+legend{
+	font-size:14px;
+	font-weight:bold;
+}

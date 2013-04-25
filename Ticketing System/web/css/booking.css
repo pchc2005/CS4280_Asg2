@@ -1,0 +1,40 @@
+/* 
+    Document   : booking
+    Created on : Apr 25, 2013, 3:46:04 PM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#movie-detail{
+	margin-left:20px;
+}
+
+.button2{
+	float:right;
+	margin-right:30px;
+}
+
+
+span{
+	font-weight:bold;
+}
+
+th{
+	background:#CCC;
+	width:100px;
+}
+
+td{
+	width:200px;
+	text-align:center;
+	background:#F3F3F3;
+}
+
+#movie-confirm{
+	margin-left:200px;
+}
