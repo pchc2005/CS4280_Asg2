@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>The Cult Cinema Inc</title>
-<link rel="stylesheet" type="text/css" media="all" href="css/my-detail.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/transaction.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 
@@ -28,8 +28,7 @@
 
 	<div id="content-right">
                 <h5>MY TRANSACTION</h5>    
-                
-   	     
+  	     
         </div>
     </div>
     <%@ include file="include/footer.jsp"%>
