@@ -8,7 +8,7 @@ package cs4280asg2.dto;
  *
  * @author 52168666
  */
-public class Record {
+public class RecordBean {
     private int id;
     private int customer_id;
     private int sale_id;

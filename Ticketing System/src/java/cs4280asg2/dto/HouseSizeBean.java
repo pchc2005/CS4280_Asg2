@@ -8,7 +8,7 @@ package cs4280asg2.dto;
  *
  * @author 52168666
  */
-public class HouseBean {
+public class HouseSizeBean {
     private int id;
     private double price_ratio;
     private int row;
