@@ -31,11 +31,12 @@ public class LoginService {
 	    cstmt.setString(1, userId);
 	    ResultSet rs = cstmt.executeQuery();
 	    rs.first();
-	    while (rs != null && rs.next() != false) {
-		pw = rs.getString(1);
-	    }
+	    pw = rs.getString(1);
 	    if (!pw.equals(password)) {
 		return false;
+	    }
+	    else {
+		
 	    }
 	    return true;
 	    } catch (NamingException e) {

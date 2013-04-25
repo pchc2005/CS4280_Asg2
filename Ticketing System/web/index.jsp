@@ -13,7 +13,25 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/movie.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#click").click(function () {
+            name = $("#name").val();
+            age = $("#age").val();
+            $.ajax({
+                type: "POST",
+                url: "login",
+                data: "{'name':'" + name + "','age':'" + age + "'}",
+                contentType: "application/json",
+                async: false,
+                success: function (data) {
+                    $("#response").html(data.d);
+                }
 
+            });
+        });
+    });
+</script>
 </head>
     
 <body>

@@ -6,11 +6,11 @@ package cs4280asg2;
 
 import cs4280asg2.service.LoginService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,20 +30,21 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	String userId, password;
-	if(request.getParameter("username") == null &&
-	   request.getParameter("username").trim().equals("") && 
-	   request.getParameter("password") == null &&
-	   request.getParameter("password").equals("")) {
+	String userId = request.getParameter("UserName");
+	String password = request.getParameter("Password");
+	if((userId == null ||
+	   userId.trim().equals("")) && 
+	   (password == null &&
+	   password.equals(""))) {
 	    response.sendRedirect("index.jsp");
 	}
 	else {
-	    userId = request.getParameter("userName");
-	    password = request.getParameter("password");
 	    
 	    LoginService loginService = new LoginService();
+	    HttpSession session = request.getSession(true);
 	    boolean result = loginService.authenticate(userId, password);
 	    if (result) {
+		session.setAttribute("UserName", userId);
 		response.sendRedirect("loginSuccess.jsp");
 		return;
 	    }

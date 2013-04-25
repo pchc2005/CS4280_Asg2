@@ -9,13 +9,13 @@ package cs4280asg2.service.dto;
  * @author PCHC
  */
 public class LoginBean {
-    private String loginName;
+    private String userName;
 
-    public String getLoginName() {
-	return loginName;
+    public String getUserName() {
+	return userName;
     }
 
-    public void setLoginName(String loginName) {
-	this.loginName = loginName;
+    public void setUserName(String loginName) {
+	this.userName = loginName;
     }
 }
