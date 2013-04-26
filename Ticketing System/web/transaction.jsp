@@ -27,7 +27,8 @@
 	</div>
 
 	<div id="content-right">
-                <h5>MY TRANSACTION</h5>    
+                <h5>MY TRANSACTION</h5> 
+                Transaction ID: 
   	     
         </div>
     </div>

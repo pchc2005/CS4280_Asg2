@@ -31,8 +31,10 @@
                 <h5>Registration</h5>            			
                     <form name="sign-up">
                         <fieldset>
-                            <legend>Please Sing up here:</legend> <br/> <br/>                  
-                            <label for="sign-UserName">User Name:</label>
+                            <legend>Please Sing up here:</legend> <br/> <br/>   
+                            <label for="sign-Name">Actual Name:</label>
+                            <input type="text" name="sign-Name" /><br/><br/> 
+                            <label for="sign-UserName">Login Name:</label>
                             <input type="text" name="sign-UserName" /><br/><br/> 
                             <label for="sign-Password">Password:</label>
                             <input type="password" name="sinPassword" /><br/><br/>                                   
