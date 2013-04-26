@@ -17,13 +17,14 @@
 </head>
     
 <body>
-<div id="container">	
-    <%@ include file="include/header.jsp"%>
+<div id="container">
+    <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
+    <%@ include file="include/header.jspf"%>
         
     <div id="content2">
 	<div id="content-left">
-	    <%@ include file="include/login.jsp"%>
-	    <%@ include file="include/user-nav.jsp"%>                
+	    <%@ include file="include/loginSuccessStaff.jsp"%>
+	    <%@ include file="include/user-nav.jsp"%>
 	</div>
 
 	<div id="content-right">
@@ -55,7 +56,7 @@
                             <form name="transaction">
                                 <input type="submit" value="Cancel Transaction" class="button" />                                
                             </form>
-                        </th>
+                        </td>
                     </tr>
                 </table>
             </div>

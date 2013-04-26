@@ -19,14 +19,38 @@
 <body>
 <div id="container">	
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
-    <%@ include file="include/header.jsp"%>
+    <%@ include file="include/header.jspf"%>
         
     <div id="content2">
 	<div id="content-left">
+	    <%
+	    if (session.getAttribute("loginStatus") == "member" && 
+		session.getAttribute("loginStatus") != null) {
+	%>
+	    <%@ include file="include/loginSuccessMember.jsp"%>
+	    <%@ include file="include/quick-booking.jsp"%>
+            <%@ include file="include/top-movie.jsp"%>
+	<%
+	    }
+	    else if (session.getAttribute("loginStatus") == "staff" &&
+		     session.getAttribute("loginStatus") != null) {
+	%>
+	    <%@ include file="include/loginSuccessStaff.jsp"%>
+	<%
+		if (staffInfo.getRole().equals("Officer")) {
+	%>
+		<%@ include file="include/quick-booking.jsp"%>
+	<%
+		}
+	    }
+	    else {
+	%>
 	    <%@ include file="include/login.jsp"%>
 	    <%@ include file="include/quick-booking.jsp"%>
-            <%@ include file="include/top-movie.jsp"%> 
-            
+            <%@ include file="include/top-movie.jsp"%>
+	<%
+	    }
+	%>
         </div>
 	<div id="content-right">
                 <h5>Booking Detail</h5> 

@@ -29,7 +29,12 @@ import javax.servlet.RequestDispatcher;
  * @author PCHC
  */
 public class LoginServlet extends HttpServlet {
-
+	Context initCtx = null;
+	Context envCtx = null;
+	DataSource ds = null;
+	Connection con = null;
+	ResultSet rs = null;
+	CallableStatement cstmt = null;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -43,24 +48,24 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	try {
-	Context initCtx = new InitialContext();
-	Context envCtx = (Context)initCtx.lookup("java:comp/env");
-	DataSource ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
-	Connection con = ds.getConnection();
-	String userName = request.getParameter("UserName");
-	String password = request.getParameter("Password");
-	String loginType = request.getParameter("login-type");
-	String procedureGetMemberInfo = "{ call getMemberInfoByLoginName(?) }";
-	String procedureGetStaffInfo = "{ call getStaffInfoByLoginName(?) }";
-	CallableStatement cstmt = null;
-	HttpSession session = request.getSession(true);
-	if((userName == null ||
-	   userName.trim().equals("")) && 
-	   (password == null &&
-	   password.equals(""))) {
-	    session.setAttribute("login", false);
-	    response.sendRedirect("index.jsp");
-	}
+	    initCtx = new InitialContext();
+	    envCtx = (Context)initCtx.lookup("java:comp/env");
+	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
+	    con = ds.getConnection();
+	    String userName = request.getParameter("UserName");
+	    String password = request.getParameter("Password");
+	    String loginType = request.getParameter("login-type");
+	    String procedureGetMemberInfo = "{ call getMemberInfoByLoginName(?) }";
+	    String procedureGetStaffInfo = "{ call getStaffInfoByLoginName(?) }";
+	    
+	    HttpSession session = request.getSession(true);
+	    if((userName == null ||
+		userName.trim().equals("")) && 
+		(password == null &&
+		password.equals(""))) {
+		session.setAttribute("login", false);
+		response.sendRedirect("index.jsp");
+	    }
 	else {
 	    LoginService loginService = new LoginService();
 	    RequestDispatcher rd;
@@ -69,7 +74,7 @@ public class LoginServlet extends HttpServlet {
 		if (result) {
 		    cstmt = con.prepareCall(procedureGetMemberInfo, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		    cstmt.setString(1, userName);
-		    ResultSet rs = cstmt.executeQuery();
+		    rs = cstmt.executeQuery();
 		    rs.first();
 		    CustomerBean memberInfo = new CustomerBean();
 		    memberInfo.setLogin_name(rs.getString(2));
@@ -94,7 +99,7 @@ public class LoginServlet extends HttpServlet {
 		if (result) {
 		    cstmt = con.prepareCall(procedureGetStaffInfo, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		    cstmt.setString(1, userName);
-		    ResultSet rs = cstmt.executeQuery();
+		    rs = cstmt.executeQuery();
 		    rs.first();
 		    StaffBean staffInfo = new StaffBean();
 		    staffInfo.setLogin_name(rs.getString(1));
@@ -115,6 +120,14 @@ public class LoginServlet extends HttpServlet {
 	    e.printStackTrace();
 	} catch (SQLException se) {
 	    se.printStackTrace();
+	}   finally {
+	    try{
+		con.close();
+		rs.close();
+		cstmt.close();
+	    } catch (SQLException se) {
+		se.printStackTrace();
+	    }
 	}
     }
 

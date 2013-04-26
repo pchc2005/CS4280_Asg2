@@ -17,12 +17,14 @@
 </head>
     
 <body>
-<div id="container">	
-    <%@ include file="include/header.jsp"%>
+<div id="container">
+    <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
+    <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
+    <%@ include file="include/header.jspf"%>
         
     <div id="content2">
 	<div id="content-left">
-	    <%@ include file="include/login.jsp"%>
+	    <%@ include file="include/loginSuccessMember.jsp"%>
 	    <%@ include file="include/user-nav.jsp"%>                
 	</div>
 
@@ -32,31 +34,31 @@
                 <table>
                   <tr>
                     <th>Actual Name:</th>
-                    <td>Peter Cheung</td>
+                    <td><jsp:getProperty name="memberInfo" property="name" /></td>
                   </tr>
                   <tr>
                     <th>Login Name:</th>
-                    <td>Peter Cheung</td>
+                    <td><jsp:getProperty name="memberInfo" property="login_name" /></td>
                   </tr>                  
                   <tr>
                     <th>Email:</th>
-                    <td>hi@bye.com</td>
+                    <td><jsp:getProperty name="memberInfo" property="email" /></td>
                   </tr>
                   <tr>
                     <th>Phone Number:</th>
-                    <td>73645938</td>
+                    <td><jsp:getProperty name="memberInfo" property="phone_no" /></td>
                   </tr>
                   <tr>
                     <th>Credit Card:</th>
-                    <td>4582745927450928</td>
+                    <td><jsp:getProperty name="memberInfo" property="creditcard" /></td>
                   </tr>
                   <tr>
                     <th>Address:</th>
-                    <td>fjenglrijt eijgn wetgh wergj bweigrb ew rgib ewkigr vbergkjh bewrgh </td>
+                    <td><jsp:getProperty name="memberInfo" property="addr" /></td>
                   </tr>
                   <tr>
                     <th>Loyalty Point:</th>
-                    <td>0</td>
+                    <td><jsp:getProperty name="memberInfo" property="loyalty_pt" /></td>
                   </tr>
                 </table>
    	     </div>

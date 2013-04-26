@@ -71,7 +71,12 @@ public class CustomerBean {
      * @param addr the addr to set
      */
     public void setAddr(String addr) {
-        this.addr = addr;
+	if (addr == null) {
+	    this.addr = "";
+	}
+	else {
+	    this.addr = addr;
+	}
     }
 
     /**
@@ -85,7 +90,12 @@ public class CustomerBean {
      * @param email the email to set
      */
     public void setEmail(String email) {
-        this.email = email;
+        if (email == null) {
+	    this.email = "";
+	}
+	else {
+	    this.email = email;
+	}
     }
 
     /**

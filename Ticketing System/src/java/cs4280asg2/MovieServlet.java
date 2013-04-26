@@ -49,7 +49,7 @@ public class MovieServlet extends HttpServlet{
                 mbs[i].setPosterURL(rs.getString(8));
             }
             HttpSession session = request.getSession(true);
-            session.setAttribute("moviebean", mbs);
+            session.setAttribute("MoviebeanList", mbs);
             
         }
     }
