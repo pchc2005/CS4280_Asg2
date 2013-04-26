@@ -23,7 +23,7 @@
         
     <div id="content2">
 	<div id="content-left">
-	    <%@ include file="include/login.jsp"%>
+	    <%@ include file="include/loginSuccessStaff.jsp"%>
 	    <%@ include file="include/management-nav.jsp"%>                
 	</div>
 

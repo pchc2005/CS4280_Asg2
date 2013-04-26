@@ -30,7 +30,7 @@
 		}
 		else if (session.getAttribute("loginStatus") == "staff" && staffInfo.getRole().equals("Manager")) {
 		%>
-		    <li><a href="#">MANAGEMENT</a></li>
+		    <li><a href="management.jsp">MANAGEMENT</a></li>
 		<%
 		}
 		else {
