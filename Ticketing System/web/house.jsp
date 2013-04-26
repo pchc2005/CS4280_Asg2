@@ -18,6 +18,7 @@
     
 <body>
 <div id="container">	
+    <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <%@ include file="include/header.jsp"%>
         
     <div id="content2">

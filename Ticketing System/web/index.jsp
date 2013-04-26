@@ -22,23 +22,8 @@
     
 <div id="container">
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
-    <%
-	if (session.getAttribute("loginStatus") == "member") {
-    %>
-	<%@ include file="include/header.jsp"%>
-    <%
-	}
-	else if (session.getAttribute("loginStatus") == "staff"){
-    %>
-	<%@ include file="include/header.jsp"%>
-    <%
-	}
-	else {
-    %>
-	<%@ include file="include/header.jsp"%>
-    <%
-	}
-    %>
+    <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
+    <%@ include file="include/header.jspf"%>
         
     <div id="content2">
 	<div id="content-left">
@@ -51,7 +36,7 @@
             <%@ include file="include/top-movie.jsp"%>
 	<%
 	    }
-	    else if (session.getAttribute("loginStatus") == "staff" && 
+	    else if (session.getAttribute("loginStatus") == "staff" &&
 		     session.getAttribute("loginStatus") != null) {
 	%>
 	    <%@ include file="include/loginSuccessStaff.jsp"%>

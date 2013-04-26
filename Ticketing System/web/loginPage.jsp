@@ -17,7 +17,8 @@
         
     </head>
     <body>
-	<%@ include file="include/header.jsp"%>
+	<jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
+	<%@ include file="include/header.jspf"%>
 	
 	<div id="container">
             <div id="content2">
@@ -29,9 +30,9 @@
                         <input type="radio" name="login-type" value="Staff" />
                         <label for="staff-type">Staff</label>
                         <br /><br />
-                        <label for="UserName" name="UserName">User Name:</label>
+                        <label for="UserName">User Name:</label>
                         <input type="text" name="UserName" /><br/>
-                        <label for="Password" name="Password">Password:</label>
+                        <label for="Password">Password:</label>
                         <input type="password" name="Password" /><br/><br/>
                         <input type="submit" value="Submit" class="button" />
                         <input type="reset" onclick="formReset()" value="Reset" class="button" />

@@ -3,7 +3,7 @@
     Created on : Apr 24, 2013, 9:30:32 PM
     Author     : PCHC
 --%>
-<jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
+
 
 <div id="login" class="box">
     <h2>LOGIN</h2>

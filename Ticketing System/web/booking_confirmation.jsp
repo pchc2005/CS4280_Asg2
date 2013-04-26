@@ -14,28 +14,13 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#click").click(function () {
-            name = $("#name").val();
-            age = $("#age").val();
-            $.ajax({
-                type: "POST",
-                url: "login",
-                data: "{'name':'" + name + "','age':'" + age + "'}",
-                contentType: "application/json",
-                async: false,
-                success: function (data) {
-                    $("#response").html(data.d);
-                }
 
-            });
-        });
-    });
 </script>
 </head>
     
 <body>
 <div id="container">	
+    <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <%@ include file="include/header.jsp"%>
         
     <div id="content2">
