@@ -33,3 +33,30 @@ p{
     width:auto;
     margin: 0px 0px 30px 550px;
 }
+
+h4{    
+    background-color: #1e7c9a;
+    color:#FFF;
+    margin-top:20px;
+}
+
+th{
+	background:#CCC;
+	width:160px;
+}
+
+td{
+	width:280px;
+	text-align:center;
+	background:#F3F3F3;
+}
+
+table{
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+
+#title{
+    background-color: #666;
+    color:#FFF;
+}
