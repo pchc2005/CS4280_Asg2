@@ -4,9 +4,25 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>cs4280asg2.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MovieServlet</servlet-name>
+        <servlet-class>cs4280asg2.MovieServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CinemaHouseServlet</servlet-name>
+        <servlet-class>cs4280asg2.CinemaHouseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MovieServlet</servlet-name>
+        <url-pattern>/Movies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CinemaHouseServlet</servlet-name>
+        <url-pattern>/CinemaHouse</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,7 +30,8 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+	<welcome-file>Movies</welcome-file>
+	<welcome-file>CinemaHouse</welcome-file>
     </welcome-file-list>
     <resource-ref>
         <description>Microsoft SQL Server Connection</description>

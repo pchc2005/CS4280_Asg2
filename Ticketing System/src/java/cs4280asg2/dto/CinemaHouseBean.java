@@ -11,7 +11,11 @@ package cs4280asg2.dto;
 public class CinemaHouseBean {
     private int id;
     private String name;
-    private int size_id;
+    private String size;
+    private double price_ratio;
+    private int row;
+    private int col;
+    private int capacity;
 
     /**
      * @return the id
@@ -40,18 +44,67 @@ public class CinemaHouseBean {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getSize() {
+	return size;
+    }
 
+    public void setSize(String size) {
+	this.size = size;
+    }
     /**
-     * @return the size_id
+     * @return the price_ratio
      */
-    public int getSize_id() {
-        return size_id;
+    public double getPrice_ratio() {
+        return price_ratio;
     }
 
     /**
-     * @param size_id the size_id to set
+     * @param price_ratio the price_ratio to set
      */
-    public void setSize_id(int size_id) {
-        this.size_id = size_id;
+    public void setPrice_ratio(double price_ratio) {
+        this.price_ratio = price_ratio;
+    }
+
+    /**
+     * @return the row
+     */
+    public int getRow() {
+        return row;
+    }
+
+    /**
+     * @param row the row to set
+     */
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    /**
+     * @return the col
+     */
+    public int getCol() {
+        return col;
+    }
+
+    /**
+     * @param col the col to set
+     */
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    /**
+     * @return the capacity
+     */
+    public int getCapacity() {
+        return capacity;
+    }
+
+    /**
+     * @param capacity the capacity to set
+     */
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }

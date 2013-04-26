@@ -10,6 +10,15 @@ package cs4280asg2.dto;
  */
 public class HouseSizeBean {
     private int id;
+
+    public String getSize() {
+	return size;
+    }
+
+    public void setSize(String size) {
+	this.size = size;
+    }
+    private String size;
     private double price_ratio;
     private int row;
     private int col;

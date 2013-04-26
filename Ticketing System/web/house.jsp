@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,6 +21,7 @@
 <div id="container">	
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
+    <jsp:useBean id="movieHouseInfo" class="cs4280asg2.dto.CinemaHouseBean" scope="session"/>
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -55,7 +57,8 @@
 	</div>
 
 	<div id="content-right">
-                <h5>HOUSE</h5> 
+                <h5>HOUSE</h5>
+		
                     <div class="house">
                         <h6>STAR</h6>
                         <table>
@@ -71,55 +74,7 @@
                      	</table>
                        
                         
-                    </div>   
-                    <div class="house">
-                        <h6>CLOUD</h6>
-                        <table>
-                          <tr>
-                            <th>Capacity:</th>
-                            <td>200</td>
-                          </tr>
-                          <tr>
-                            <th>Seat:</th>
-                            <td>XXXXXXXXXXXXXXXXXXXXX<br />
-                              XXXXXXXXXXXXXXXXXXXXX</td>
-                          </tr>                      
-                     	</table>
-                       
-                        
-                    </div>  
-                    <div class="house">
-                        <h6>MOON</h6>
-                        <table>
-                          <tr>
-                            <th>Capacity:</th>
-                            <td>200</td>
-                          </tr>
-                          <tr>
-                            <th>Seat:</th>
-                            <td>XXXXXXXXXXXXXXXXXXXXX<br />
-                              XXXXXXXXXXXXXXXXXXXXX</td>
-                          </tr>                      
-                     	</table>
-                       
-                        
-                    </div>  
-                    <div class="house">
-                        <h6>SUN</h6>
-                        <table>
-                          <tr>
-                            <th>Capacity:</th>
-                            <td>200</td>
-                          </tr>
-                          <tr>
-                            <th>Seat:</th>
-                            <td>XXXXXXXXXXXXXXXXXXXXX<br />
-                              XXXXXXXXXXXXXXXXXXXXX</td>
-                          </tr>                      
-                     	</table>
-                       
-                        
-                    </div>  					
+                    </div>
             </div>
     </div>
     <%@ include file="include/footer.jsp"%>
