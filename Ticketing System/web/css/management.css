@@ -1,0 +1,35 @@
+/* 
+    Document   : management
+    Created on : Apr 26, 2013, 9:45:22 PM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+form[name=movie-man] input{
+    width:150px;
+}
+
+form[name=movie-man] label, form[name=seating-man] label{
+    color: #0597B6;
+    font-weight: bold;
+    width: 100px;    
+}
+
+hr{
+    width:500px;
+    text-align: center;
+    color: #09C;
+}
+
+p{
+    text-align: center;
+}
+
+.seating-management input{
+    width:auto;
+    margin: 0px 0px 30px 550px;
+}

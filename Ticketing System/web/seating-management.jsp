@@ -28,25 +28,24 @@
 	</div>
 
 	<div id="content-right">
-                <h5>Movie Management</h5>    
-                <div class="movie-management">
-                    <form name="movie-man">
-                        <label for="session">Session ID:</label> 01<br/>
-                        <label for="dateTime">Date Time:</label>
-                        <input type="text" name="Date Time" value="2013-04-26 10:00:00"></input><br/>
-                        <label for="dateTime">Basic Price:</label>
-                        <input type="text" name="Date Time" value="$100"></input><br/>
+                <h5>Seating Management</h5>    
+                <div class="seating-management">
+                    <form name="seating-man">
+                        <label for="session">House Name:</label> Sun<br/>
+                        <label for="dateTime">Seat(s):</label>
+                        <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>
+                           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                         <input type="submit" value="Confirm Change(s)" class="button" />                          
                     </form>                    
                     <hr/>
                 </div>
-                <div class="movie-management">
-                    <form name="movie-man">
-                        <label for="session">Session ID:</label> 02<br/>
-                        <label for="dateTime">Date Time:</label>
-                        <input type="text" name="Date Time" value="2013-04-26 10:00:00"></input><br/>
-                        <label for="dateTime">Basic Price:</label>
-                        <input type="text" name="Date Time" value="$100"></input><br/>
+                <div class="seating-management">
+                    <form name="seating-man">
+                        <label for="session">House Name:</label> Cloud<br/>
+                        <label for="dateTime">Seat(s):</label>
+                        <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>
+                           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>
+                           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                         <input type="submit" value="Confirm Change(s)" class="button" />                          
                     </form>                    
                     <hr/>
