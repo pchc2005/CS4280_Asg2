@@ -10,36 +10,26 @@ root {
     display: block;
 }
 
-#movie-detail{
-	margin-left:20px;
-}
-
-.button2{
-	float:right;
-	margin-right:30px;
-}
-
-
-span{
-	font-weight:bold;
-}
 
 th{
 	background:#CCC;
-	width:150px;
+	width:160px;
 }
 
 td{
-	width:250px;
+	width:280px;
 	text-align:center;
 	background:#F3F3F3;
 }
 
 #movie-confirm,#movie-booking{
-	margin:50px 0px 0px 180px;
+	margin:50px 0px 0px 170px;
 }
 
-form[name=movie-booking]{
+form[name=movie-booking] input{
     margin-left: 330px;
+}
 
+form[name=movie-booking] label{
+    font-weight: bold;
 }

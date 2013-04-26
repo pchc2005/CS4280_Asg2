@@ -69,11 +69,17 @@
                         <td>14:05</td>
                     </tr>
                     <tr>
-                        <th rowspan="2">Price</th>
+                        <th rowspan="4">Price</th>
                         <td>$ 100 * 1</td>
                     </tr>
                     <tr>
-                        <td>$ 60 * 1</td>
+                        <td>$ 70 * 1</td>
+                    </tr>
+                    <tr>
+                        <td>$ 60 * 0</td>
+                    </tr>
+                    <tr>
+                        <td>$ 65 * 1</td>
                     </tr>
                     <tr>
                         <th>Total price</th>

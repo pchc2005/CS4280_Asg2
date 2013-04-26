@@ -21,17 +21,17 @@
 	
 	<div id="container">
             <div id="content2">
+                <h5>LOGIN PAGE</h5>
                 <form name="login" action="login" method="post">
-                    <p>
-                        <label for="login-type">Login type:</label>
+                    <p>                        
                         <input type="radio" name="login-type" value="Member" />
                         <label for="member-type">Member</label>
                         <input type="radio" name="login-type" value="Staff" />
                         <label for="staff-type">Staff</label>
                         <br /><br />
-                        <label for="UserName">User Name:</label>
+                        <label for="UserName" name="UserName">User Name:</label>
                         <input type="text" name="UserName" /><br/>
-                        <label for="Password">Password:</label>
+                        <label for="Password" name="Password">Password:</label>
                         <input type="password" name="Password" /><br/><br/>
                         <input type="submit" value="Submit" class="button" />
                         <input type="reset" onclick="formReset()" value="Reset" class="button" />

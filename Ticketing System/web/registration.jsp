@@ -38,16 +38,12 @@
                             <input type="text" name="sign-UserName" /><br/><br/> 
                             <label for="sign-Password">Password:</label>
                             <input type="password" name="sinPassword" /><br/><br/>                                   
-                            <label for="sign-Gender">Gender:</label>
-                            <select>
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
-                            </select> 
-                            <br/><br/> 
                             <label for="sign-Email">Email:</label>
                             <input type="text" name="sign-Email" /><br/><br/> 
                             <label for="sign-Phone">Phone Number:</label>
-                            <input type="text" name="Phone" /><br/><br/> 
+                            <input type="text" name="Phone" /><br/><br/>
+                            <label for="sign-Phone">Credit Card:</label>
+                            <input type="text" name="Phone" /><br/><br/>
                             <label for="sign-Address">Address:</label>
                             <textarea rows="4" cols="50"></textarea> <br/><br/> 
                             <input type="submit" value="Submit" class="button" />

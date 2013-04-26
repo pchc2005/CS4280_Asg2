@@ -35,7 +35,7 @@
                         <table>
                           <tr>
                             <th>Capacity:</th>
-                            <td>200</td>
+                            <td>Big (200)</td>
                           </tr>
                           <tr>
                             <th>Seat:</th>

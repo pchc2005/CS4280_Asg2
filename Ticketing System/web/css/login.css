@@ -12,12 +12,17 @@ root {
 
 form[name=login]{
     text-align: center;
-    margin: 100px 0px 100px 0px;
+    margin: 80px 0px 100px 0px;
+}
+form[name=login] label{
+    color: #0597B6;
+    font-weight: bold;
 }
 
-form[name=login] label{
+form[name=login] label[name=UserName],form[name=login] label[name=Password]{
 	display:inline-block;
 	width:100px;
+        text-align: right;
 }
 
 form[name=login] input[name=UserName],form[name=login] input[name=Password]{

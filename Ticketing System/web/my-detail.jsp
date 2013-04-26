@@ -37,11 +37,7 @@
                   <tr>
                     <th>Login Name:</th>
                     <td>Peter Cheung</td>
-                  </tr>
-                  <tr>
-                    <th>Gender:</th>
-                    <td>Male</td>
-                  </tr>
+                  </tr>                  
                   <tr>
                     <th>Email:</th>
                     <td>hi@bye.com</td>
@@ -51,8 +47,16 @@
                     <td>73645938</td>
                   </tr>
                   <tr>
+                    <th>Credit Card:</th>
+                    <td>4582745927450928</td>
+                  </tr>
+                  <tr>
                     <th>Address:</th>
                     <td>fjenglrijt eijgn wetgh wergj bweigrb ew rgib ewkigr vbergkjh bewrgh </td>
+                  </tr>
+                  <tr>
+                    <th>Loyalty Point:</th>
+                    <td>0</td>
                   </tr>
                 </table>
    	     </div>

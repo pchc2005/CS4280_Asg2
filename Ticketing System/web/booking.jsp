@@ -59,7 +59,63 @@
                  <p>
                        
                         <form name="movie-booking" class="ticket">
-                                <input type="submit" value="Submit" class="button" />
+                            <label for="Adult">Adult:</label>
+                            <select>
+                                <option value="0">0</option>
+                                <option value="Adult1">1</option>
+                                <option value="Adult2">2</option>
+                                <option value="Adult3">3</option>
+                                <option value="Adult4">4</option>
+                                <option value="Adult5">5</option>
+                                <option value="Adult6">6</option>
+                                <option value="Adult7">7</option>
+                                <option value="Adult8">8</option>
+                                <option value="Adult9">9</option>
+                                <option value="Adult10">10</option>
+                            </select>
+                            <label for="Adult">&nbspChild:</label>
+                            <select>
+                                <option value="0">0</option>
+                                <option value="Child1">1</option>
+                                <option value="Child2">2</option>
+                                <option value="Child3">3</option>
+                                <option value="Child4">4</option>
+                                <option value="Child5">5</option>
+                                <option value="Child6">6</option>
+                                <option value="Child7">7</option>
+                                <option value="Child8">8</option>
+                                <option value="Child9">9</option>
+                                <option value="Child10">10</option>
+                            </select>
+                            <label for="Adult">&nbspStudent:</label>
+                            <select>
+                                <option value="0">0</option>
+                                <option value="Student1">1</option>
+                                <option value="Student2">2</option>
+                                <option value="Student3">3</option>
+                                <option value="Student4">4</option>
+                                <option value="Student5">5</option>
+                                <option value="Student6">6</option>
+                                <option value="Student7">7</option>
+                                <option value="Student8">8</option>
+                                <option value="Student9">9</option>
+                                <option value="Student10">10</option>
+                            </select>
+                            <label for="Adult">&nbspElderly:</label>
+                            <select>
+                                <option value="0">0</option>
+                                <option value="Elderly1">1</option>
+                                <option value="Elderly2">2</option>
+                                <option value="Elderly3">3</option>
+                                <option value="Elderly4">4</option>
+                                <option value="Elderly5">5</option>
+                                <option value="Elderly6">6</option>
+                                <option value="Elderly7">7</option>
+                                <option value="Elderly8">8</option>
+                                <option value="Elderly9">9</option>
+                                <option value="Elderly10">10</option>
+                            </select><br/> <br/>
+                            <input type="submit" value="Submit" class="button" />
                         </form>
                  </p>
               </div>

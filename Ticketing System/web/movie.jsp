@@ -39,76 +39,28 @@
                       <tr>
                         <th>Casting:</th>
                         <td>Chan Tsz Fung, Ivan Law</td>
-                      </tr>                      
-                 </table>
-                 <p>
-                        <img src="image/movie/DrugWar.jpg" alt="movie" /><br /><br />
-                        <form name="ticket" class="ticket">
-                                <select>
-                                  <option value="1">24/5 12:05(Mon) House-Sun $70</option>
-                                  <option value="2">25/5 12:50(Tue) House-Sun $70</option>
-                                </select> 
-                                <input type="submit" value="Submit" class="button" />
-                        </form>
-                 </p>
-              </div>
-              <div class="movie-detail">
-                	<h6>HELLO HELLO KITTY</h6>
-               	<table>
-                      <tr>
-                        <th>Director:</th>
-                        <td>Peter Cheung</td>
                       </tr>
                       <tr>
-                        <th>Casting:</th>
-                        <td>Chan Tsz Fung, Ivan Law</td>
-                      </tr>                      
-                 </table>
-                 <p>
-                        <img src="image/movie/DrugWar.jpg" alt="movie" /><br /><br />
-                        <form name="ticket" class="ticket">
-                                <select>
-                                  <option value="1">24/5 12:05(Mon) House-Sun $70</option>
-                                  <option value="2">25/5 12:50(Tue) House-Sun $70</option>
-                                </select> 
-                                <input type="submit" value="Submit" class="button" />
-                        </form>
-                 </p>
-              </div>
-              <div class="movie-detail">
-                	<h6>HELLO HELLO KITTY</h6>
-               	<table>
-                      <tr>
-                        <th>Director:</th>
-                        <td>Peter Cheung</td>
+                        <th>Duration:</th>
+                        <td>120mins</td>
                       </tr>
                       <tr>
-                        <th>Casting:</th>
-                        <td>Chan Tsz Fung, Ivan Law</td>
-                      </tr>                      
-                 </table>
-                 <p>
-                        <img src="image/movie/DrugWar.jpg" alt="movie" /><br /><br />
-                        <form name="ticket" class="ticket">
-                                <select>
-                                  <option value="1">24/5 12:05(Mon) House-Sun $70</option>
-                                  <option value="2">25/5 12:50(Tue) House-Sun $70</option>
-                                </select> 
-                                <input type="submit" value="Submit" class="button" />
-                        </form>
-                 </p>
-              </div>
-              <div class="movie-detail">
-                	<h6>HELLO HELLO KITTY</h6>
-               	<table>
-                      <tr>
-                        <th>Director:</th>
-                        <td>Peter Cheung</td>
+                        <th>Category:</th>
+                        <td>IIB</td>
                       </tr>
                       <tr>
-                        <th>Casting:</th>
-                        <td>Chan Tsz Fung, Ivan Law</td>
-                      </tr>                      
+                        <th>Language:</th>
+                        <td>English</td>
+                      </tr>
+                      <tr>
+                        <th>Subtitle:</th>
+                        <td>English</td>
+                      </tr>
+                      <tr>
+                        <th>Synposis</th>
+                        <td>sgraegeg erhywethwet eshseth earhae aerg aerg rjts rhae ga erg ae</td>
+                      </tr>
+                    
                  </table>
                  <p>
                         <img src="image/movie/DrugWar.jpg" alt="movie" /><br /><br />
@@ -121,6 +73,7 @@
                         </form>
                  </p>
               </div>
+              
   		
             </div>
         
