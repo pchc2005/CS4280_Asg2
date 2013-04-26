@@ -9,24 +9,9 @@ package cs4280asg2.dto;
  * @author PCHC
  */
 public class StaffBean {
-    private int id;
     private String login_name;
     private String password;
-    private int role_id;
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+    private String role;
 
     /**
      * @return the login_name
@@ -59,14 +44,14 @@ public class StaffBean {
     /**
      * @return the role_id
      */
-    public int getRole_id() {
-        return role_id;
+    public String getRole() {
+        return role;
     }
 
     /**
      * @param role_id the role_id to set
      */
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import cs4280asg2.dto.CustomerBean;
+import cs4280asg2.dto.StaffBean;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
@@ -50,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 	String password = request.getParameter("Password");
 	String loginType = request.getParameter("login-type");
 	String procedureGetMemberInfo = "{ call getMemberInfoByLoginName(?) }";
+	String procedureGetStaffInfo = "{ call getStaffInfoByLoginName(?) }";
 	CallableStatement cstmt = null;
 	HttpSession session = request.getSession(true);
 	if((userName == null ||
@@ -70,7 +72,6 @@ public class LoginServlet extends HttpServlet {
 		    ResultSet rs = cstmt.executeQuery();
 		    rs.first();
 		    CustomerBean memberInfo = new CustomerBean();
-		    String login_name = rs.getString(2);
 		    memberInfo.setLogin_name(rs.getString(2));
 		    memberInfo.setName(rs.getString(3));
 		    memberInfo.setPhone_no(rs.getInt(4));
@@ -91,14 +92,23 @@ public class LoginServlet extends HttpServlet {
 	    }
 	    else if (loginType.equals("Staff")) {
 		if (result) {
-		    session.setAttribute("UserName", userName);
-		    response.sendRedirect("loginSuccess.jsp");
-		    return;
+		    cstmt = con.prepareCall(procedureGetStaffInfo, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		    cstmt.setString(1, userName);
+		    ResultSet rs = cstmt.executeQuery();
+		    rs.first();
+		    StaffBean staffInfo = new StaffBean();
+		    staffInfo.setLogin_name(rs.getString(1));
+		    staffInfo.setPassword(rs.getString(2));
+		    staffInfo.setRole(rs.getString(3));
+		    session.setAttribute("loginStatus", "staff");
+		    session.setAttribute("staffInfo", staffInfo);
 		}
 		else {
-		    response.sendRedirect("index.jsp");
-		    return;
+		    session.setAttribute("loginStatus", "failed");
 		}
+		rd = getServletContext().getRequestDispatcher("/index.jsp");
+		rd.forward(request, response);
+		return;
 	    }
 	}
 	} catch (NamingException e) {
