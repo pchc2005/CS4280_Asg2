@@ -14,33 +14,44 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#click").click(function () {
-            name = $("#name").val();
-            age = $("#age").val();
-            $.ajax({
-                type: "POST",
-                url: "login",
-                data: "{'name':'" + name + "','age':'" + age + "'}",
-                contentType: "application/json",
-                async: false,
-                success: function (data) {
-                    $("#response").html(data.d);
-                }
-
-            });
-        });
-    });
+    
 </script>
 </head>
     
 <body>
-<div id="container">	
-    <%@ include file="include/header.jsp"%>
+<div id="container">
+    <%
+	if (session.getAttribute("loginStatus") == "member") {
+    %>
+	<%@ include file="include/header.jsp"%>
+    <%
+	}
+	else if (session.getAttribute("loginStatus") == "staff"){
+    %>
+	<%@ include file="include/header.jsp"%>
+    <%
+	}
+	else {
+    %>
+	<%@ include file="include/header.jsp"%>
+    <%
+	}
+    %>
         
     <div id="content2">
 	<div id="content-left">
+	<%
+	    if (session.getAttribute("loginStatus") != "failed" && session.getAttribute("loginStatus") != null) {
+	%>
+	    <%@ include file="include/loginSuccess.jsp"%>
+	<%
+	    }
+	    else {
+	%>
 	    <%@ include file="include/login.jsp"%>
+	<%
+	    }
+	%>
 	    <%@ include file="include/quick-booking.jsp"%>
             <%@ include file="include/top-movie.jsp"%>	    
 	</div>

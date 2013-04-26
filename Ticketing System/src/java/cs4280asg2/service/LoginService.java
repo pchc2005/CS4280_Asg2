@@ -20,11 +20,16 @@ import javax.sql.DataSource;
 public class LoginService {
     
     public boolean authenticate(String userId, String password, String userType){
+	Context initCtx = null;
+	Context envCtx = null;
+	DataSource ds = null;
+	Connection con = null;
+	ResultSet rs = null;
 	try {
-	    Context initCtx = new InitialContext();
-	    Context envCtx = (Context)initCtx.lookup("java:comp/env");
-	    DataSource ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
-	    Connection con = ds.getConnection();
+	    initCtx = new InitialContext();
+	    envCtx = (Context)initCtx.lookup("java:comp/env");
+	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
+	    con = ds.getConnection();
 	    String procedureMember = "{ call getPassword(?) }";
 	    String procedureStaff = "{ call getPasswordStaff(?) }";
 	    String pw = null;
@@ -37,7 +42,7 @@ public class LoginService {
 	    }
 	    if (cstmt != null) {
 		cstmt.setString(1, userId);
-		ResultSet rs = cstmt.executeQuery();
+		rs = cstmt.executeQuery();
 		rs.first();
 		pw = rs.getString(1);
 		if (!pw.equals(password)) {
@@ -52,6 +57,13 @@ public class LoginService {
 		return false;
 	    } catch (SQLException e) {
 		return false;
+	    } finally {
+		try{
+		    con.close();
+		    rs.close();
+		} catch (SQLException se) {
+		    se.printStackTrace();
+		}
 	    }
 	} 
 }

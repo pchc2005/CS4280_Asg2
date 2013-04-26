@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import cs4280asg2.dto.CustomerBean;
-import java.sql.PreparedStatement;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
 
@@ -49,7 +49,8 @@ public class LoginServlet extends HttpServlet {
 	String userName = request.getParameter("UserName");
 	String password = request.getParameter("Password");
 	String loginType = request.getParameter("login-type");
-	PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [Customer] WHERE [login_name] = ?");
+	String procedureGetMemberInfo = "{ call getMemberInfoByLoginName(?) }";
+	CallableStatement cstmt = null;
 	HttpSession session = request.getSession(true);
 	if((userName == null ||
 	   userName.trim().equals("")) && 
@@ -64,10 +65,12 @@ public class LoginServlet extends HttpServlet {
 	    boolean result = loginService.authenticate(userName, password, loginType);
 	    if (loginType.equals("Member")) {
 		if (result) {
-		    pstmt.setString(1, userName);
-		    ResultSet rs = pstmt.executeQuery();
-		    
+		    cstmt = con.prepareCall(procedureGetMemberInfo, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		    cstmt.setString(1, userName);
+		    ResultSet rs = cstmt.executeQuery();
+		    rs.first();
 		    CustomerBean memberInfo = new CustomerBean();
+		    String login_name = rs.getString(2);
 		    memberInfo.setLogin_name(rs.getString(2));
 		    memberInfo.setName(rs.getString(3));
 		    memberInfo.setPhone_no(rs.getInt(4));
@@ -76,16 +79,15 @@ public class LoginServlet extends HttpServlet {
 		    memberInfo.setEmail(rs.getString(7));
 		    memberInfo.setCreditcard(rs.getString(8));
 		    memberInfo.setLoyalty_pt(rs.getInt(9));
+		    session.setAttribute("loginStatus", "member");
 		    session.setAttribute("memberInfo", memberInfo);
-		    rd = getServletContext().getRequestDispatcher("/loginSuccess.jsp");
-		    rd.forward(request, response);
-		    return;
 		}
 		else {
-		    rd = getServletContext().getRequestDispatcher("/index.jsp");
-		    rd.forward(request, response);
-		    return;
+		    session.setAttribute("loginStatus", "failed");
 		}
+		rd = getServletContext().getRequestDispatcher("/index.jsp");
+		rd.forward(request, response);
+		return;
 	    }
 	    else if (loginType.equals("Staff")) {
 		if (result) {
