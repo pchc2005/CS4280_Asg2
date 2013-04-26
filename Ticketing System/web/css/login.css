@@ -1,0 +1,28 @@
+/* 
+    Document   : login
+    Created on : Apr 26, 2013, 1:45:46 PM
+    Author     : 52168666
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+form[name=login]{
+    text-align: center;
+    margin: 100px 0px 100px 0px;
+}
+
+form[name=login] label{
+	display:inline-block;
+	width:100px;
+}
+
+form[name=login] input[name=UserName],form[name=login] input[name=Password]{
+	display:inline-block;
+        width:200px;
+        margin:5px;
+	
+}
