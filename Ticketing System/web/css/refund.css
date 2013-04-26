@@ -1,0 +1,36 @@
+/* 
+    Document   : booking
+    Created on : Apr 25, 2013, 3:46:04 PM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#refund{
+	margin-left:20px;
+}
+
+
+th{
+	background:#CCC;
+	width:150px;
+}
+
+td{
+	width:250px;
+	text-align:center;
+	background:#F3F3F3;
+}
+
+#refund{
+	margin:0px 0px 0px 180px;
+}
+
+form[name=confirm-refund] input{
+    width:auto;
+
+}

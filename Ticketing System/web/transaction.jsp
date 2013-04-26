@@ -28,7 +28,37 @@
 
 	<div id="content-right">
                 <h5>MY TRANSACTION</h5> 
-                Transaction ID: 
+                <div id="transaction">
+                <table >                    
+                    <tr>
+                        <th>Transaction ID</th>
+                        <td>HELLO </td>
+                    </tr>
+                    <tr>
+                        <th>Movie</th>
+                        <td>HELLO </td>
+                    </tr>
+                    <tr>
+                        <th>House</th>
+                        <td>SUN</td>
+                    </tr>
+                    <tr>
+                        <th>Time</th>
+                        <td>14:05</td>
+                    </tr>                    
+                    <tr>
+                        <th>Total price</th>
+                        <td>$ 150</td>
+                    </tr>  
+                    <tr>
+                        <td colspan="2">
+                            <form name="transaction">
+                                <input type="submit" value="Cancel Transaction" class="button" />                                
+                            </form>
+                        </th>
+                    </tr>
+                </table>
+            </div>
   	     
         </div>
     </div>

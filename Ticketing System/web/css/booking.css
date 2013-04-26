@@ -26,15 +26,20 @@ span{
 
 th{
 	background:#CCC;
-	width:100px;
+	width:150px;
 }
 
 td{
-	width:200px;
+	width:250px;
 	text-align:center;
 	background:#F3F3F3;
 }
 
-#movie-confirm{
-	margin-left:200px;
+#movie-confirm,#movie-booking{
+	margin:50px 0px 0px 180px;
+}
+
+form[name=movie-booking]{
+    margin-left: 330px;
+
 }

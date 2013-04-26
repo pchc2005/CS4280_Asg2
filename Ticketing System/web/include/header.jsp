@@ -16,6 +16,9 @@
                 <li><a href="index.jsp">HOME</a></li>
                 <li><a href="house.jsp">HOUSE</a></li>
                 <li><a href="movie.jsp">MOVIE</a></li>
+                <li><a href="my-detail.jsp">MY DETAIL</a></li>
+                <li><a href="refund.jsp">REFUND</a></li>
+                <li><a href="#">MANAGEMENT</a></li>
 	    </ul>
 	    <div id="language">
 		Language : 

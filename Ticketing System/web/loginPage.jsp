@@ -23,6 +23,7 @@
             <div id="content2">
                 <form name="login" action="login" method="post">
                     <p>
+                        <label for="login-type">Login type:</label>
                         <input type="radio" name="login-type" value="Member" />
                         <label for="member-type">Member</label>
                         <input type="radio" name="login-type" value="Staff" />
