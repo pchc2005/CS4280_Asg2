@@ -32,7 +32,7 @@
                 <table >                    
                     <tr>
                         <th>Transaction ID</th>
-                        <td>HELLO </td>
+                        <td>3635635</td>
                     </tr>
                     <tr>
                         <th>Movie</th>

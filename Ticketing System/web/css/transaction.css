@@ -29,3 +29,7 @@ td{
 #transaction{
     margin-left: 200px;
 }
+
+form[name=transaction] input{
+    width:auto;
+}

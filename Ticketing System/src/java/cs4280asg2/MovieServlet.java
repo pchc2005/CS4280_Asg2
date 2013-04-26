@@ -20,6 +20,7 @@ import cs4280asg2.dto.MovieBean;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author 52168666
@@ -47,6 +48,9 @@ public class MovieServlet extends HttpServlet{
                 mbs[i].setSynposis(rs.getString(7));
                 mbs[i].setPosterURL(rs.getString(8));
             }
+            HttpSession session = request.getSession(true);
+            session.setAttribute("moviebean", mbs);
+            
         }
     }
 }
