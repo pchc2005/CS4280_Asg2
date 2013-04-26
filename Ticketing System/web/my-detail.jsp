@@ -31,7 +31,11 @@
                 <div id="detail">
                 <table>
                   <tr>
-                    <th>User Name:</th>
+                    <th>Actual Name:</th>
+                    <td>Peter Cheung</td>
+                  </tr>
+                  <tr>
+                    <th>Login Name:</th>
                     <td>Peter Cheung</td>
                   </tr>
                   <tr>
