@@ -5,6 +5,7 @@
 --%>
 
 <div id="quick-book" class="box">
+    
     <script type="text/javascript">
         function check(elem) {
     if (elem.id == 'book-movie'){
@@ -12,9 +13,9 @@
         
     }
     if (elem.id == 'book-movie' && elem.value==''){
-        document.getElementById('book-house').disabled = disabled;
-        document.getElementById('book-day').disabled = disabled;
-        document.getElementById('book-time').disabled = disabled;
+        document.getElementById('book-house').disabled = true;
+        document.getElementById('book-day').disabled = true;
+        document.getElementById('book-time').disabled = true;
     }
     if(elem.id== 'book-house'){
         document.getElementById('book-day').disabled = false;
@@ -23,11 +24,11 @@
         document.getElementById('book-time').disabled = false;
     }
     if (elem.id == 'book-house' && elem.value==''){
-        document.getElementById('book-day').disabled = disabled;
-        document.getElementById('book-time').disabled = disabled;
+        document.getElementById('book-day').disabled = true;
+        document.getElementById('book-time').disabled = true;
     }
     if (elem.id == 'book-day' && elem.value==''){        
-        document.getElementById('book-time').disabled = disabled;
+        document.getElementById('book-time').disabled = true;
     }
     
 }
@@ -43,15 +44,15 @@
                     </select>
 		    <br/><br/>
                     <label for="house">Please choose the House:</label>
-                    <select id="book-house" name="house" disabled="disabled" onchange="check(this);">
+                    <select id="book-house" name="house" disabled="true" onchange="check(this);">
                         <option value="" selected="selected"></option>
-                        <option value="house1">house1</option>
-                        <option value="house2">house2</option>
-                        <option value="house3">house3</option>
+                        <c:forEach items="${movieHouseInfo}" var="movieHouse">
+                        <option value="house${movieHouse.id}">${movieHouse.name}</option>
+                        </c:forEach>
                     </select>
 		    <br/><br/>
 		    <label for="day">Please choose the Day:</label>
-                   <select id="book-day" name="day" disabled="disabled" onchange="check(this);">
+                   <select id="book-day" name="day" disabled="true" onchange="check(this);">
                         <option value="" selected="selected"></option>
                         <option value="day1">day1</option>                        
                         <option value="day2">day2</option>
@@ -59,7 +60,7 @@
                     </select>
                     <br/><br/>
                     <label for="time">Please choose the Time:</label>
-                    <select id="book-time" name="time" disabled="disabled" onchange="check(this);">
+                    <select id="book-time" name="time" disabled="true" onchange="check(this);">
                         <option value="" selected="selected"></option>
                         <option value="time1">time1</option>
                         <option value="time2">time2</option>

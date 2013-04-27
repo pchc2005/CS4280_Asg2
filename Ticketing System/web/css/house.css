@@ -31,3 +31,28 @@ tr{
 	width:100px;
 	color:#005CB9;
 }
+
+.house p{
+    margin-left: 10px;
+    color:#09C;
+    font-weight: bold;
+}
+
+.house table{
+    text-align: center;
+    margin-bottom: 30px;    
+}
+
+.house table td{
+    background-color: #CCC;
+    color:#FFFFFF;
+    padding:5px;
+    font-size: 14px;
+}
+
+.house caption{
+    background: #666;
+    color:#FFF;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

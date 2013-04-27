@@ -7,7 +7,7 @@
 <div id="footer">
     <div id="footer-inner"><br/>
         This web site exists to fulfill the coursework requirement of CS4280.<br/>
-        Do not use your real personal data as input.<br/><br/>
+        Do not use your real personal data as input.<br/><br/><br/>
 		© Copyright 2013 The Cult Cinema Inc.
     </div>
 </div>

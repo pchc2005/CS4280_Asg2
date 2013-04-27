@@ -25,10 +25,10 @@
                 <h5>LOGIN PAGE</h5>
                 <form name="login" action="login" method="post">
                     <p>                        
-                        <input type="radio" name="login-type" value="Member" />
-                        <label for="member-type">Member</label>
-                        <input type="radio" name="login-type" value="Staff" />
-                        <label for="staff-type">Staff</label>
+                        <input type="radio" name="login-type" value="Member" id="Member"/>
+                        <label for="Member">Member</label>
+                        <input type="radio" name="login-type" value="Staff"  id="Staff"/>
+                        <label for="Staff">Staff</label>
                         <br /><br />
                         <label for="UserName">User Name:</label>
                         <input type="text" name="UserName" /><br/>

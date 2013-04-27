@@ -64,7 +64,9 @@
 		    <h6>${movieHouse.name}</h6>
 		    <p>Capacity: ${movieHouse.size}(${movieHouse.capacity})</p>
 		    <p>Seat:</p>
-		    <table class="seatingplan">
+                   
+		    <table class="seatingplan" align="center">
+                        <caption>SCREEN</caption>
 			<c:set var="row" scope="session" value="${movieHouse.row}"/>
 			<c:set var="col" scope="session" value="${movieHouse.col}"/>
 			<%
@@ -85,6 +87,7 @@
 			<c:remove var="row" scope="session"/>
 			<c:remove var="col" scope="session"/>
 		    </table>
+                   
                 </div>
 		</c:forEach>
             </div>
