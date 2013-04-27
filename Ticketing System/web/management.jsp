@@ -38,7 +38,7 @@
                         <input type="text" name="Date Time" value="$100"></input><br/>
                         <input type="submit" value="Confirm Change(s)" class="button" />                          
                     </form>                    
-                    <hr/>
+                    
                 </div>
                 <div class="movie-management">
                     <form name="movie-man">
@@ -49,7 +49,7 @@
                         <input type="text" name="Date Time" value="$100"></input><br/>
                         <input type="submit" value="Confirm Change(s)" class="button" />                          
                     </form>                    
-                    <hr/>
+                    
                 </div>
         </div>
     </div>

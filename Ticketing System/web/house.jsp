@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -60,11 +59,11 @@
                 <h5>HOUSE</h5>
 		
                     <div class="house">
-                        <h6>STAR</h6>
+                        <h6><jsp:getProperty name="movieHouseInfo" property="name" /></h6>
                         <table>
                           <tr>
                             <th>Capacity:</th>
-                            <td>Big (200)</td>
+                            <td><jsp:getProperty name="movieHouseInfo" property="size" /></td>
                           </tr>
                           <tr>
                             <th>Seat:</th>

@@ -37,7 +37,7 @@
                            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                         <input type="submit" value="Confirm Change(s)" class="button" />                          
                     </form>                    
-                    <hr/>
+                    
                 </div>
                 <div class="seating-management">
                     <form name="seating-man">
@@ -48,7 +48,7 @@
                            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                         <input type="submit" value="Confirm Change(s)" class="button" />                          
                     </form>                    
-                    <hr/>
+                    
                 </div>
         </div>
     </div>

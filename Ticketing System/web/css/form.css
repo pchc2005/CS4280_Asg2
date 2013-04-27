@@ -35,6 +35,7 @@ iput[type=password]{
 
 form, h3, h4{
 	margin-left:20px;
+        margin-right:20px;
 }
 
 
@@ -48,7 +49,7 @@ form[name=booking] select{
 }
 
 .button{
-	width:80px;
+	width:auto;
 }
 
 #sign_up{

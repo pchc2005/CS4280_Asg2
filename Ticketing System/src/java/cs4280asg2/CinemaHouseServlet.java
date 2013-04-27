@@ -69,7 +69,7 @@ public class CinemaHouseServlet extends HttpServlet {
 		movieHouseInfo[i].setCol(rs.getInt(6));
 		movieHouseInfo[i].setCapacity(rs.getInt(7));
 	    }
-	    session.setAttribute("MovieHouseInfo", movieHouseInfo);
+	    session.setAttribute("movieHouseInfo", movieHouseInfo);
 	    rd = getServletContext().getRequestDispatcher("/index.jsp");
 	    rd.forward(request, response);
 	    return;

@@ -60,3 +60,9 @@ table{
     background-color: #666;
     color:#FFF;
 }
+
+.movie-management,.seating-management{
+    border-bottom: 3px solid #1e7c9a;
+    padding: 10px;
+    margin: 10px;
+}

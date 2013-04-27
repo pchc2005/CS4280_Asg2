@@ -20,6 +20,7 @@
 <div id="container">
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
+    
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
