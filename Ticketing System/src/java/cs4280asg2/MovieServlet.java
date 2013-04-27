@@ -10,10 +10,13 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +36,57 @@ public class MovieServlet extends HttpServlet {
     ResultSet rs = null;
     RequestDispatcher rd = null;
     CallableStatement cstmt = null;
+    
+    public void init(ServletConfig config) throws ServletException {  
+	super.init(config);
+	try {
+	    initCtx = new InitialContext();
+	    envCtx = (Context)initCtx.lookup("java:comp/env");
+	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
+	    con = ds.getConnection();
+	    ServletContext service = config.getServletContext();
+	    String procedureGetMovie = "{ call getMovieDetails }";
+	    cstmt = con.prepareCall(procedureGetMovie, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    rs = cstmt.executeQuery();
+	    int numRow = 0;
+	    
+	    if (rs != null && rs.last() != false) {
+		numRow = rs.getRow();
+		rs.first();
+	    }
+	    ArrayList<MovieBean> movieHouseInfo = new ArrayList<MovieBean>();
+	    for (int i = 0; i < numRow; i++) {
+		MovieBean movie = new MovieBean();
+		movie.setId(rs.getInt(1));
+		movie.setName(rs.getString(2));
+		movie.setSize(rs.getString(3));
+		movie.setPrice_ratio(rs.getDouble(4));
+		movie.setRow(rs.getInt(5));
+		movie.setCol(rs.getInt(6));
+		movie.setCapacity(rs.getInt(7));
+		movieHouseInfo.add(movieHouse);
+		rs.next();
+	    }
+	    service.setAttribute("movieHouseInfo", movieHouseInfo);
+	    //service.setAttribute("movieHouseInfo2", movieHouseInfo[1]);
+	    //service.setAttribute("movieHouseInfo3", movieHouseInfo[2]);
+	    //service.setAttribute("movieHouseInfo4", movieHouseInfo[3]);
+	    return;
+	} catch (NamingException e) {
+	    e.printStackTrace();
+	} catch (SQLException se) {
+	    se.printStackTrace();
+	} finally {
+	    try{
+		con.close();
+		rs.close();
+		cstmt.close();
+	    } catch (SQLException se) {
+		se.printStackTrace();
+	    }
+	}
+    }
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -45,38 +99,7 @@ public class MovieServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	try {
-	    initCtx = new InitialContext();
-	    envCtx = (Context)initCtx.lookup("java:comp/env");
-	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
-	    con = ds.getConnection();
-	    HttpSession session = request.getSession(true);
-	    String procedureGetMovie = "{ call getMovieDetails }";
-	    cstmt = con.prepareCall(procedureGetMovie, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    rs = cstmt.executeQuery();
-	    int numRow = 0;
-	    MovieBean[] movieInfo = new MovieBean[numRow];
-	    if (rs != null && rs.last() != false) {
-		numRow = rs.getRow();
-		rs.beforeFirst();
-	    }
-	    for (int i = 0; i < numRow && rs != null && rs.next() != false; i++) {
-		//movieInfo[i].set
-	    }
-	    return;
-	} catch (NamingException e) {
-	    e.printStackTrace();
-	} catch (SQLException se) {
-	    se.printStackTrace();
-	}   finally {
-	    try{
-		con.close();
-		rs.close();
-		cstmt.close();
-	    } catch (SQLException se) {
-		se.printStackTrace();
-	    }
-	}
+	
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

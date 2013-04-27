@@ -12,9 +12,9 @@ public class MovieBean {
     private int id;
     private String name;
     private int duration;
-    private int category_id;
-    private int language_id;
-    private int subtitle_id;
+    private String category;
+    private String language;
+    private String subtitle;
     private String posterURL;
     private String synposis;
 
@@ -63,43 +63,43 @@ public class MovieBean {
     /**
      * @return the category_id
      */
-    public int getCategory_id() {
-        return category_id;
+    public int getCategory() {
+        return category;
     }
 
     /**
      * @param category_id the category_id to set
      */
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategory(int category) {
+        this.category = category;
     }
 
     /**
      * @return the language_id
      */
-    public int getLanguage_id() {
-        return language_id;
+    public int getLanguage() {
+        return language;
     }
 
     /**
      * @param language_id the language_id to set
      */
-    public void setLanguage_id(int language_id) {
-        this.language_id = language_id;
+    public void setLanguage(int language) {
+        this.language = language;
     }
 
     /**
      * @return the subtitle_id
      */
-    public int getSubtitle_id() {
-        return subtitle_id;
+    public int getSubtitle() {
+        return subtitle;
     }
 
     /**
      * @param subtitle_id the subtitle_id to set
      */
-    public void setSubtitle_id(int subtitle_id) {
-        this.subtitle_id = subtitle_id;
+    public void setSubtitle(int subtitle) {
+        this.subtitle = subtitle;
     }
 
     /**
@@ -127,6 +127,11 @@ public class MovieBean {
      * @param synposis the synposis to set
      */
     public void setSynposis(String synposis) {
-        this.synposis = synposis;
+	if (synposis != null) {
+	    this.synposis = synposis;
+	}
+	else {
+	    this.synposis = "";
+	}
     }
 }
