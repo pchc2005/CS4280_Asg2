@@ -36,6 +36,10 @@
                         <td>3635635</td>
                     </tr>
                     <tr>
+                        <th>Ticket Sale Time</th>
+                        <td>14:05</td>
+                    </tr>
+                    <tr>
                         <th>Movie</th>
                         <td>HELLO </td>
                     </tr>
@@ -44,7 +48,7 @@
                         <td>SUN</td>
                     </tr>
                     <tr>
-                        <th>Time</th>
+                        <th>Movie Start Time</th>
                         <td>14:05</td>
                     </tr>                    
                     <tr>
