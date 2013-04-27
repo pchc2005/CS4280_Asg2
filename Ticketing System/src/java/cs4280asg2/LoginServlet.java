@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 		    memberInfo.setName(rs.getString(3));
 		    memberInfo.setPhone_no(rs.getInt(4));
 		    memberInfo.setAddr(rs.getString(5));
-		    memberInfo.setEmail(rs.getString(6));
+		    memberInfo.setPassword(rs.getString(6));
 		    memberInfo.setEmail(rs.getString(7));
 		    memberInfo.setCreditcard(rs.getString(8));
 		    memberInfo.setLoyalty_pt(rs.getInt(9));

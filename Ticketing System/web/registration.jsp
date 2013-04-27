@@ -18,6 +18,7 @@
     
 <body>
 <div id="container">
+    <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <%@ include file="include/header.jspf"%>
         
