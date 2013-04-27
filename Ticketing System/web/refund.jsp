@@ -44,7 +44,19 @@
                   <tr>
                     <th>Movie Name:</th>
                     <td>Hello Kitty</td>
-                  </tr> 
+                  </tr>
+                  <tr>
+                    <th>House Name:</th>
+                    <td>SUN</td>
+                  </tr>
+                  <tr>
+                    <th>Movie Start Time</th>
+                    <td>2013-04-16</td>
+                  </tr>
+                  <tr>
+                    <th>Ticket Sale Time</th>
+                    <td>2013-04-16</td>
+                  </tr>
                   <tr>
                     <th>Total Refund Price:</th>
                     <td>$100</td>
