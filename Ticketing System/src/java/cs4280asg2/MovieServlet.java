@@ -54,20 +54,21 @@ public class MovieServlet extends HttpServlet {
 		numRow = rs.getRow();
 		rs.first();
 	    }
-	    ArrayList<MovieBean> movieHouseInfo = new ArrayList<MovieBean>();
+	    ArrayList<MovieBean> movieInfo = new ArrayList<MovieBean>();
 	    for (int i = 0; i < numRow; i++) {
 		MovieBean movie = new MovieBean();
 		movie.setId(rs.getInt(1));
 		movie.setName(rs.getString(2));
-		movie.setSize(rs.getString(3));
-		movie.setPrice_ratio(rs.getDouble(4));
-		movie.setRow(rs.getInt(5));
-		movie.setCol(rs.getInt(6));
-		movie.setCapacity(rs.getInt(7));
-		movieHouseInfo.add(movieHouse);
+		movie.setDuration(rs.getInt(3));
+		movie.setCategory(rs.getString(4));
+		movie.setLanguage(rs.getString(5));
+		movie.setSubtitle(rs.getString(6));
+		movie.setPosterURL(rs.getString(7));
+		movie.setSynposis(rs.getString(8));
+		movieInfo.add(movie);
 		rs.next();
 	    }
-	    service.setAttribute("movieHouseInfo", movieHouseInfo);
+	    service.setAttribute("movieInfo", movieInfo);
 	    //service.setAttribute("movieHouseInfo2", movieHouseInfo[1]);
 	    //service.setAttribute("movieHouseInfo3", movieHouseInfo[2]);
 	    //service.setAttribute("movieHouseInfo4", movieHouseInfo[3]);

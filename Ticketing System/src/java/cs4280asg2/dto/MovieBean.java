@@ -63,43 +63,58 @@ public class MovieBean {
     /**
      * @return the category_id
      */
-    public int getCategory() {
+    public String getCategory() {
         return category;
     }
 
     /**
      * @param category_id the category_id to set
      */
-    public void setCategory(int category) {
-        this.category = category;
+    public void setCategory(String category) {
+        if (category != null) {
+	    this.category = category;
+	}
+	else {
+	    this.category = "";
+	}
     }
 
     /**
      * @return the language_id
      */
-    public int getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
     /**
      * @param language_id the language_id to set
      */
-    public void setLanguage(int language) {
-        this.language = language;
+    public void setLanguage(String language) {
+        if (language != null) {
+	    this.language = language;
+	}
+	else {
+	    this.language = "";
+	}
     }
 
     /**
      * @return the subtitle_id
      */
-    public int getSubtitle() {
+    public String getSubtitle() {
         return subtitle;
     }
 
     /**
      * @param subtitle_id the subtitle_id to set
      */
-    public void setSubtitle(int subtitle) {
-        this.subtitle = subtitle;
+    public void setSubtitle(String subtitle) {
+        if (subtitle != null) {
+	    this.subtitle = subtitle;
+	}
+	else {
+	    this.subtitle = "";
+	}
     }
 
     /**
@@ -113,7 +128,12 @@ public class MovieBean {
      * @param posterURL the posterURL to set
      */
     public void setPosterURL(String posterURL) {
-        this.posterURL = posterURL;
+        if (posterURL != null) {
+	    this.posterURL = posterURL;
+	}
+	else {
+	    this.posterURL = "";
+	}
     }
 
     /**
