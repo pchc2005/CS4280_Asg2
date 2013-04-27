@@ -18,13 +18,13 @@
 		if (session.getAttribute("loginStatus") == "member") {
 		%>
 		    <li><a href="house.jsp">HOUSE</a></li>
-		    <li><a href="movie.jsp">MOVIE</a></li>
+		    <li><a href="/Session">MOVIE</a></li>
 		    <li><a href="my-detail.jsp">MY DETAIL</a></li>
 		<%
 		}
 		else if (session.getAttribute("loginStatus") == "staff" && staffInfo.getRole().equals("Officer")) {
 		%>
-		    <li><a href="movie.jsp">MOVIE</a></li>
+		    <li><a href="/Session">MOVIE</a></li>
 		    <li><a href="refund.jsp">REFUND</a></li>
 		<%
 		}

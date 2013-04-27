@@ -18,7 +18,6 @@
     <servlet>
         <servlet-name>SessionServlet</servlet-name>
         <servlet-class>cs4280asg2.SessionServlet</servlet-class>
-	<load-on-startup>30</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
