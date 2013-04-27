@@ -63,8 +63,6 @@ public class MovieServlet extends HttpServlet {
 	    for (int i = 0; i < numRow && rs != null && rs.next() != false; i++) {
 		//movieInfo[i].set
 	    }
-	    rd = getServletContext().getRequestDispatcher("/index.jsp");
-	    rd.forward(request, response);
 	    return;
 	} catch (NamingException e) {
 	    e.printStackTrace();

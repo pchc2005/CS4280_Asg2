@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,10 +18,10 @@
 </head>
     
 <body>
-<div id="container">	
+<div id="container">
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
-    <jsp:useBean id="movieHouseInfo" class="cs4280asg2.dto.CinemaHouseBean" scope="session"/>
+    <jsp:useBean id="movieHouseInfo1" class="cs4280asg2.dto.CinemaHouseBean" scope="application"/>
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -59,11 +60,11 @@
                 <h5>HOUSE</h5>
 		
                     <div class="house">
-                        <h6><jsp:getProperty name="movieHouseInfo" property="name" /></h6>
+                        <h6>${movieHouseInfo1.name}</h6>
                         <table>
                           <tr>
                             <th>Capacity:</th>
-                            <td><jsp:getProperty name="movieHouseInfo" property="size" /></td>
+                            <td>${movieHouseInfo1.size}</td>
                           </tr>
                           <tr>
                             <th>Seat:</th>
