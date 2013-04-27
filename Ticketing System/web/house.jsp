@@ -60,7 +60,7 @@
 
 	<div id="content-right">
                 <h5>HOUSE</h5>
-		<c:forEach items="${movieHouseInfo}" var="movieHouse">
+		<c:forEach items="${movieHouseInfo}" var="movieHouse" >
 		<div class="house">
 		    <h6>${movieHouse.name}</h6>
 		    <p>Capacity: ${movieHouse.size}(${movieHouse.capacity})</p>

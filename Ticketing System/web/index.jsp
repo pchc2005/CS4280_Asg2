@@ -63,19 +63,17 @@
 	<div id="content-right">
             <h5>NOW SHOWING</h5>            			
 	    <div class="movie-big">
- 		<img src="image/fixed/movie-big1.jpg" alt="movie1" />
-		<div class="movie-big-text">Scary Movie</div>
+                <c:forEach items="${movieInfo}" var="movie" begin="9" end="9">
+                    <img src="${movie.posterURL}" alt="movie1" />
+                    <a href="movie.jsp"><div class="movie-big-text">${movie.name}</div></a>
+                </c:forEach>
             </div>
-					
-            <div class="movie">
-		<img src="image/fixed/movie1.jpg" alt="movie1" />
-                    <div class="movie-text">Scary Movie</div>
-	    </div>
-                    
-	    <div class="movie">
-		<img src="image/fixed/movie1.jpg" alt="movie1" />
-                    <div class="movie-text">Scary Movie</div>
-	    </div>
+		<c:forEach items="${movieInfo}" var="movie" begin="5" end="6">			
+                    <div class="movie">
+                        <img src="${movie.posterURL}" alt="movie1" />
+                        <div class="movie-text">${movie.name}</div>
+                    </div>
+                </c:forEach>
         </div>
     </div>
     <%@ include file="include/footer.jsp"%>

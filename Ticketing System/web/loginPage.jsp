@@ -25,7 +25,7 @@
                 <h5>LOGIN PAGE</h5>
                 <form name="login" action="login" method="post">
                     <p>                        
-                        <input type="radio" name="login-type" value="Member" id="Member"/>
+                        <input type="radio" name="login-type" value="Member" id="Member" checked/>
                         <label for="Member">Member</label>
                         <input type="radio" name="login-type" value="Staff"  id="Staff"/>
                         <label for="Staff">Staff</label>

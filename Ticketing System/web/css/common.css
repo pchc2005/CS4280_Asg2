@@ -254,3 +254,7 @@ nav li:hover a {
 	color:#FFFFFF;
 	font-size: 10px;
 }
+
+a{
+    text-decoration: none;
+}
