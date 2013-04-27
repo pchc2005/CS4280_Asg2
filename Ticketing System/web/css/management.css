@@ -9,14 +9,16 @@
 root { 
     display: block;
 }
-form[name=movie-man] input{
+form[name=movie-man] input,form[name=add] input{
     width:150px;
 }
 
-form[name=movie-man] label, form[name=seating-man] label{
+form[name=movie-man] label, form[name=seating-man] label,form[name=add] label{
     color: #0597B6;
     font-weight: bold;
-    width: 100px;    
+    width: 150px; 
+    display: inline-block;
+    text-align: right;
 }
 
 hr{
@@ -33,6 +35,7 @@ p{
     width:auto;
     margin: 0px 0px 30px 550px;
 }
+
 
 h4{    
     background-color: #1e7c9a;
@@ -61,8 +64,20 @@ table{
     color:#FFF;
 }
 
-.movie-management,.seating-management{
+.movie-management,.seating-management,.add-session{
     border-bottom: 3px solid #1e7c9a;
     padding: 10px;
     margin: 10px;
+}
+
+.add-session h4,.movie-management h4{
+    margin: 0px 0px 10px 0px;
+}
+
+.add-session, .movie-management{
+    text-align: center;
+}
+
+select{
+    width:150px;
 }
