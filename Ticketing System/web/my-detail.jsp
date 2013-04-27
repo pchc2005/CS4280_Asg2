@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : my-detail
     Created on : Apr 16, 2013, 2:48:26 PM
     Author     : PCHC
 --%>
@@ -18,7 +18,6 @@
     
 <body>
 <div id="container">
-    <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
     <%@ include file="include/header.jspf"%>
         

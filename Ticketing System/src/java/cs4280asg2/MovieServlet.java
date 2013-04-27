@@ -37,6 +37,7 @@ public class MovieServlet extends HttpServlet {
     RequestDispatcher rd = null;
     CallableStatement cstmt = null;
     
+    @Override
     public void init(ServletConfig config) throws ServletException {  
 	super.init(config);
 	try {

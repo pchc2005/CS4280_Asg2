@@ -19,6 +19,8 @@
 <body>
 <div id="container">	
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
+    <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">

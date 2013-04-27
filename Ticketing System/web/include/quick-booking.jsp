@@ -38,16 +38,16 @@
                     <label for="movie">Please choose the Movie:</label>
                     <select id="book-movie" name="movie" onchange="check(this);">
                         <option value="" selected="selected"></option>
-                        <option value="movie1">movie1</option>
-                        <option value="movie2">movie2</option>
-                        <option value="movie3">movie3</option>
+                        <c:forEach items="${movieInfo}" var="movie">
+                        <option value="${movie.name}">${movie.name}</option>
+                        </c:forEach>
                     </select>
 		    <br/><br/>
                     <label for="house">Please choose the House:</label>
                     <select id="book-house" name="house" disabled="true" onchange="check(this);">
                         <option value="" selected="selected"></option>
                         <c:forEach items="${movieHouseInfo}" var="movieHouse">
-                        <option value="house${movieHouse.id}">${movieHouse.name}</option>
+                        <option value="${movieHouse.name}">${movieHouse.name}</option>
                         </c:forEach>
                     </select>
 		    <br/><br/>
