@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,8 +22,8 @@
 <div id="container">
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
-    <jsp:useBean id="movieHouseInfo1" class="cs4280asg2.dto.CinemaHouseBean" scope="application"/>
-    <%@ include file="include/header.jspf"%>
+    <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application"/>
+    <c:import url="include/header.jspf"></c:import>
         
     <div id="content2">
 	<div id="content-left">
@@ -58,25 +59,36 @@
 
 	<div id="content-right">
                 <h5>HOUSE</h5>
-		
-                    <div class="house">
-                        <h6>${movieHouseInfo1.name}</h6>
-                        <table>
-                          <tr>
-                            <th>Capacity:</th>
-                            <td>${movieHouseInfo1.size}</td>
-                          </tr>
-                          <tr>
-                            <th>Seat:</th>
-                            <td>XXXXXXXXXXXXXXXXXXXXX<br />
-                              XXXXXXXXXXXXXXXXXXXXX</td>
-                          </tr>                      
-                     	</table>
-                       
-                        
-                    </div>
+		<c:forEach items="${movieHouseInfo}" var="movieHouse">
+		<div class="house">
+		    <h6>${movieHouse.name}</h6>
+		    <p>Capacity: ${movieHouse.size}(${movieHouse.capacity})</p>
+		    <p>Seat:</p>
+		    <table class="seatingplan">
+			<c:set var="row" scope="session" value="${movieHouse.row}"/>
+			<c:set var="col" scope="session" value="${movieHouse.col}"/>
+			<%
+			    for (int i = 0; i < Integer.parseInt(session.getAttribute("row").toString()); i++) {
+			%>
+			<tr>
+			    <%
+			    for (int j = 0; j < Integer.parseInt(session.getAttribute("col").toString()); j++) {
+			    %>
+			    <td><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></td>
+			    <%
+			    }
+			    %>
+			</tr>
+			<%
+			    }
+			%>
+			<c:remove var="row" scope="session"/>
+			<c:remove var="col" scope="session"/>
+		    </table>
+                </div>
+		</c:forEach>
             </div>
-    </div>
+	</div>
     <%@ include file="include/footer.jsp"%>
 </div>
     

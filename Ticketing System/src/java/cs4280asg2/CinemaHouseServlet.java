@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -53,18 +54,20 @@ public class CinemaHouseServlet extends HttpServlet {
 		numRow = rs.getRow();
 		rs.first();
 	    }
-	    CinemaHouseBean[] movieHouseInfo = new CinemaHouseBean[numRow];
+	    ArrayList<CinemaHouseBean> movieHouseInfo = new ArrayList<CinemaHouseBean>();
 	    for (int i = 0; i < numRow; i++) {
-		movieHouseInfo[i] = new CinemaHouseBean();
-		movieHouseInfo[i].setId(rs.getInt(1));
-		movieHouseInfo[i].setName(rs.getString(2));
-		movieHouseInfo[i].setSize(rs.getString(3));
-		movieHouseInfo[i].setPrice_ratio(rs.getDouble(4));
-		movieHouseInfo[i].setRow(rs.getInt(5));
-		movieHouseInfo[i].setCol(rs.getInt(6));
-		movieHouseInfo[i].setCapacity(rs.getInt(7));
+		CinemaHouseBean movieHouse = new CinemaHouseBean();
+		movieHouse.setId(rs.getInt(1));
+		movieHouse.setName(rs.getString(2));
+		movieHouse.setSize(rs.getString(3));
+		movieHouse.setPrice_ratio(rs.getDouble(4));
+		movieHouse.setRow(rs.getInt(5));
+		movieHouse.setCol(rs.getInt(6));
+		movieHouse.setCapacity(rs.getInt(7));
+		movieHouseInfo.add(movieHouse);
+		rs.next();
 	    }
-	    service.setAttribute("movieHouseInfo1", movieHouseInfo[0]);
+	    service.setAttribute("movieHouseInfo", movieHouseInfo);
 	    //service.setAttribute("movieHouseInfo2", movieHouseInfo[1]);
 	    //service.setAttribute("movieHouseInfo3", movieHouseInfo[2]);
 	    //service.setAttribute("movieHouseInfo4", movieHouseInfo[3]);
