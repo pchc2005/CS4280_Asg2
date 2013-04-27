@@ -57,56 +57,53 @@
 	%>
         </div>
 	<div id="content-right">
-                <h5>MOVIE</h5>
-		
-              <div class="movie-detail">
-                	<h6>HELLO HELLO KITTY</h6>
-               	<table>
-                      <tr>
-                        <th>Director:</th>
-                        <td>Peter Cheung</td>
-                      </tr>
-                      <tr>
-                        <th>Casting:</th>
-                        <td>Chan Tsz Fung, Ivan Law</td>
-                      </tr>
-                      <tr>
-                        <th>Duration:</th>
-                        <td>120mins</td>
-                      </tr>
-                      <tr>
-                        <th>Category:</th>
-                        <td>IIB</td>
-                      </tr>
-                      <tr>
-                        <th>Language:</th>
-                        <td>English</td>
-                      </tr>
-                      <tr>
-                        <th>Subtitle:</th>
-                        <td>English</td>
-                      </tr>
-                      <tr>
-                        <th>Synposis</th>
-                        <td>sgraegeg erhywethwet eshseth earhae aerg aerg rjts rhae ga erg ae</td>
-                      </tr>
-                    
-                 </table>
-                 <p>
-                        <img src="image/movie/DrugWar.jpg" alt="movie" /><br /><br />
-                        <form name="ticket" class="ticket">
-                                <select>
-                                  <option value="1">24/5 12:05(Mon) House-Sun $70</option>
-                                  <option value="2">25/5 12:50(Tue) House-Sun $70</option>
-                                </select> 
-                                <input type="submit" value="Submit" class="button" />
-                        </form>
-                 </p>
-              </div>
-              
-  		
-            </div>
-        
+	    <h5>MOVIE</h5>
+	    <c:forEach items="${movieInfo}" var="movie">
+            <div class="movie-detail">
+		<h6>${movie.name}</h6>
+		<table>
+		    <tr>
+			<th>Director:</th>
+			<td></td>
+		    </tr>
+		    <tr>
+			<th>Casting:</th>
+			<td></td>
+		    </tr>
+		    <tr>
+			<th>Duration:</th>
+			<td>${movie.duration} minutes</td>
+		    </tr>
+		    <tr>
+			<th>Category:</th>
+			<td>${movie.category}</td>
+		    </tr>
+		    <tr>
+			<th>Language:</th>
+			<td>${movie.language}</td>
+		    </tr>
+		    <tr>
+			<th>Subtitle:</th>
+			<td>${movie.subtitle}</td>
+		    </tr>
+		    <tr>
+			<th>Synposis:</th>
+			<td>${movie.synposis}</td>
+		    </tr>
+		</table>
+		<p>
+		    <img src="${movie.posterURL}" alt="movie" />
+		</p>
+		<form name="ticket" class="ticket">
+		    <select>
+			<option value="1">24/5 12:05(Mon) House-Sun $70</option>
+			<option value="2">25/5 12:50(Tue) House-Sun $70</option>
+		    </select> 
+		    <input type="submit" value="Submit" class="button" />
+		</form>
+	    </div>
+	    </c:forEach>
+	</div>
     </div>
     <%@ include file="include/footer.jsp"%>
 </div>
