@@ -64,7 +64,7 @@ public class CinemaHouseServlet extends HttpServlet {
 		movieHouseInfo[i].setCol(rs.getInt(6));
 		movieHouseInfo[i].setCapacity(rs.getInt(7));
 	    }
-	    service.setAttribute("movieHouseInfo", movieHouseInfo);
+	    service.setAttribute("movieHouseInfo1", movieHouseInfo[0]);
 	    //service.setAttribute("movieHouseInfo2", movieHouseInfo[1]);
 	    //service.setAttribute("movieHouseInfo3", movieHouseInfo[2]);
 	    //service.setAttribute("movieHouseInfo4", movieHouseInfo[3]);
