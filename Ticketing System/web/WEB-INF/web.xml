@@ -11,12 +11,12 @@
     <servlet>
         <servlet-name>MovieServlet</servlet-name>
         <servlet-class>cs4280asg2.MovieServlet</servlet-class>
-	<load-on-startup>1</load-on-startup>
+	<load-on-startup>10</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>CinemaHouseServlet</servlet-name>
         <servlet-class>cs4280asg2.CinemaHouseServlet</servlet-class>
-	<load-on-startup>2</load-on-startup>
+	<load-on-startup>20</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

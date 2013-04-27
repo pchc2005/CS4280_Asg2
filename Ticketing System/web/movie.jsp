@@ -99,7 +99,7 @@
 			<option value="1">24/5 12:05(Mon) House-Sun $70</option>
 			<option value="2">25/5 12:50(Tue) House-Sun $70</option>
 		    </select> 
-		    <input type="submit" value="Submit" class="button" />
+		    <input type="submit" value="Buy ticket!" class="button" />
 		</form>
 	    </div>
 	    </c:forEach>
