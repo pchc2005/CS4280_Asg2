@@ -18,6 +18,9 @@
         padding-right: 8px;
         vertical-align: top;
 }
+.movie-detail td{
+    color:#666;
+}
 
 .movie-detail img{
 	width:200px;
@@ -34,4 +37,8 @@
 
 .ticket{
     text-align: center;
+}
+
+form[name=ticket]{
+    margin-bottom: 30px;
 }
