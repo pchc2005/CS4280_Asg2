@@ -16,34 +16,30 @@ form[name=book] label{
     color:#1e7c9a;
     font-weight: bold;    
     text-align: left;
-    width:120px;
+    width:80px;
 }
 
-#movie-confirm,#movie-booking{
-	margin:20px 0px 0px 25%;
-}
+
 
 form[name=book] select{
     width:140px;
 }
 
-label .typename{
-    width:100px;
-}
 
 form[name=book] select{
     width:auto;
 }
 
 form[name=book] input{
-    width:auto;
+    width:230px;
 }
 
-.bookbutton{
-    margin-left: 350px;
+form[name=book] .bookbutton{
+    margin-left: 700px;
+    width:auto !important;
 }
 
-.seatingplan label{
+.seatingplan input{
     width: auto !important;
 }
 
@@ -65,4 +61,8 @@ caption{
     padding: 5px 0px 5px 0px;
     color:#FFFFFF;
     margin-bottom: 5px;
+}
+
+#movie-booking{
+    text-align: center;
 }

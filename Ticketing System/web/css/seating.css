@@ -1,0 +1,27 @@
+/* 
+    Document   : seating
+    Created on : Apr 28, 2013, 9:46:30 PM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.seatingplan label{    
+    color:#000 !important;
+    padding: 5px;
+    width: auto !important;
+    font-size: 12px;
+    border: 1px solid #FC0;
+}
+
+.seatingplan input{
+    display:none;
+}
+
+.seatingplan td{
+    background-color: #FF6;
+}

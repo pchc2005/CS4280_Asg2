@@ -14,11 +14,24 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/booking.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/seating.css" />
 
+<script language=javascript>
+function output(elem)
+{
+    if(elem.checked==true){        
+        elem.parentNode.style.backgroundColor="red";
+    }
+    if(elem.checked==false){
+        elem.parentNode.style.backgroundColor="#FF6";
+    }
+}
+</script>
 </head>
     
 <body>
 <div id="container">	
+    
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session" />
     <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
@@ -88,7 +101,7 @@
 					%>
 					<td>
 					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
-					    <input name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"></input>
+					    <input onClick="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"></input>
 					</td>
 					<%
 					}
