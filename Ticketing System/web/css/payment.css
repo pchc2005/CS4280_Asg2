@@ -1,0 +1,36 @@
+/* 
+    Document   : payment
+    Created on : Apr 29, 2013, 4:31:18 AM
+    Author     : Siuyan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#payment label{
+    color:#1e7c9a;
+    font-weight: bold;
+    display: inline-block;
+    width:200px;
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#payment{
+    text-align: center;
+}
+
+input[type=submit]{
+    margin:10px 0px 0px 50px;
+}
+
+#staff-payment{
+    text-align: center;
+    color:#1e7c9a;
+    margin-top: 100px;
+    font-weight: bold;
+}
