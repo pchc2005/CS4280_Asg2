@@ -64,7 +64,19 @@
 	<div id="content-right">
             <h5>CONFIRMATION</h5> 
             <div id="confirm">
-		<form name="booking-confirm" method="POST" action="/BuyTicket">
+		<%
+		if (session.getAttribute("loginStatus") == "member" && 
+		    session.getAttribute("loginStatus") != null) {
+		%>
+		<form name="booking-confirm" action="BuyTicketMember" method="post">
+		<%
+		}
+	        else {
+		%>
+		<form name="booking-confirm" action="BuyTicket" method="post">
+		<%
+		}
+		%>
                 <table >
                     <caption>BOOKING DETAIL</caption>
                     
@@ -97,7 +109,7 @@
                     </tr>
                     <tr>
                         <th>Total price</th>
-                        <td>$<c:out value="${movie.base_price * sessionScope.seatsCount}" /></td>
+                        <td>$<c:out value="${movie.base_price * sessionScope.seatsCount * sessionHouseSize.discount}" /></td>
                     </tr>
 			    </c:if>
 			    </c:forEach>

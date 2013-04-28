@@ -69,6 +69,7 @@ public class HouseSizeServlet extends HttpServlet {
 	    shb.setHouse_col(rs.getInt(3));
 	    session.setAttribute("sessionHouseName", rs.getString(4));
 	    session.setAttribute("sessionMovieID", rs.getInt(5));
+	    shb.setDiscount(rs.getDouble(6));
 	    rs.next();
 	    
 	    session.setAttribute("sessionHouseSize", shb);

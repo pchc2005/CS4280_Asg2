@@ -62,7 +62,7 @@
               <div id="movie-booking">
                 	
                	                   
-                  <form name="book" action="HouseSizeBySectID">
+                  <form name="book" action="HouseSizeBySectID" method="post">
                         <label for="movieName">Name:</label>
                         <input type="text" name="movieName" disabled="disabled" value="<c:out value="${sessionScope.reqMovieName}" />"></input><br/>                     
                         <label for="session">Session:</label>

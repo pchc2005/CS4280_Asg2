@@ -12,6 +12,7 @@ public class SessionHouseBean {
     private int session_id;
     private int house_row;
     private int house_col;
+    private double discount;
 
     /**
      * @return the session_id
@@ -53,6 +54,20 @@ public class SessionHouseBean {
      */
     public void setHouse_col(int house_col) {
 	this.house_col = house_col;
+    }
+
+    /**
+     * @return the discount
+     */
+    public double getDiscount() {
+	return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(double discount) {
+	this.discount = discount;
     }
 
     

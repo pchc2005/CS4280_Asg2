@@ -77,6 +77,7 @@ public class LoginServlet extends HttpServlet {
 		    rs = cstmt.executeQuery();
 		    rs.first();
 		    CustomerBean memberInfo = new CustomerBean();
+		    memberInfo.setId(rs.getInt(1));
 		    memberInfo.setLogin_name(rs.getString(2));
 		    memberInfo.setName(rs.getString(3));
 		    memberInfo.setPhone_no(rs.getInt(4));

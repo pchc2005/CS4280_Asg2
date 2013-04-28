@@ -9,6 +9,7 @@ package cs4280asg2.dto;
  * @author 52168666
  */
 public class CustomerBean {
+    private int id;
     private String login_name;
     private String name;
     private int phone_no;
@@ -138,6 +139,20 @@ public class CustomerBean {
      */
     public void setLoyalty_pt(int loyalty_pt) {
         this.loyalty_pt = loyalty_pt;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+	return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+	this.id = id;
     }
         
     

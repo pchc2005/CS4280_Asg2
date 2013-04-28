@@ -5,7 +5,7 @@
 package cs4280asg2;
 
 import cs4280asg2.dto.SaleBean;
-import cs4280asg2.dto.RecordBean;
+import cs4280asg2.dto.CustomerBean;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -33,7 +35,11 @@ public class BuyTicketServlet extends HttpServlet {
     Connection con = null;
     ResultSet rs = null;
     RequestDispatcher rd = null;
-    CallableStatement cstmt = null;
+    CallableStatement cstmtSale = null;
+    CallableStatement cstmtRecord = null;
+    CallableStatement cstmtVacancy = null;
+    CallableStatement getNewSales = null;
+    public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -46,17 +52,31 @@ public class BuyTicketServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	/*try {
+	try {
 	    initCtx = new InitialContext();
 	    envCtx = (Context)initCtx.lookup("java:comp/env");
 	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    con = ds.getConnection();
-	    HttpSession session = request.getSession(true);
-	    String procedureInsertSale = "{ call getHouseSizeBySectID(?) }";
-	    cstmt = con.prepareCall(procedureGetSession, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    int reqSectID = Integer.parseInt(request.getParameter("section").toString());
-	    cstmt.setInt(1, reqSectID);
-	    rs = cstmt.executeQuery();
+	    HttpSession session = request.getSession(false);
+	    Calendar cal = Calendar.getInstance();
+	    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+	    String currentTime = sdf.format(cal.getTime());
+	    String procedureInsertSale = "{ call BuyTicketSale(?, ?) }";
+	    String procedureInsertVacancy = "{ call BuyTicketVacancy(?, ?) }";
+	    String procedureInsertRecord = "{ call BuyTicketRecord(?, ?, ?, ?) }";
+	    String procedureGetNewSale = "{ call getNewSale(?) }";
+	    
+	    cstmtSale = con.prepareCall(procedureInsertSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    cstmtSale.setString(1, currentTime);
+	    String sectID = session.getAttribute("sessionID").toString();
+	    int reqSectID = Integer.parseInt(sectID);
+	    cstmtSale.setInt(2, reqSectID);
+	    cstmtSale.execute();
+	    
+	    getNewSales = con.prepareCall(procedureGetNewSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    getNewSales.setInt(1, reqSectID);
+	    rs = getNewSales.executeQuery();
+	    
 	    int numRow = 0;
 	    
 	    if (rs != null && rs.last() != false) {
@@ -64,17 +84,50 @@ public class BuyTicketServlet extends HttpServlet {
 		rs.first();
 	    }
 	    
-	    SessionHouseBean shb = new SessionHouseBean();
-	    shb.setSession_id(rs.getInt(1));
-	    shb.setHouse_row(rs.getInt(2));
-	    shb.setHouse_col(rs.getInt(3));
-	    session.setAttribute("sessionHouseName", rs.getString(4));
-	    session.setAttribute("sessionMovieID", rs.getInt(5));
-	    rs.next();
+	    SaleBean sb = new SaleBean();
+	    sb.setSale_id(rs.getInt(1));
+	    sb.setSale_time(rs.getString(2));
+	    sb.setSection_id(rs.getInt(3));
+	    int newSale_id = rs.getInt(1);
+	    int seatsCount = Integer.parseInt(session.getAttribute("seatsCount").toString());
+	    cstmtVacancy = con.prepareCall(procedureInsertVacancy);
+	    cstmtVacancy.setInt(1, newSale_id);
+	    cstmtVacancy.setInt(2, seatsCount);
+	    cstmtVacancy.execute();
 	    
-	    session.setAttribute("sessionHouseSize", shb);
-	    session.setAttribute("sessionID", reqSectID);
-	    rd = getServletContext().getRequestDispatcher("/booking_next.jsp");
+	    String[] seats = (String[]) session.getAttribute("seats");
+	    int cust_id;
+	    if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") != "failed") {
+		CustomerBean cb = (CustomerBean) session.getAttribute("memberInfo");
+		cust_id = cb.getId();
+	    }
+	    else {
+		cust_id = 0;
+	    }
+	    
+	    for (int i = 0; i < seatsCount; i++) {
+		cstmtRecord = con.prepareCall(procedureInsertRecord);
+		String currSeat = seats[i];
+		int row = currSeat.substring(0, 1).charAt(0)-'A';
+		int col = Integer.parseInt(currSeat.substring(1));
+		if (cust_id != 0) {
+		    cstmtRecord.setInt(1, cust_id);
+		}
+		else {
+		    cstmtRecord.setNull(1, java.sql.Types.INTEGER);
+		}
+		cstmtRecord.setInt(2, newSale_id);
+		cstmtRecord.setInt(3, row);
+		cstmtRecord.setInt(4, col);
+		cstmtRecord.execute();
+	    }
+	    
+	    if (session.getAttribute("loginStatus") == "failed" || session.getAttribute("loginStatus") == null) {
+		rd = getServletContext().getRequestDispatcher("/index.jsp");
+	    }
+	    else if (session.getAttribute("loginStatus") == "staff"){
+		rd = getServletContext().getRequestDispatcher("/ticketPrint.jsp");
+	    }
 	    rd.forward(request, response);
 	    return;
 	} catch (NamingException e) {
@@ -85,11 +138,14 @@ public class BuyTicketServlet extends HttpServlet {
 	    try{
 		con.close();
 		rs.close();
-		cstmt.close();
+		cstmtSale.close();
+		cstmtRecord.close();
+		cstmtVacancy.close();
+		getNewSales.close();
 	    } catch (SQLException se) {
 		se.printStackTrace();
 	    }
-	}*/
+	}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
