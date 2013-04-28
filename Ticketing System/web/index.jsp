@@ -63,15 +63,15 @@
 	<div id="content-right">
             <h5>NOW SHOWING</h5>            			
 	    <div class="movie-big">
-                <c:forEach items="${movieInfo}" var="movie" begin="9" end="9">
+                <c:forEach items="${movieInfo}" var="movie" begin="9" end="9" varStatus="count">
                     <img src="${movie.posterURL}" alt="movie1" />
-                    <a href="movie.jsp"><div class="movie-big-text">${movie.name}</div></a>
+                    <a href="movie.jsp#<c:out value="${count.index}" />"><div class="movie-big-text">${movie.name}</div></a>
                 </c:forEach>
             </div>
-		<c:forEach items="${movieInfo}" var="movie" begin="5" end="6">			
+		<c:forEach items="${movieInfo}" var="movie" begin="5" end="6" varStatus="smallcount">			
                     <div class="movie">
                         <img src="${movie.posterURL}" alt="movie1" />
-                        <div class="movie-text">${movie.name}</div>
+                        <a href="movie.jsp#<c:out value="${smallcount.index}" />"><div class="movie-text">${movie.name}</div></a>
                     </div>
                 </c:forEach>
         </div>

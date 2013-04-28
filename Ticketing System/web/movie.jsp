@@ -58,9 +58,10 @@
         </div>
 	<div id="content-right">
 	    <h5>MOVIE</h5>
-	    <c:forEach items="${movieInfo}" var="movie">
+	    <c:forEach items="${movieInfo}" var="movie" begin="0" varStatus="movieNum">
             <div class="movie-detail">
-		<h6>${movie.name}</h6>
+                
+		<h6 id="<c:out value="${movieNum.index}" />">${movie.name}</h6>
 		<table>
 		    <tr>
 			<th>Director:</th>
@@ -87,7 +88,7 @@
 			<td>${movie.subtitle}</td>
 		    </tr>
 		    <tr>
-			<th>Synposis:</th>
+			<th>Synopsis:</th>
 			<td>${movie.synposis}</td>
 		    </tr>
 		</table>
