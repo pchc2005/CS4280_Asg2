@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -36,17 +37,15 @@
                     <form name="add">                        
                         <label for="session">Movie Name:</label>
                         <select>
-                            <option value="Movie1">Volvo</option>
-                            <option value="Movie2">Saab</option>
-                            <option value="Movie3">Mercedes</option>
-                            <option value="Movie4">Audi</option>
+                            <c:forEach items="${movieInfo}" var="movie">
+                                <option value="${movie.name}">${movie.name}</option>
+                            </c:forEach>
                         </select><br/>
                         <label for="House">House Name:</label>
                         <select>
-                            <option value="House1">SUN</option>
-                            <option value="House2">CLOUD</option>
-                            <option value="House3">MOON</option>
-                            <option value="House4">STAR</option>
+                            <c:forEach items="${movieHouseInfo}" var="movieHouse">
+                                <option value="${movieHouse.name}">${movieHouse.name}</option>
+                            </c:forEach>
                         </select><br/>                        
                         <label for="dateTime">Date Time:</label>
                         <input type="text" name="Date Time" value=""></input><br/>

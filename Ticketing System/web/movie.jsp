@@ -24,6 +24,8 @@
     <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="directorInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="castingInfo" type="java.util.ArrayList" scope="application" />
+    
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -80,7 +82,13 @@
 		    </tr>
 		    <tr>
 			<th>Casting:</th>
-			<td></td>
+			<td>
+                                <c:forEach items="${castingInfo}" var="casting" begin="0">
+                                    <c:if test="${casting.movie_id == movie.id}">
+                                        ${casting.casting_name}<br/>
+                                    </c:if>
+                                </c:forEach>
+                        </td>
 		    </tr>
 		    <tr>
 			<th>Duration:</th>

@@ -36,6 +36,11 @@
         <servlet-class>cs4280asg2.DirectorServlet</servlet-class>
         <load-on-startup>30</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>CastingServlet</servlet-name>
+        <servlet-class>cs4280asg2.CastingServlet</servlet-class>
+        <load-on-startup>40</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -67,6 +72,10 @@
     <servlet-mapping>
         <servlet-name>DirectorServlet</servlet-name>
         <url-pattern>/Director</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CastingServlet</servlet-name>
+        <url-pattern>/Casting</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
