@@ -20,17 +20,16 @@
              document.getElementById('book-house').disabled = true;
         }
     </script>
-    <h2>BOOK NOW</h2>
+    <h2>Search Session</h2>
     <form name="booking" action="Session" method="POST">
 	<label for="movie">Please choose the Movie:</label>
 	<select id="book-movie" name="movieName" onchange="check(this);">
-	    <option value="" selected="selected"></option>
 	    <c:forEach items="${movieInfo}" var="movie">
 	    <option value="${movie.name}">${movie.name}</option>
 	    </c:forEach>
 	</select>
 	<br/><br/>		                      
-	<input type="submit" value="Book Now!" class="button" />
+	<input id="search" type="submit" value="Search!" class="button" />
 	<input type="reset" onclick="resete();" value="Reset" class="button" />
     </form>
 </div>
