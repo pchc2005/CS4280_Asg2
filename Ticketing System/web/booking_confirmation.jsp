@@ -63,7 +63,7 @@
 
 	<div id="content-right">
             <h5>CONFIRMATION</h5> 
-            <div id="movie-confirm">
+            <div id="confirm">
 		<form name="booking-confirm" method="POST" action="/BuyTicket">
                 <table >
                     <caption>BOOKING DETAIL</caption>

@@ -12,10 +12,11 @@ root {
 
 .seatingplan label{    
     color:#000 !important;
-    padding: 5px;
-    width: auto !important;
+    padding: 7px;
+    width: 15px !important;
     font-size: 12px;
     border: 1px solid #FC0;
+    text-align: center;
 }
 
 .seatingplan input{
@@ -24,4 +25,10 @@ root {
 
 .seatingplan td{
     background-color: #FF6;
+}
+
+caption{
+    background-color: #CCC;
+    color:#FFF;
+    font-weight: bold;
 }

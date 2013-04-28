@@ -43,13 +43,13 @@ form[name=book] .bookbutton{
     width: auto !important;
 }
 
-#movie-confirm th{
+#confirm th{
     width:150px;
     background-color: #CCC;
     color:#FFF;
 }
 
-#movie-confirm td{
+#confirm td{
     width:200px;
     color:#3b3b3b;
     background-color: #F3F3F3;
@@ -65,4 +65,8 @@ caption{
 
 #movie-booking{
     text-align: center;
+}
+
+#confirm{
+    margin-left: 200px;
 }
