@@ -35,9 +35,8 @@
             <h5>CONFIRMATION</h5> 
             <div id="movie-confirm">
                 <table >
-                    <tr>
-                        <th colspan="2"><br/>BOOKING DETAIL<br/><br/></th>
-                    </tr>
+                    <caption>BOOKING DETAIL</caption>
+                    
                     <tr>
                         <th>Transaction ID</th>
                         <td>HELLO </td>

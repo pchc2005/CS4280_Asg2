@@ -37,7 +37,7 @@
 }
 
 .ticket{
-    text-align: center;
+    text-align: right;
 }
 
 form[name=ticket]{

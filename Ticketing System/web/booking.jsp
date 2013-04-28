@@ -61,7 +61,7 @@
               <div id="movie-booking">
                 	
                	                   
-                    <form name="book">                        
+                  <form name="book" action="booking_confirmation.jsp">
                         <label for="movieName">Name:</label>
                         <input type="text" name="movieName" disabled="true" value="Drug War"></input><br/>                     
                         <label for="session">Session:</label>
@@ -75,7 +75,7 @@
                         <br/>
                         <label for="Adult">Adult:</label>
                             <select class="type">
-                                <option value="0">0</option>
+                                <option value="Adult10">0</option>
                                 <option value="Adult1">1</option>
                                 <option value="Adult2">2</option>
                                 <option value="Adult3">3</option>
@@ -89,7 +89,7 @@
                             </select> <br/>
                         <label for="Child">Child:</label>
                             <select class="type">
-                                <option value="0">0</option>
+                                <option value="Child0">0</option>
                                 <option value="Child1">1</option>
                                 <option value="Child2">2</option>
                                 <option value="Child3">3</option>
@@ -103,7 +103,7 @@
                             </select>  <br/>
                         <label for="Student">Student:</label>
                             <select class="type">
-                                <option value="0">0</option>
+                                <option value="Student0">0</option>
                                 <option value="Student1">1</option>
                                 <option value="Student2">2</option>
                                 <option value="Student3">3</option>
@@ -114,16 +114,30 @@
                                 <option value="Student8">8</option>
                                 <option value="Student9">9</option>
                                 <option value="Student10">10</option>
-                            </select>   
-                    </form>                    
+                            </select> <br/>
+                        <label for="Elderly">Elderly:</label>
+                            <select class="type">
+                                <option value="Elderly0">0</option>
+                                <option value="Elderly1">1</option>
+                                <option value="Elderly2">2</option>
+                                <option value="Elderly3">3</option>
+                                <option value="Elderly4">4</option>
+                                <option value="Elderly5">5</option>
+                                <option value="Elderly6">6</option>
+                                <option value="Elderly7">7</option>
+                                <option value="Elderly8">8</option>
+                                <option value="Elderly9">9</option>
+                                <option value="Elderly10">10</option>
+                            </select>     
+                                       
                    
-                 <p>Please choose the seat(s) below:</p>
-                 <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-                 <p><br/> <br/>
-                            <input type="submit" value="Submit" class="button" />
-                        </form>
-                 </p>
+                        <p>Please choose the seat(s) below:</p>
+                        <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+
+                        <input type="submit" value="Submit" class="bookbutton" />
+                    </form> 
+                 
               </div>	
             </div>      
     </div>

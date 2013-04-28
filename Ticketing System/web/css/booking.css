@@ -11,25 +11,54 @@ root {
 }
 
 
-th{
-	background:#CCC;
-	width:160px;
-}
-
-td{
-	width:280px;
-	text-align:center;
-	background:#F3F3F3;
+form[name=book] label{
+    display: inline-block;
+    color:#1e7c9a;
+    font-weight: bold;    
+    text-align: left;
+    width:120px;
 }
 
 #movie-confirm,#movie-booking{
-	margin:50px 0px 0px 170px;
+	margin:20px 0px 0px 25%;
 }
 
-form[name=movie-booking] input{
-    margin-left: 330px;
+form[name=book] select{
+    width:140px;
 }
 
-form[name=movie-booking] label{
-    font-weight: bold;
+label .typename{
+    width:100px;
+}
+
+form[name=book] select{
+    width:auto;
+}
+
+form[name=book] input{
+    width:auto;
+}
+
+.bookbutton{
+    margin-left: 350px;
+}
+
+#movie-confirm th{
+    width:150px;
+    background-color: #CCC;
+    color:#FFF;
+}
+
+#movie-confirm td{
+    width:200px;
+    color:#3b3b3b;
+    background-color: #F3F3F3;
+    text-align: center;
+}
+
+caption{
+    background-color: #0597B6;
+    padding: 5px 0px 5px 0px;
+    color:#FFFFFF;
+    margin-bottom: 5px;
 }
