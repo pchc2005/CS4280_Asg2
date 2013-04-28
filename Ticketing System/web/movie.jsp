@@ -23,6 +23,7 @@
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
     <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="directorInfo" type="java.util.ArrayList" scope="application" />
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -68,7 +69,14 @@
 		<table>
 		    <tr>
 			<th>Director:</th>
-			<td></td>
+                        <td>
+                                <c:forEach items="${directorInfo}" var="director" begin="0">
+                                    <c:if test="${director.movie_id == movie.id}">
+                                        ${director.director_name}<br/>
+                                    </c:if>
+                                </c:forEach>
+                            
+                        </td>
 		    </tr>
 		    <tr>
 			<th>Casting:</th>

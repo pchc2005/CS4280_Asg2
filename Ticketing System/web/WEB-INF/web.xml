@@ -31,6 +31,11 @@
         <servlet-name>BuyTicketServlet</servlet-name>
         <servlet-class>cs4280asg2.BuyTicketServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DirectorServlet</servlet-name>
+        <servlet-class>cs4280asg2.DirectorServlet</servlet-class>
+        <load-on-startup>30</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -58,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>BuyTicketServlet</servlet-name>
         <url-pattern>/BuyTicket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DirectorServlet</servlet-name>
+        <url-pattern>/Director</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
