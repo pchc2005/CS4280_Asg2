@@ -59,20 +59,20 @@
         </div>
 	<div id="content-right">
                 <h5>Booking Detail</h5> 
-              <div id="movie-booking">
-                	
-               	                   
-                  <form name="book" action="booking_next.jsp">
+              <div id="movie-booking">               	                   
+                  <form name="book" action="booking_confirmation.jsp">
                         <label for="movieName">Name:</label>
-                        <input type="text" name="movieName" disabled="disabled" value="<c:out value="${sessionScope.reqMovieName}" />"></input><br/>                     
+                        <input type="text" name="movieName" disabled="disabled" value=""></input><br/>                     
                         <label for="session">Session:</label>
-                        <select>
-			    <c:forEach items="${sessionInfo}" var="session">
-                            <option value="${session.id}">${session.movie_start} (House:${session.movie_house})</option>
-			    </c:forEach>
-                        </select><br/>                   
+                        <input type="text" name="movieName" disabled="disabled" value=""></input><br/>    
+                       
                         <br/>
-                        <input type="submit" value="Next" class="bookbutton" />
+			
+                        <p>Please choose the seat(s) below:</p>
+                        <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+
+                        <input type="submit" value="Submit" class="bookbutton" />
                     </form> 
                  
               </div>	

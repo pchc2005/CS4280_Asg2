@@ -30,6 +30,5 @@
 	</select>
 	<br/><br/>		                      
 	<input id="search" type="submit" value="Search!" class="button" />
-	<input type="reset" onclick="resete();" value="Reset" class="button" />
     </form>
 </div>
