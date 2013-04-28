@@ -23,6 +23,7 @@
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session" />
     <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="sessionInfo" type="java.util.ArrayList" scope="session" />
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -63,13 +64,12 @@
                	                   
                   <form name="book" action="booking_confirmation.jsp">
                         <label for="movieName">Name:</label>
-                        <input type="text" name="movieName" disabled="true" value="Drug War"></input><br/>                     
+                        <input type="text" name="movieName" disabled="disabled" value="<c:out value="${sessionScope.reqMovieName}" />"></input><br/>                     
                         <label for="session">Session:</label>
                         <select>
-                            <option value="session1">26/4 10:00 (House:SUN)</option>
-                            <option value="session2">26/4 10:00 (House:SUN)</option>
-                            <option value="session3">26/4 10:00 (House:SUN)</option>
-                            <option value="session4">26/4 10:00 (House:SUN)</option>
+			    <c:forEach items="${sessionInfo}" var="session">
+                            <option value="${session.id}">${session.movie_start} (House:${session.movie_house})</option>
+			    </c:forEach>
                         </select><br/>                   
                        
                         <br/>

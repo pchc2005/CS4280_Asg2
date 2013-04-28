@@ -75,7 +75,7 @@ public class SessionServlet extends HttpServlet {
 		sessionInfo.add(sessionB);
 		rs.next();
 	    }
-	    
+	    session.setAttribute("reqMovieName", reqMovieName);
 	    session.setAttribute("sessionInfo", sessionInfo);
 	    rd = getServletContext().getRequestDispatcher("/booking.jsp");
 	    rd.forward(request, response);
