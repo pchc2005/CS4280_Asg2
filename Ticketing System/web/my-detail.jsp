@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,9 +20,9 @@
 <body>
 <div id="container">
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
-    <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session" />
-    <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
-    <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
+    <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application"/>
+    <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application"/>
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -36,31 +37,31 @@
                 <table>
                   <tr>
                     <th>Actual Name:</th>
-                    <td><jsp:getProperty name="memberInfo" property="name" /></td>
+                    <td>${memberInfo.name}</td>
                   </tr>
                   <tr>
                     <th>Login Name:</th>
-                    <td><jsp:getProperty name="memberInfo" property="login_name" /></td>
+                    <td>${memberInfo.login_name}</td>
                   </tr>                  
                   <tr>
                     <th>Email:</th>
-                    <td><jsp:getProperty name="memberInfo" property="email" /></td>
+                    <td>${memberInfo.email}</td>
                   </tr>
                   <tr>
                     <th>Phone Number:</th>
-                    <td><jsp:getProperty name="memberInfo" property="phone_no" /></td>
+                    <td>${memberInfo.phone_no}</td>
                   </tr>
                   <tr>
                     <th>Credit Card:</th>
-                    <td><jsp:getProperty name="memberInfo" property="creditcard" /></td>
+                    <td>${memberInfo.creditcard}</td>
                   </tr>
                   <tr>
                     <th>Address:</th>
-                    <td><jsp:getProperty name="memberInfo" property="addr" /></td>
+                    <td>${memberInfo.addr}</td>
                   </tr>
                   <tr>
                     <th>Loyalty Point:</th>
-                    <td><jsp:getProperty name="memberInfo" property="loyalty_pt" /></td>
+                    <td>${memberInfo.loyalty_pt}</td>
                   </tr>
                 </table>
    	     </div>

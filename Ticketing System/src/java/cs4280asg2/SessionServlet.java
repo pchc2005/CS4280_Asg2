@@ -53,8 +53,10 @@ public class SessionServlet extends HttpServlet {
 	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    con = ds.getConnection();
 	    HttpSession session = request.getSession(true);
-	    String procedureGetMovie = "{ call getMovieDetails }";
-	    cstmt = con.prepareCall(procedureGetMovie, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    String procedureGetSession = "{ call getSessionDetails(?) }";
+	    cstmt = con.prepareCall(procedureGetSession, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    String reqMovieName = request.getParameter("movieName").toString();
+	    cstmt.setString(1, reqMovieName);
 	    rs = cstmt.executeQuery();
 	    int numRow = 0;
 	    
@@ -66,14 +68,16 @@ public class SessionServlet extends HttpServlet {
 	    for (int i = 0; i < numRow; i++) {
 		SessionBean sessionB = new SessionBean();
 		sessionB.setId(rs.getInt(1));
-		sessionB.setMovie_name(rs.getString(2));
-		sessionB.setMovie_house(rs.getString(3));
-		sessionB.setMovie_start(rs.getString(4));
+		sessionB.setMovie_name(rs.getString(3));
+		sessionB.setMovie_house(rs.getString(4));
+		sessionB.setMovie_start(rs.getString(2));
+		sessionB.setDiscount(rs.getDouble(5));
 		sessionInfo.add(sessionB);
 		rs.next();
 	    }
+	    
 	    session.setAttribute("sessionInfo", sessionInfo);
-	    rd = getServletContext().getRequestDispatcher("/movie.jsp");
+	    rd = getServletContext().getRequestDispatcher("/booking.jsp");
 	    rd.forward(request, response);
 	    return;
 	} catch (NamingException e) {

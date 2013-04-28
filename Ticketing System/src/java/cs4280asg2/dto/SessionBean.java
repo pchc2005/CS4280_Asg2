@@ -13,6 +13,7 @@ public class SessionBean {
     private String movie_name;
     private String movie_house;
     private String movie_start;
+    private double discount;
 
     /**
      * @return the id
@@ -68,6 +69,20 @@ public class SessionBean {
      */
     public void setMovie_start(String movie_start) {
         this.movie_start = movie_start;
+    }
+
+    /**
+     * @return the discount
+     */
+    public double getDiscount() {
+	return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(double discount) {
+	this.discount = discount;
     }
     
 }
