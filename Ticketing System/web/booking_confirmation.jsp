@@ -68,12 +68,12 @@
 		if (session.getAttribute("loginStatus") == "member" && 
 		    session.getAttribute("loginStatus") != null) {
 		%>
-		<form name="booking-confirm" action="BuyTicketMember" method="post">
+		    <form name="booking-confirm" action="BuyTicketMember" method="post">
 		<%
 		}
 	        else {
 		%>
-		<form name="booking-confirm" action="BuyTicket" method="post">
+		    <form name="booking-confirm" action="BuyTicket" method="post">
 		<%
 		}
 		%>
@@ -113,6 +113,19 @@
                     </tr>
 			    </c:if>
 			    </c:forEach>
+		    <%
+		    if (session.getAttribute("loginStatus") == "member") {
+		    %>
+		    <tr>
+			<th rowspan="2">Loyalty point</th>
+			<td><c:out value="${memberInfo.loyalty_pt}" /></td>
+		    </tr>
+		    <tr>
+			<td><input type="checkbox" name="use_loyalty_pt">Use loyalty points?</input></td>
+		    </tr>
+		    <%
+		    }
+		    %>
                     <tr>
                         <td colspan="2">
                             <input type="submit" value="Confirm!" class="button" />
