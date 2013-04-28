@@ -17,6 +17,7 @@ public class MovieBean {
     private String subtitle;
     private String posterURL;
     private String synposis;
+    private double base_price;
 
     /**
      * @return the id
@@ -153,5 +154,19 @@ public class MovieBean {
 	else {
 	    this.synposis = "";
 	}
+    }
+
+    /**
+     * @return the base_price
+     */
+    public double getBase_price() {
+	return base_price;
+    }
+
+    /**
+     * @param base_price the base_price to set
+     */
+    public void setBase_price(double base_price) {
+	this.base_price = base_price;
     }
 }

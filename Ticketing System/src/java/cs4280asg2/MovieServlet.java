@@ -63,9 +63,10 @@ public class MovieServlet extends HttpServlet {
 		movie.setDuration(rs.getInt(3));
 		movie.setSynposis(rs.getString(4));
 		movie.setPosterURL(rs.getString(5));
-		movie.setCategory(rs.getString(6));
-		movie.setLanguage(rs.getString(7));
-		movie.setSubtitle(rs.getString(8));
+		movie.setCategory(rs.getString(7));
+		movie.setLanguage(rs.getString(8));
+		movie.setSubtitle(rs.getString(9));
+		movie.setBase_price(rs.getDouble(6));
 		movieInfo.add(movie);
 		rs.next();
 	    }
