@@ -22,64 +22,94 @@
 <body>
 <div id="container">	
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
+    <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session" />
+    <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="sessionInfo" type="java.util.ArrayList" scope="session" />
+    <jsp:useBean id="sessionHouseSize" class="cs4280asg2.dto.SessionHouseBean" scope="session" />
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
 	<div id="content-left">
+	    <%
+	    if (session.getAttribute("loginStatus") == "member" && 
+		session.getAttribute("loginStatus") != null) {
+	%>
+	    <%@ include file="include/loginSuccessMember.jsp"%>
+	    <%@ include file="include/quick-booking.jsp"%>
+            <%@ include file="include/top-movie.jsp"%>
+	<%
+	    }
+	    else if (session.getAttribute("loginStatus") == "staff" &&
+		     session.getAttribute("loginStatus") != null) {
+	%>
+	    <%@ include file="include/loginSuccessStaff.jsp"%>
+	<%
+		if (staffInfo.getRole().equals("Officer")) {
+	%>
+		<%@ include file="include/quick-booking.jsp"%>
+	<%
+		}
+	    }
+	    else {
+	%>
 	    <%@ include file="include/login.jsp"%>
 	    <%@ include file="include/quick-booking.jsp"%>
-            <%@ include file="include/top-movie.jsp"%>	    
-	</div>
+            <%@ include file="include/top-movie.jsp"%>
+	<%
+	    }
+	%>
+        </div>
 
 	<div id="content-right">
             <h5>CONFIRMATION</h5> 
             <div id="movie-confirm">
+		<form name="booking-confirm" method="POST" action="/BuyTicket">
                 <table >
                     <caption>BOOKING DETAIL</caption>
                     
                     <tr>
-                        <th>Transaction ID</th>
-                        <td>HELLO </td>
-                    </tr>
-                    <tr>
                         <th>Movie</th>
-                        <td>HELLO </td>
+                        <td><c:out value="${sessionScope.reqMovieName}"/></td>
                     </tr>
                     <tr>
                         <th>House</th>
-                        <td>SUN</td>
+                        <td><c:out value="${sessionScope.sessionHouseName}"/></td>
                     </tr>
                     <tr>
                         <th>Time</th>
-                        <td>14:05</td>
+                        <td>
+			    <c:forEach items="${sessionInfo}" var="session">
+			    <c:if test="${session.id == sessionScope.sessionID}">
+				<c:out value="${session.movie_start}" />
+			    </c:if>
+			    </c:forEach>
+			</td>
                     </tr>
                     <tr>
-                        <th rowspan="4">Price</th>
-                        <td>$ 100 * 1</td>
-                    </tr>
-                    <tr>
-                        <td>$ 70 * 1</td>
-                    </tr>
-                    <tr>
-                        <td>$ 60 * 0</td>
-                    </tr>
-                    <tr>
-                        <td>$ 65 * 1</td>
+                        <th>Price</th>
+                        <td>
+			    <c:forEach items="${movieInfo}" var="movie">
+			    <c:if test="${movie.id == sessionScope.sessionMovieID}">
+				$<c:out value="${movie.base_price}" /> * <c:out value="${sessionScope.seatsCount}" />
+			    
+			</td>
                     </tr>
                     <tr>
                         <th>Total price</th>
-                        <td>$ 150</td>
+                        <td>$<c:out value="${movie.base_price * sessionScope.seatsCount}" /></td>
                     </tr>
+			    </c:if>
+			    </c:forEach>
                     <tr>
                         <td colspan="2">
-                        <form name="booking-confirm">
-                            <input type="submit" value="Submit" class="button" />
-                            <input type="reset" onclick="formReset()" value="Cancel" class="button" />
-                        </form>
-                    </td>
+                            <input type="submit" value="Confirm!" class="button" />
+                            <input type="reset" onclick="back_to_index()" value="Cancel" class="button" />
+			</td>
                     </tr>
 
                 </table>
+		</form>
             </div>
         </div>
     </div>

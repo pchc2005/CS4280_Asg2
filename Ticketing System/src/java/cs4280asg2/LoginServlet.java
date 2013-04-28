@@ -111,7 +111,12 @@ public class LoginServlet extends HttpServlet {
 		else {
 		    session.setAttribute("loginStatus", "failed");
 		}
-		rd = getServletContext().getRequestDispatcher("/index.jsp");
+		if (rs.getString(3).equals("Officer")) {
+		    rd = getServletContext().getRequestDispatcher("/index.jsp");
+		}
+		else {
+		    rd = getServletContext().getRequestDispatcher("/management.jsp");
+		}
 		rd.forward(request, response);
 		return;
 	    }

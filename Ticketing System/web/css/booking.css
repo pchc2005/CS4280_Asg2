@@ -43,6 +43,10 @@ form[name=book] input{
     margin-left: 350px;
 }
 
+.seatingplan label{
+    width: auto !important;
+}
+
 #movie-confirm th{
     width:150px;
     background-color: #CCC;

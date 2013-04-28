@@ -62,11 +62,11 @@
               <div id="movie-booking">
                 	
                	                   
-                  <form name="book" action="booking_next.jsp">
+                  <form name="book" action="HouseSizeBySectID">
                         <label for="movieName">Name:</label>
                         <input type="text" name="movieName" disabled="disabled" value="<c:out value="${sessionScope.reqMovieName}" />"></input><br/>                     
                         <label for="session">Session:</label>
-                        <select>
+                        <select name="section">
 			    <c:forEach items="${sessionInfo}" var="session">
                             <option value="${session.id}">${session.movie_start} (House:${session.movie_house})</option>
 			    </c:forEach>

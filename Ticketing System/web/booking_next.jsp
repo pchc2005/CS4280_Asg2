@@ -24,6 +24,7 @@
     <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="sessionInfo" type="java.util.ArrayList" scope="session" />
+    <jsp:useBean id="sessionHouseSize" class="cs4280asg2.dto.SessionHouseBean" scope="session" />
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -60,18 +61,45 @@
 	<div id="content-right">
                 <h5>Booking Detail</h5> 
               <div id="movie-booking">               	                   
-                  <form name="book" action="booking_confirmation.jsp">
+                  <form name="book" action="ConfirmBuy" method="POST">
                         <label for="movieName">Name:</label>
-                        <input type="text" name="movieName" disabled="disabled" value=""></input><br/>                     
+                        <input type="text" name="movieName" disabled="disabled" value="<c:out value="${sessionScope.reqMovieName}" />"></input><br/>                     
                         <label for="session">Session:</label>
-                        <input type="text" name="movieName" disabled="disabled" value=""></input><br/>    
-                       
+			<c:forEach items="${sessionInfo}" var="session">
+			    <c:if test="${session.id == sessionScope.sessionID}">
+				<input type="text" name="session" disabled="disabled" value="<c:out value="${session.movie_start} (House:${session.movie_house})" />"></input><br/>
+			    </c:if>
+			</c:forEach>
+			
                         <br/>
 			
                         <p>Please choose the seat(s) below:</p>
-                        <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-
+                   
+			<table class="seatingplan" align="center">
+			    <caption>SCREEN</caption>
+			    <c:set var="row" scope="session" value="${sessionHouseSize.house_row}"/>
+			    <c:set var="col" scope="session" value="${sessionHouseSize.house_col}"/>
+			    <%
+				for (int i = 0; i < Integer.parseInt(session.getAttribute("row").toString()); i++) {
+			    %>
+				    <tr>
+					<%
+					for (int j = 0; j < Integer.parseInt(session.getAttribute("col").toString()); j++) {
+					%>
+					<td>
+					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
+					    <input name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"></input>
+					</td>
+					<%
+					}
+					%>
+				    </tr>
+			    <%
+				}
+			    %>
+			<c:remove var="row" scope="session"/>
+			<c:remove var="col" scope="session"/>
+		    </table>
                         <input type="submit" value="Submit" class="bookbutton" />
                     </form> 
                  
