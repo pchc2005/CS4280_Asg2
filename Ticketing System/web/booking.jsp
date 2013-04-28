@@ -60,36 +60,21 @@
                 <h5>Booking Detail</h5> 
               <div id="movie-booking">
                 	
-               	<table>
-                      <tr>
-                        <th>Movie Name:</th>
-                        <td>Peter Cheung</td>
-                      </tr>
-                      <tr>
-                        <th>House:</th>
-                        <td>Sun</td>
-                      </tr> 
-                      <tr>
-                        <th>Time:</th>
-                        <td>12:05</td>
-                      </tr>
-                      <tr>
-                        <th>Price:</th>
-                        <td>$100</td>
-                      </tr> 
-                      <tr>
-                        <th>Price Discount:</th>
-                        <td>Student-$50, Elderly-$60</td>
-                      </tr> 
-                 </table>
-                 <p>Please choose the seat(s) below:</p>
-                 <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-                 <p>
+               	                   
+                    <form name="book">                        
+                        <label for="movieName">Name:</label>
+                        <input type="text" name="movieName" disabled="true" value="Drug War"></input><br/>                     
+                        <label for="session">Session:</label>
+                        <select>
+                            <option value="session1">26/4 10:00 (House:SUN)</option>
+                            <option value="session2">26/4 10:00 (House:SUN)</option>
+                            <option value="session3">26/4 10:00 (House:SUN)</option>
+                            <option value="session4">26/4 10:00 (House:SUN)</option>
+                        </select><br/>                   
                        
-                        <form name="movie-booking" class="ticket">
-                            <label for="Adult">Adult:</label>
-                            <select>
+                        <br/>
+                        <label for="Adult">Adult:</label>
+                            <select class="type">
                                 <option value="0">0</option>
                                 <option value="Adult1">1</option>
                                 <option value="Adult2">2</option>
@@ -101,9 +86,9 @@
                                 <option value="Adult8">8</option>
                                 <option value="Adult9">9</option>
                                 <option value="Adult10">10</option>
-                            </select>
-                            <label for="Adult">&nbspChild:</label>
-                            <select>
+                            </select> <br/>
+                        <label for="Child">Child:</label>
+                            <select class="type">
                                 <option value="0">0</option>
                                 <option value="Child1">1</option>
                                 <option value="Child2">2</option>
@@ -115,9 +100,9 @@
                                 <option value="Child8">8</option>
                                 <option value="Child9">9</option>
                                 <option value="Child10">10</option>
-                            </select>
-                            <label for="Adult">&nbspStudent:</label>
-                            <select>
+                            </select>  <br/>
+                        <label for="Student">Student:</label>
+                            <select class="type">
                                 <option value="0">0</option>
                                 <option value="Student1">1</option>
                                 <option value="Student2">2</option>
@@ -129,21 +114,13 @@
                                 <option value="Student8">8</option>
                                 <option value="Student9">9</option>
                                 <option value="Student10">10</option>
-                            </select>
-                            <label for="Adult">&nbspElderly:</label>
-                            <select>
-                                <option value="0">0</option>
-                                <option value="Elderly1">1</option>
-                                <option value="Elderly2">2</option>
-                                <option value="Elderly3">3</option>
-                                <option value="Elderly4">4</option>
-                                <option value="Elderly5">5</option>
-                                <option value="Elderly6">6</option>
-                                <option value="Elderly7">7</option>
-                                <option value="Elderly8">8</option>
-                                <option value="Elderly9">9</option>
-                                <option value="Elderly10">10</option>
-                            </select><br/> <br/>
+                            </select>   
+                    </form>                    
+                   
+                 <p>Please choose the seat(s) below:</p>
+                 <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+                 <p><br/> <br/>
                             <input type="submit" value="Submit" class="button" />
                         </form>
                  </p>
