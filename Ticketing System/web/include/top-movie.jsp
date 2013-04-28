@@ -9,7 +9,7 @@
                 <c:forEach items="${movieInfo}" var="i" begin="1" end="3" varStatus="topMovieLoop">
             
                     <h3>Top <c:out value="${topMovieLoop.index}" /> movie</h3>
-                    <h4>${i.name}</h4> 
+                    <a href="movie.jsp#<c:out value="${topMovieLoop.index}" />"><h4>${i.name}</h4></a> 
                 
                 </c:forEach>
 	    </div>
