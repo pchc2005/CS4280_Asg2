@@ -6,6 +6,7 @@ package cs4280asg2;
 
 import cs4280asg2.dto.SaleBean;
 import cs4280asg2.dto.CustomerBean;
+import cs4280asg2.dto.StaffBean;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -38,6 +39,8 @@ public class BuyTicketServlet extends HttpServlet {
     CallableStatement cstmtSale = null;
     CallableStatement cstmtRecord = null;
     CallableStatement cstmtVacancy = null;
+    CallableStatement addLoyalty = null;
+    CallableStatement setLoyaltyToZero = null;
     CallableStatement getNewSales = null;
     public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
     /**
@@ -61,10 +64,14 @@ public class BuyTicketServlet extends HttpServlet {
 	    Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 	    String currentTime = sdf.format(cal.getTime());
+	    String strTotal = request.getParameter("total").toString();
+	    double total = Double.parseDouble(strTotal);
 	    String procedureInsertSale = "{ call BuyTicketSale(?, ?) }";
 	    String procedureInsertVacancy = "{ call BuyTicketVacancy(?, ?) }";
 	    String procedureInsertRecord = "{ call BuyTicketRecord(?, ?, ?, ?) }";
 	    String procedureGetNewSale = "{ call getNewSale(?) }";
+	    String procedureAddLoyalty = "{ call updateLoyaltyByCustID(?, ?)}";
+	    String procedureSetLoyaltyToZero = "{ call setLoyaltyToZero(?)}";
 	    
 	    cstmtSale = con.prepareCall(procedureInsertSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    cstmtSale.setString(1, currentTime);
@@ -123,10 +130,29 @@ public class BuyTicketServlet extends HttpServlet {
 	    }
 	    
 	    if (session.getAttribute("loginStatus") == "failed" || session.getAttribute("loginStatus") == null) {
-		rd = getServletContext().getRequestDispatcher("/index.jsp");
+		getServletContext().setAttribute("total", total);
+		rd = getServletContext().getRequestDispatcher("/visitor-pay.jsp");
 	    }
 	    else if (session.getAttribute("loginStatus") == "staff"){
-		rd = getServletContext().getRequestDispatcher("/ticketPrint.jsp");
+		getServletContext().setAttribute("total", total);
+		rd = getServletContext().getRequestDispatcher("/staff-pay.jsp");
+	    }
+	    else {
+		if (request.getParameter("use_loyalty_pt") == null || session.getAttribute("use_loyalty_pt") == "") {
+		    getServletContext().setAttribute("total", total);
+		    addLoyalty = con.prepareCall(procedureAddLoyalty);
+		    addLoyalty.setInt(1, cust_id);
+		    addLoyalty.setInt(2, seatsCount);
+		    addLoyalty.execute();
+		}
+		else {
+		    total -= Integer.parseInt(request.getParameter("use_loyalty_pt").toString());
+		    getServletContext().setAttribute("total", total);
+		    setLoyaltyToZero = con.prepareCall(procedureSetLoyaltyToZero);
+		    setLoyaltyToZero.setInt(1, cust_id);
+		    setLoyaltyToZero.execute();
+		}
+		rd = getServletContext().getRequestDispatcher("/member-pay.jsp");
 	    }
 	    rd.forward(request, response);
 	    return;
@@ -141,6 +167,12 @@ public class BuyTicketServlet extends HttpServlet {
 		cstmtSale.close();
 		cstmtRecord.close();
 		cstmtVacancy.close();
+		if (addLoyalty != null) {
+		    addLoyalty.close();
+		}
+		if (setLoyaltyToZero != null) {
+		    setLoyaltyToZero.close();
+		}
 		getNewSales.close();
 	    } catch (SQLException se) {
 		se.printStackTrace();

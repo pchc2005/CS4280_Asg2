@@ -42,10 +42,6 @@
         <load-on-startup>40</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>BuyTicketMemberServlet</servlet-name>
-        <servlet-class>cs4280asg2.BuyTicketMemberServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AddSectionServlet</servlet-name>
         <servlet-class>cs4280asg2.AddSectionServlet</servlet-class>
     </servlet>
@@ -84,10 +80,6 @@
     <servlet-mapping>
         <servlet-name>CastingServlet</servlet-name>
         <url-pattern>/Casting</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>BuyTicketMemberServlet</servlet-name>
-        <url-pattern>/BuyTicketMember</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddSectionServlet</servlet-name>

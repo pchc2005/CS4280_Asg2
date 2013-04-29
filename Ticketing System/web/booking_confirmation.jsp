@@ -64,19 +64,9 @@
 	<div id="content-right">
             <h5>CONFIRMATION</h5> 
             <div id="confirm">
-		<%
-		if (session.getAttribute("loginStatus") == "member" && 
-		    session.getAttribute("loginStatus") != null) {
-		%>
-		    <form name="booking-confirm" action="BuyTicketMember" method="post">
-		<%
-		}
-	        else {
-		%>
-		    <form name="booking-confirm" action="BuyTicket" method="post">
-		<%
-		}
-		%>
+		
+		<form name="booking-confirm" action="BuyTicket" method="post">
+		
                 <table >
                     <caption>BOOKING DETAIL</caption>
                     
@@ -111,8 +101,7 @@
                         <th>Total price</th>
                         <td>$<c:out value="${movie.base_price * sessionScope.seatsCount * sessionHouseSize.discount}" /></td>
                     </tr>
-			    </c:if>
-			    </c:forEach>
+			    
 		    <%
 		    if (session.getAttribute("loginStatus") == "member") {
 		    %>
@@ -121,18 +110,27 @@
 			<td><c:out value="${memberInfo.loyalty_pt}" /></td>
 		    </tr>
 		    <tr>
-			<td><input type="checkbox" name="use_loyalty_pt">Use loyalty points?</input></td>
+			<c:choose>
+			<c:when test="${memberInfo.loyalty_pt == 0}">
+			    <td><input type="checkbox" name="use_loyalty_pt" value="true" disabled>Use loyalty points?</input></td>
+			</c:when>
+			<c:otherwise>
+			    <td><input type="checkbox" name="use_loyalty_pt" value="<c:out value="${memberInfo.loyalty_pt}" />">Use loyalty points?</input></td>
+			</c:otherwise>
+			</c:choose>
 		    </tr>
 		    <%
 		    }
 		    %>
                     <tr>
                         <td colspan="2">
+			    <input type="hidden" value="<c:out value="${movie.base_price * sessionScope.seatsCount * sessionHouseSize.discount}" />" name="total" />
                             <input type="submit" value="Confirm!" class="button" />
                             <input type="reset" onclick="back_to_index()" value="Cancel" class="button" />
 			</td>
                     </tr>
-
+			    </c:if>
+			    </c:forEach>
                 </table>
 		</form>
             </div>
