@@ -71,7 +71,7 @@ public class BuyTicketServlet extends HttpServlet {
 	    String procedureInsertRecord = "{ call BuyTicketRecord(?, ?, ?, ?) }";
 	    String procedureGetNewSale = "{ call getNewSale(?) }";
 	    String procedureAddLoyalty = "{ call updateLoyaltyByCustID(?, ?)}";
-	    String procedureSetLoyaltyToZero = "{ call setLoyaltyToZero(?)}";
+	    String procedureSetLoyalty = "{ call setLoyalty(?, ?)}";
 	    
 	    cstmtSale = con.prepareCall(procedureInsertSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    cstmtSale.setString(1, currentTime);
@@ -146,11 +146,23 @@ public class BuyTicketServlet extends HttpServlet {
 		    addLoyalty.execute();
 		}
 		else {
-		    total -= Integer.parseInt(request.getParameter("use_loyalty_pt").toString());
-		    getServletContext().setAttribute("total", total);
-		    setLoyaltyToZero = con.prepareCall(procedureSetLoyaltyToZero);
-		    setLoyaltyToZero.setInt(1, cust_id);
-		    setLoyaltyToZero.execute();
+		    if (Integer.parseInt(request.getParameter("use_loyalty_pt").toString()) <= total) {
+			total -= Integer.parseInt(request.getParameter("use_loyalty_pt").toString());
+			getServletContext().setAttribute("total", total);
+			setLoyaltyToZero = con.prepareCall(procedureSetLoyalty);
+			setLoyaltyToZero.setInt(1, cust_id);
+			setLoyaltyToZero.setInt(2, 0);
+			setLoyaltyToZero.execute();
+		    }
+		    else {
+			int remainLoyalty = Integer.parseInt(request.getParameter("use_loyalty_pt").toString()) - (int)total;
+			total -= (int)total;
+			getServletContext().setAttribute("total", total);
+			setLoyaltyToZero = con.prepareCall(procedureSetLoyalty);
+			setLoyaltyToZero.setInt(1, cust_id);
+			setLoyaltyToZero.setInt(2, remainLoyalty);
+			setLoyaltyToZero.execute();
+		    }
 		}
 		rd = getServletContext().getRequestDispatcher("/member-pay.jsp");
 	    }

@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("login", false);
 		response.sendRedirect("index.jsp");
 	    }
-	else {
+	    else {
 	    LoginService loginService = new LoginService();
 	    RequestDispatcher rd;
 	    boolean result = loginService.authenticate(userName, password, loginType);
