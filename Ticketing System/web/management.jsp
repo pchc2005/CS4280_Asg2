@@ -14,7 +14,12 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/management.css" />
-
+<script type="text/javascript">
+function output()
+{
+ alert("Add Section Successful!")
+}
+</script>
 </head>
     
 <body>
@@ -31,9 +36,9 @@
 	</div>
 
 	<div id="content-right">
-                <h5>Movie Management</h5>
+                <h5>Add Section</h5>
                 <div class="add-session">
-                    <h4>You can add a session here:</h4>
+                    <h4>You can add a section here:</h4>
                     <form name="add" action="AddSection" method="POST">                        
                         <label for="session">Movie Name:</label>
                         <select name="movieName">
@@ -51,27 +56,11 @@
                         <input type="text" name="dateTime" value=""></input><br/>
                         <label for="Discount">Discount Ratio:</label>
                         <input type="text" name="discount" value=""></input><br/>
-                        <input type="submit" value="Add Session" class="button" />                          
+                        <input type="submit" value="Add Section" class="button" onClick="output();"/>                          
                     </form>                    
                     
                 </div>
-                <div class="movie-management">
-                    <h4>You can change or remove a session here:</h4>
-                    <form name="movie-man">
-                        <label for="session">Session ID:</label>
-                        <input type="text" name="session" value="01" disabled="disabled"></input><br/>
-                        <label for="movieName">Movie Name:</label>
-                        <input type="text" name="movieName" value="Hello Kitty" disabled="disabled"></input><br/>
-                        <label for="HouseName">House Name:</label>
-                        <input type="text" name="HouseName" value="Cloud" disabled="disabled"></input><br/>
-                        <label for="dateTime">Date Time:</label>
-                        <input type="text" name="Date Time" value="2013-04-26 10:00:00"></input><br/>
-                        <label for="Discount">Discount Ratio:</label>
-                        <input type="text" name="Discount" value="1"></input><br/>
-                        <input type="submit" value="Confirm Change(s)" class="button" />                          
-                    </form>                    
-                    
-                </div>
+                
                 
         </div>
     </div>

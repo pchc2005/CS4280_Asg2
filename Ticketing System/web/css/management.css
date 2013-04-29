@@ -64,10 +64,16 @@ table{
     color:#FFF;
 }
 
-.movie-management,.seating-management,.add-session{
+.movie-management,.seating-management{
     border-bottom: 3px solid #1e7c9a;
     padding: 10px;
     margin: 10px;
+}
+
+.add-session{
+    border-bottom: 3px solid #1e7c9a;
+    padding: 10px;
+    margin: 50px 10px 300px 10px;
 }
 
 .add-session h4,.movie-management h4{
