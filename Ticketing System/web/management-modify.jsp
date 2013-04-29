@@ -14,7 +14,12 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/management.css" />
-
+<script type="text/javascript">
+function output()
+{
+ alert("Modify Section Successful!")
+}
+</script>
 </head>
     
 <body>
@@ -36,20 +41,21 @@
                 
                 <div class="movie-management">
                     <h4>You can change or remove a section here:</h4>
+                    <p>Type in '0' in both Date Time and Discount Ratio if you want to delete the section.</p>
                     <c:forEach items="${sessionInfo}" var="session">
                         <c:if test="${sessionScope.movieName == session.movie_name}">
-                        <form name="movie-man"><br/>
+                        <form name="movie-man" action="ModifySection" method="POST"><br/>
                             <label for="session">Session ID:</label>
-                            <input type="text" name="session" value="${session.id}" disabled="disabled"></input><br/>
+                            <input type="text" name="sessionID" value="${session.id}" readonly="readonly"></input><br/>
                             <label for="movieName">Movie Name:</label>
                             <input type="text" name="movieName" value="${session.movie_name}" disabled="disabled"></input><br/>
                             <label for="HouseName">House Name:</label>
                             <input type="text" name="HouseName" value="${session.movie_house}" disabled="disabled"></input><br/>
                             <label for="dateTime">Date Time:</label>
-                            <input type="text" name="Date Time" value="${session.movie_start}"></input><br/>
+                            <input type="text" name="dateTime" value="${session.movie_start}"></input><br/>
                             <label for="Discount">Discount Ratio:</label>
-                            <input type="text" name="Discount" value="${session.discount}"></input><br/><br/>
-                            <input type="submit" value="Confirm Change(s)" class="button" /><br/><br/>                     
+                            <input type="text" name="discount" value="${session.discount}"></input><br/><br/>
+                            <input type="submit" value="Confirm Change(s)" class="button" onclick="output()"/><br/><br/>                     
                         </form>   
                         </c:if>
                         <hr/>

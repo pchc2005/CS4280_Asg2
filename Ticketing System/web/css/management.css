@@ -24,6 +24,8 @@ form[name=movie-man] label, form[name=seating-man] label,form[name=add] label{
 
 p{
     text-align: center;
+    font-size: 12px;
+    color:#666;
 }
 
 .seating-management input{

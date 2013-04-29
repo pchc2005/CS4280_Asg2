@@ -39,7 +39,7 @@ function output()
                 <h5>Add Section</h5>
                 <div class="add-session">
                     <h4>You can add a section here:</h4>
-                    <form name="add" action="AddSection" method="POST">                        
+                    <form name="add" action="AddSection" method="POST">  <br/>                      
                         <label for="session">Movie Name:</label>
                         <select name="movieName">
                             <c:forEach items="${movieInfo}" var="movie">
@@ -55,7 +55,7 @@ function output()
                         <label for="dateTime">Date Time:</label>
                         <input type="text" name="dateTime" value=""></input><br/>
                         <label for="Discount">Discount Ratio:</label>
-                        <input type="text" name="discount" value=""></input><br/>
+                        <input type="text" name="discount" value=""></input><br/><br/> 
                         <input type="submit" value="Add Section" class="button" onClick="output();"/>                          
                     </form>                    
                     
