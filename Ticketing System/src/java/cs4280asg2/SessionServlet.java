@@ -54,7 +54,7 @@ public class SessionServlet extends HttpServlet {
 	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    con = ds.getConnection();
 	    HttpSession session = request.getSession(true);
-	    String procedureGetSession = "{ call getSessionDetails(?) }";
+	    String procedureGetSession = "{ call getSessionDetails(?, ?) }";
 	    cstmt = con.prepareCall(procedureGetSession, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    String reqMovieName = request.getParameter("movieName").toString();
 	    cstmt.setString(1, reqMovieName);

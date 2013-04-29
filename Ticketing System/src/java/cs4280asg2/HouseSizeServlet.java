@@ -5,11 +5,13 @@
 package cs4280asg2;
 
 import cs4280asg2.dto.SessionHouseBean;
+import cs4280asg2.dto.UnavaiSeatsBean;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -33,6 +35,7 @@ public class HouseSizeServlet extends HttpServlet {
     ResultSet rs = null;
     RequestDispatcher rd = null;
     CallableStatement cstmt = null;
+    CallableStatement checkSeats = null;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -52,6 +55,7 @@ public class HouseSizeServlet extends HttpServlet {
 	    con = ds.getConnection();
 	    HttpSession session = request.getSession(true);
 	    String procedureGetSession = "{ call getHouseSizeBySectID(?) }";
+	    String procedureCheckSeats = "{ call getUnavailableSeats(?) }";
 	    cstmt = con.prepareCall(procedureGetSession, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    int reqSectID = Integer.parseInt(request.getParameter("section").toString());
 	    cstmt.setInt(1, reqSectID);
@@ -70,7 +74,27 @@ public class HouseSizeServlet extends HttpServlet {
 	    session.setAttribute("sessionHouseName", rs.getString(4));
 	    session.setAttribute("sessionMovieID", rs.getInt(5));
 	    shb.setDiscount(rs.getDouble(6));
-	    rs.next();
+	    
+	    checkSeats = con.prepareCall(procedureCheckSeats, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    checkSeats.setInt(1, reqSectID);
+	    rs = checkSeats.executeQuery();
+	    if (rs != null && rs.last() != false) {
+		numRow = rs.getRow();
+		rs.first();
+		ArrayList<UnavaiSeatsBean> unavaiSeatsInfo = new ArrayList<UnavaiSeatsBean>();
+		for (int i = 0; i < numRow; i++) {
+		    UnavaiSeatsBean unavaiSeats = new UnavaiSeatsBean();
+		    /*String row = String.valueOf(Character.toChars('A' + rs.getInt(1)));
+		    String col = rs.getString(2);
+		    unavaiSeats.setSeat(row + col);*/
+		    unavaiSeats.setRow(rs.getInt(1));
+		    unavaiSeats.setCol(rs.getInt(2));
+		    unavaiSeatsInfo.add(unavaiSeats);
+		    rs.next();
+		}
+		session.setAttribute("unavaiSeatsInfo", unavaiSeatsInfo);
+	    }
+	    
 	    
 	    session.setAttribute("sessionHouseSize", shb);
 	    session.setAttribute("sessionID", reqSectID);
@@ -86,6 +110,7 @@ public class HouseSizeServlet extends HttpServlet {
 		con.close();
 		rs.close();
 		cstmt.close();
+		checkSeats.close();
 	    } catch (SQLException se) {
 		se.printStackTrace();
 	    }

@@ -16,13 +16,13 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/seating.css" />
 
-<script language=javascript>
+<script type="text/javascript">
 function output(elem)
 {
     if(elem.checked==true){        
         elem.parentNode.style.backgroundColor="red";
     }
-    if(elem.checked==false){
+    else {
         elem.parentNode.style.backgroundColor="#FF6";
     }
 }
@@ -38,6 +38,13 @@ function output(elem)
     <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="sessionInfo" type="java.util.ArrayList" scope="session" />
     <jsp:useBean id="sessionHouseSize" class="cs4280asg2.dto.SessionHouseBean" scope="session" />
+    <%
+    if (session.getAttribute("unavaiSeatsInfo") != null) {
+    %>
+    <jsp:useBean id="unavaiSeatsInfo" type="java.util.ArrayList" scope="session" />
+    <%
+       }
+    %>
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -98,12 +105,42 @@ function output(elem)
 				    <tr>
 					<%
 					for (int j = 0; j < Integer.parseInt(session.getAttribute("col").toString()); j++) {
+					    if (session.getAttribute("unavaiSeatsInfo") == null) {
 					%>
 					<td>
 					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
-					    <input onClick="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"></input>
+					    <input onchange="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"></input>
 					</td>
 					<%
+					    }
+					    else {
+					%>
+					<c:forEach items="${unavaiSeatsInfo}" var="useats">
+					    <c:set var="UnavaiRowNo" scope="session" value="${useats.row}" />
+					    <c:set var="UnavaiColNo" scope="session" value="${useats.col}" />
+					<%
+					    if (Integer.parseInt(session.getAttribute("UnavaiRowNo").toString()) == j && Integer.parseInt(session.getAttribute("UnavaiColNo").toString()) == i) {
+					%>
+					<td>
+					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
+					    <input onchange="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" disabled="disabled" />
+					</td>
+					<%
+					    }
+					    else {
+					%>
+					<td>
+					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
+					    <input onchange="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" />
+					</td>
+					<%
+					    }
+					%>
+					<c:remove var="UnavaiRowNo" scope="session"/>
+					<c:remove var="UnavaiColNo" scope="session"/>
+					</c:forEach>
+					<%
+					    }
 					}
 					%>
 				    </tr>
@@ -114,8 +151,7 @@ function output(elem)
 			<c:remove var="col" scope="session"/>
 		    </table>
                         <input type="submit" value="Submit" class="bookbutton" />
-                    </form> 
-                 
+                    </form>
               </div>	
             </div>      
     </div>

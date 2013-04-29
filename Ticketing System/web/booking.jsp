@@ -67,8 +67,8 @@
                         <input type="text" name="movieName" disabled="disabled" value="<c:out value="${sessionScope.reqMovieName}" />"></input><br/>                     
                         <label for="session">Session:</label>
                         <select name="section">
-			    <c:forEach items="${sessionInfo}" var="session">
-                            <option value="${session.id}">${session.movie_start} (House:${session.movie_house})</option>
+			    <c:forEach items="${sessionInfo}" var="section">
+                            <option value="${section.id}">${section.movie_start} (House:${section.movie_house})</option>
                             </c:forEach>
                           
                         </select><br/>                   
