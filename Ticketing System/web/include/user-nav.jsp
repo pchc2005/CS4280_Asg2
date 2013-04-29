@@ -7,6 +7,6 @@
 <div id="nav">
                 <ul>
                     <li><a href="my-detail.jsp">My Detail</a></li>
-                    <li><a href="transaction.jsp">Transaction</a></li>
+                    <li><a href="MyTrans">Transaction</a></li>
                 </ul> 
             </div>
