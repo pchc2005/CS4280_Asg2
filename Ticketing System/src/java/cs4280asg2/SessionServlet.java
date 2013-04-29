@@ -11,6 +11,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -35,6 +36,8 @@ public class SessionServlet extends HttpServlet {
     ResultSet rs = null;
     RequestDispatcher rd = null;
     CallableStatement cstmt = null;
+    String pattern = "yyyy/MM/dd kk:mm:ss";
+    SimpleDateFormat format = new SimpleDateFormat(pattern);
     
     /**
      * Processes requests for both HTTP

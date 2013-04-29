@@ -20,7 +20,7 @@
 function output(elem)
 {
     if(elem.checked==true){        
-        elem.parentNode.style.backgroundColor="red";
+        elem.parentNode.style.backgroundColor="green";
     }
     else {
         elem.parentNode.style.backgroundColor="#FF6";
@@ -29,7 +29,7 @@ function output(elem)
 </script>
 </head>
     
-<body>
+<body onload="disableElement()">
 <div id="container">	
     
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
@@ -127,12 +127,15 @@ function output(elem)
 		    if (session.getAttribute("unavaiSeatsInfo") != null) {
 		    %>
 		    <script type="text/javascript">
+			function disableElement(){
 			var unavai = new Array();
-			<c:forEach var="unavaiSeats" items="${unavaiSeatsInfo}" varStatus="index">
-			unavai[index] = ${unavaiSeats.seat};
+			<c:forEach var="unavaiSeats" items="${unavaiSeatsInfo}" varStatus="i">
+			unavai[${i.index}] = "${unavaiSeats.seat}";
 			</c:forEach>
 			for (var i = 0; i < ${sessionScope.unavaiSeatsNo}; i++) {
-			    
+			    document.getElementById(unavai[i]).disabled = true;
+			    document.getElementById(unavai[i]).parentNode.style.backgroundColor="red";
+			}
 			}
 		    </script>
 		    <%
