@@ -136,11 +136,11 @@ public class BuyTicketServlet extends HttpServlet {
 	    
 	    if (session.getAttribute("loginStatus") == "failed" || session.getAttribute("loginStatus") == null) {
 		session.setAttribute("total", total);
-		rd = getServletContext().getRequestDispatcher("/visitor-pay.jsp");
+		rd = getServletContext().getRequestDispatcher("/WEB-INF/privilege pages/visitor-pay.jsp");
 	    }
 	    else if (session.getAttribute("loginStatus") == "staff"){
 		session.setAttribute("total", total);
-		rd = getServletContext().getRequestDispatcher("/staff-pay.jsp");
+		rd = getServletContext().getRequestDispatcher("/WEB-INF/privilege pages/staff-pay.jsp");
 	    }
 	    else {
 		if (request.getParameter("use_loyalty_pt") == null || session.getAttribute("use_loyalty_pt") == "") {
@@ -186,7 +186,7 @@ public class BuyTicketServlet extends HttpServlet {
 		memberInfo.setLoyalty_pt(rs.getInt(9));
 		session.setAttribute("memberInfo", memberInfo);
 		
-		rd = getServletContext().getRequestDispatcher("/member-pay.jsp");
+		rd = getServletContext().getRequestDispatcher("/WEB-INF/privilege pages/member-pay.jsp");
 	    }
 	    rd.forward(request, response);
 	    return;

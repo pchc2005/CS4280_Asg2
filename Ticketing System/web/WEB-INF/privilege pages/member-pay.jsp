@@ -32,7 +32,7 @@
 <div id="container">	
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session" />
-    <%@ include file="include/header.jspf"%>
+    <%@ include file="/include/header.jspf"%>
         
     <div id="content2">
 	<div id="content-left">
@@ -40,27 +40,27 @@
 	    if (session.getAttribute("loginStatus") == "member" && 
 		session.getAttribute("loginStatus") != null) {
 	%>
-	    <%@ include file="include/loginSuccessMember.jsp"%>
-	    <%@ include file="include/quick-booking.jsp"%>
-            <%@ include file="include/top-movie.jsp"%>
+	    <%@ include file="/include/loginSuccessMember.jsp"%>
+	    <%@ include file="/include/quick-booking.jsp"%>
+            <%@ include file="/include/top-movie.jsp"%>
 	<%
 	    }
 	    else if (session.getAttribute("loginStatus") == "staff" &&
 		     session.getAttribute("loginStatus") != null) {
 	%>
-	    <%@ include file="include/loginSuccessStaff.jsp"%>
+	    <%@ include file="/include/loginSuccessStaff.jsp"%>
 	<%
 		if (staffInfo.getRole().equals("Officer")) {
 	%>
-		<%@ include file="include/quick-booking.jsp"%>
+		<%@ include file="/include/quick-booking.jsp"%>
 	<%
 		}
 	    }
 	    else {
 	%>
-	    <%@ include file="include/login.jsp"%>
-	    <%@ include file="include/quick-booking.jsp"%>
-            <%@ include file="include/top-movie.jsp"%>
+	    <%@ include file="/include/login.jsp"%>
+	    <%@ include file="/include/quick-booking.jsp"%>
+            <%@ include file="/include/top-movie.jsp"%>
 	<%
 	    }
 	%>
@@ -71,17 +71,17 @@
             <div id="payment">
                 <form id="form-pay" action="">
                     <label>Total price:</label>
-                    <input type="text" name="price" disabled="disabled" value="$120"></input>  <br/>
+                    <input type="text" name="price" disabled="disabled" value="$<c:out value="${sessionScope.total}" />"></input>  <br/>
                     <label>Credit card number:</label>
                     <input id="creditcard" type="text" name="creditCard"></input><br/>
-                    <input clas="pay" type="submit" value="Confirm Payment" onclick="output(this)"></input>
+                    <input class="pay" type="submit" value="Confirm Payment" onclick="output(this)"></input>
                     
                 </form>
 		
             </div>
         </div>
     </div>
-    <%@ include file="include/footer.jsp"%>
+    <%@ include file="/include/footer.jsp"%>
 </div>
     
     
