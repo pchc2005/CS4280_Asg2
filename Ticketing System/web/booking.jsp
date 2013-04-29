@@ -72,6 +72,7 @@
 			    </c:forEach>
                         </select><br/>                   
                         <br/>
+                        
                         <input type="submit" value="Next" class="bookbutton" />
                     </form> 
                  

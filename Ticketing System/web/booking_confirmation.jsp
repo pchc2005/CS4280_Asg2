@@ -16,6 +16,11 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <script type="text/javascript">
 
+    function goBack()
+      {
+      window.history.back();
+      }
+
 </script>
 </head>
     
@@ -125,8 +130,8 @@
                     <tr>
                         <td colspan="2">
 			    <input type="hidden" value="<c:out value="${movie.base_price * sessionScope.seatsCount * sessionHouseSize.discount}" />" name="total" />
-                            <input type="submit" value="Confirm!" class="button" />
-                            <input type="reset" onclick="back_to_index()" value="Cancel" class="button" />
+                            <input type="reset" onclick="goBack()" value="Back" class="button" />
+                            <input type="submit" value="Confirm!" class="button" />                                                  
 			</td>
                     </tr>
 			    </c:if>

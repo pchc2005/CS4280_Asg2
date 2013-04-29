@@ -35,8 +35,10 @@ form[name=book] input{
 }
 
 form[name=book] .bookbutton{
-    margin-left: 700px;
+    margin-top: 30px;
+    margin-bottom: 50px;
     width:auto !important;
+    
 }
 
 .seatingplan input{
@@ -69,4 +71,9 @@ caption{
 
 #confirm{
     margin-left: 200px;
+    margin-top: 50px;
+}
+
+form[name=book]{
+    margin-top: 50px;
 }

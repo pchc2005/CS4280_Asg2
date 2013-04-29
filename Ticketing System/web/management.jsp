@@ -34,23 +34,23 @@
                 <h5>Movie Management</h5>
                 <div class="add-session">
                     <h4>You can add a session here:</h4>
-                    <form name="add">                        
+                    <form name="add" action="AddSection" method="POST">                        
                         <label for="session">Movie Name:</label>
-                        <select>
+                        <select name="movieName">
                             <c:forEach items="${movieInfo}" var="movie">
-                                <option value="${movie.name}">${movie.name}</option>
+                                <option value="${movie.id}">${movie.name}</option>
                             </c:forEach>
                         </select><br/>
                         <label for="House">House Name:</label>
-                        <select>
+                        <select name="movieHouse">
                             <c:forEach items="${movieHouseInfo}" var="movieHouse">
-                                <option value="${movieHouse.name}">${movieHouse.name}</option>
+                                <option value="${movieHouse.id}">${movieHouse.name}</option>
                             </c:forEach>
                         </select><br/>                        
                         <label for="dateTime">Date Time:</label>
-                        <input type="text" name="Date Time" value=""></input><br/>
+                        <input type="text" name="dateTime" value=""></input><br/>
                         <label for="Discount">Discount Ratio:</label>
-                        <input type="text" name="Discount" value=""></input><br/>
+                        <input type="text" name="discount" value=""></input><br/>
                         <input type="submit" value="Add Session" class="button" />                          
                     </form>                    
                     

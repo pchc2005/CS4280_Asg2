@@ -5,18 +5,33 @@
 package cs4280asg2;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 /**
  *
  * @author PCHC
  */
 public class AddSectionServlet extends HttpServlet {
-
+    Context initCtx = null;
+    Context envCtx = null;
+    DataSource ds = null;
+    Connection con = null;
+    ResultSet rs = null;
+    RequestDispatcher rd = null;
+    CallableStatement addsection = null;
+    public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -29,20 +44,47 @@ public class AddSectionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	response.setContentType("text/html;charset=UTF-8");
-	PrintWriter out = response.getWriter();
 	try {
-	    /* TODO output your page here. You may use following sample code. */
-	    out.println("<html>");
-	    out.println("<head>");
-	    out.println("<title>Servlet AddSectionServlet</title>");	    
-	    out.println("</head>");
-	    out.println("<body>");
-	    out.println("<h1>Servlet AddSectionServlet at " + request.getContextPath() + "</h1>");
-	    out.println("</body>");
-	    out.println("</html>");
-	} finally {	    
-	    out.close();
+	    initCtx = new InitialContext();
+	    envCtx = (Context)initCtx.lookup("java:comp/env");
+	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
+	    con = ds.getConnection();
+	   
+	    int movieName= Integer.parseInt(request.getParameter("movieName").toString());
+            int movieHouse= Integer.parseInt(request.getParameter("movieHouse").toString());
+            String dateTime= request.getParameter("dateTime").toString();
+            double discount=Double.parseDouble(request.getParameter("discount").toString());
+            
+	    String procedureAddSection = "{ call AddSection(?, ?, ?, ?) }";
+
+	    addsection = con.prepareCall(procedureAddSection);
+
+	    
+	    
+	    
+	    addsection.setInt(1, movieName);
+            addsection.setInt(2, movieHouse);
+            addsection.setString(3, dateTime);
+            addsection.setDouble(4, discount);
+
+	    addsection.execute();
+
+            rd = getServletContext().getRequestDispatcher("/management.jsp");
+            
+	    rd.forward(request, response);
+	    return;
+	} catch (NamingException e) {
+	    e.printStackTrace();
+	} catch (SQLException se) {
+	    se.printStackTrace();
+	} finally {
+	    try{
+		con.close();
+		addsection.close();
+
+	    } catch (SQLException se) {
+		se.printStackTrace();
+	    }
 	}
     }
 
