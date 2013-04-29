@@ -40,8 +40,9 @@ public class BuyTicketServlet extends HttpServlet {
     CallableStatement cstmtRecord = null;
     CallableStatement cstmtVacancy = null;
     CallableStatement addLoyalty = null;
-    CallableStatement setLoyaltyToZero = null;
+    CallableStatement setLoyalty = null;
     CallableStatement getNewSales = null;
+    CallableStatement updateMemberBean = null;
     public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
     /**
      * Processes requests for both HTTP
@@ -60,7 +61,7 @@ public class BuyTicketServlet extends HttpServlet {
 	    envCtx = (Context)initCtx.lookup("java:comp/env");
 	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    con = ds.getConnection();
-	    HttpSession session = request.getSession(false);
+	    HttpSession session = request.getSession(true);
 	    Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 	    String currentTime = sdf.format(cal.getTime());
@@ -72,6 +73,7 @@ public class BuyTicketServlet extends HttpServlet {
 	    String procedureGetNewSale = "{ call getNewSale(?) }";
 	    String procedureAddLoyalty = "{ call updateLoyaltyByCustID(?, ?)}";
 	    String procedureSetLoyalty = "{ call setLoyalty(?, ?)}";
+	    String procedureGetMemberInfo = "{ call getMemberInfoByLoginName(?) }";
 	    
 	    cstmtSale = con.prepareCall(procedureInsertSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    cstmtSale.setString(1, currentTime);
@@ -104,12 +106,15 @@ public class BuyTicketServlet extends HttpServlet {
 	    
 	    String[] seats = (String[]) session.getAttribute("seats");
 	    int cust_id;
+	    String custName = null;
 	    if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") != "failed") {
 		CustomerBean cb = (CustomerBean) session.getAttribute("memberInfo");
 		cust_id = cb.getId();
+		custName = cb.getLogin_name();
 	    }
 	    else {
 		cust_id = 0;
+		custName = "";
 	    }
 	    
 	    for (int i = 0; i < seatsCount; i++) {
@@ -130,16 +135,16 @@ public class BuyTicketServlet extends HttpServlet {
 	    }
 	    
 	    if (session.getAttribute("loginStatus") == "failed" || session.getAttribute("loginStatus") == null) {
-		getServletContext().setAttribute("total", total);
+		session.setAttribute("total", total);
 		rd = getServletContext().getRequestDispatcher("/visitor-pay.jsp");
 	    }
 	    else if (session.getAttribute("loginStatus") == "staff"){
-		getServletContext().setAttribute("total", total);
+		session.setAttribute("total", total);
 		rd = getServletContext().getRequestDispatcher("/staff-pay.jsp");
 	    }
 	    else {
 		if (request.getParameter("use_loyalty_pt") == null || session.getAttribute("use_loyalty_pt") == "") {
-		    getServletContext().setAttribute("total", total);
+		    session.setAttribute("total", total);
 		    addLoyalty = con.prepareCall(procedureAddLoyalty);
 		    addLoyalty.setInt(1, cust_id);
 		    addLoyalty.setInt(2, seatsCount);
@@ -148,22 +153,39 @@ public class BuyTicketServlet extends HttpServlet {
 		else {
 		    if (Integer.parseInt(request.getParameter("use_loyalty_pt").toString()) <= total) {
 			total -= Integer.parseInt(request.getParameter("use_loyalty_pt").toString());
-			getServletContext().setAttribute("total", total);
-			setLoyaltyToZero = con.prepareCall(procedureSetLoyalty);
-			setLoyaltyToZero.setInt(1, cust_id);
-			setLoyaltyToZero.setInt(2, 0);
-			setLoyaltyToZero.execute();
+			session.setAttribute("total", total);
+			setLoyalty = con.prepareCall(procedureSetLoyalty);
+			setLoyalty.setInt(1, cust_id);
+			setLoyalty.setInt(2, 0);
+			setLoyalty.execute();
+			
 		    }
 		    else {
 			int remainLoyalty = Integer.parseInt(request.getParameter("use_loyalty_pt").toString()) - (int)total;
 			total -= (int)total;
-			getServletContext().setAttribute("total", total);
-			setLoyaltyToZero = con.prepareCall(procedureSetLoyalty);
-			setLoyaltyToZero.setInt(1, cust_id);
-			setLoyaltyToZero.setInt(2, remainLoyalty);
-			setLoyaltyToZero.execute();
+			session.setAttribute("total", total);
+			setLoyalty = con.prepareCall(procedureSetLoyalty);
+			setLoyalty.setInt(1, cust_id);
+			setLoyalty.setInt(2, remainLoyalty);
+			setLoyalty.execute();
 		    }
 		}
+		updateMemberBean = con.prepareCall(procedureGetMemberInfo, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		updateMemberBean.setString(1, custName);
+		rs = updateMemberBean.executeQuery();
+		rs.first();
+		CustomerBean memberInfo = new CustomerBean();
+		memberInfo.setId(rs.getInt(1));
+		memberInfo.setLogin_name(rs.getString(2));
+		memberInfo.setName(rs.getString(3));
+		memberInfo.setPhone_no(rs.getInt(4));
+		memberInfo.setAddr(rs.getString(5));
+		memberInfo.setEmail(rs.getString(6));
+		memberInfo.setPassword(rs.getString(7));
+		memberInfo.setCreditcard(rs.getString(8));
+		memberInfo.setLoyalty_pt(rs.getInt(9));
+		session.setAttribute("memberInfo", memberInfo);
+		
 		rd = getServletContext().getRequestDispatcher("/member-pay.jsp");
 	    }
 	    rd.forward(request, response);
@@ -182,8 +204,11 @@ public class BuyTicketServlet extends HttpServlet {
 		if (addLoyalty != null) {
 		    addLoyalty.close();
 		}
-		if (setLoyaltyToZero != null) {
-		    setLoyaltyToZero.close();
+		if (setLoyalty != null) {
+		    setLoyalty.close();
+		}
+		if (updateMemberBean != null) {
+		    updateMemberBean.close();
 		}
 		getNewSales.close();
 	    } catch (SQLException se) {

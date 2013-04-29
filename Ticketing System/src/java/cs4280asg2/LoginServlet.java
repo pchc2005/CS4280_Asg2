@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 		userName.trim().equals("")) && 
 		(password == null &&
 		password.equals(""))) {
-		session.setAttribute("login", false);
+		session.setAttribute("loginStatus", "failed");
 		response.sendRedirect("index.jsp");
 	    }
 	    else {
