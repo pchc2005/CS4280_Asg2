@@ -40,11 +40,11 @@ function output()
                 <div class="add-session">
                     <h4>You can choose the movie here:</h4>
                     <br/>
-                    <form name="add" action="management-modify.jsp" method="POST">                        
+                    <form name="add" action="ModifySection" method="POST">                        
                         <label for="session">Movie Name:</label>
                         <select name="movieName">
                             <c:forEach items="${movieInfo}" var="movie">
-                                <option value="${movie.id}">${movie.name}</option>
+                                <option value="${movie.name}">${movie.name}</option>
                             </c:forEach>
                         </select><br/><br/>
                         <input type="submit" value="Next" class="button"/>                          

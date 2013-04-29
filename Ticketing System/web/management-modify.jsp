@@ -39,7 +39,7 @@
                         <label for="session">Session ID:</label>
                         <input type="text" name="session" value="01" disabled="disabled"></input><br/>
                         <label for="movieName">Movie Name:</label>
-                        <input type="text" name="movieName" value="AAA" disabled="disabled"></input><br/>
+                        <input type="text" name="movieName" value="${sessionScope.movieName}" disabled="disabled"></input><br/>
                         <label for="HouseName">House Name:</label>
                         <input type="text" name="HouseName" value="Cloud" disabled="disabled"></input><br/>
                         <label for="dateTime">Date Time:</label>
