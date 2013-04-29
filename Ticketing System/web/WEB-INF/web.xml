@@ -46,8 +46,8 @@
         <servlet-class>cs4280asg2.AddSectionServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ModifySectionServlet</servlet-name>
-        <servlet-class>cs4280asg2.ModifySectionServlet</servlet-class>
+        <servlet-name>ManageSectionServlet</servlet-name>
+        <servlet-class>cs4280asg2.ManageSectionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -90,8 +90,8 @@
         <url-pattern>/AddSection</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ModifySectionServlet</servlet-name>
-        <url-pattern>/ModifySection</url-pattern>
+        <servlet-name>ManageSectionServlet</servlet-name>
+        <url-pattern>/ManageSection</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

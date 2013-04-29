@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author PCHC
  */
-public class ModifySectionServlet extends HttpServlet {
+public class ManageSectionServlet extends HttpServlet {
     RequestDispatcher rd = null;
     /**
      * Processes requests for both HTTP
