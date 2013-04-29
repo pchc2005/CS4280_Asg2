@@ -22,6 +22,7 @@
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="sessionInfo" type="java.util.ArrayList" scope="session" />
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -35,19 +36,24 @@
                 
                 <div class="movie-management">
                     <h4>You can change or remove a section here:</h4>
-                    <form name="movie-man">
-                        <label for="session">Session ID:</label>
-                        <input type="text" name="session" value="01" disabled="disabled"></input><br/>
-                        <label for="movieName">Movie Name:</label>
-                        <input type="text" name="movieName" value="${sessionScope.movieName}" disabled="disabled"></input><br/>
-                        <label for="HouseName">House Name:</label>
-                        <input type="text" name="HouseName" value="Cloud" disabled="disabled"></input><br/>
-                        <label for="dateTime">Date Time:</label>
-                        <input type="text" name="Date Time" value="2013-04-26 10:00:00"></input><br/>
-                        <label for="Discount">Discount Ratio:</label>
-                        <input type="text" name="Discount" value="1"></input><br/>
-                        <input type="submit" value="Confirm Change(s)" class="button" />                          
-                    </form>                    
+                    <c:forEach items="${sessionInfo}" var="session">
+                        <c:if test="${sessionScope.movieName == session.movie_name}">
+                        <form name="movie-man"><br/>
+                            <label for="session">Session ID:</label>
+                            <input type="text" name="session" value="${session.id}" disabled="disabled"></input><br/>
+                            <label for="movieName">Movie Name:</label>
+                            <input type="text" name="movieName" value="${session.movie_name}" disabled="disabled"></input><br/>
+                            <label for="HouseName">House Name:</label>
+                            <input type="text" name="HouseName" value="${session.movie_house}" disabled="disabled"></input><br/>
+                            <label for="dateTime">Date Time:</label>
+                            <input type="text" name="Date Time" value="${session.movie_start}"></input><br/>
+                            <label for="Discount">Discount Ratio:</label>
+                            <input type="text" name="Discount" value="${session.discount}"></input><br/><br/>
+                            <input type="submit" value="Confirm Change(s)" class="button" /><br/><br/>                     
+                        </form>   
+                        </c:if>
+                        <hr/>
+                    </c:forEach>
                     
                 </div>
                 

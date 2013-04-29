@@ -5,6 +5,7 @@
 package cs4280asg2;
 
 import cs4280asg2.dto.SessionBean;
+import cs4280asg2.dto.StaffBean;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -77,7 +78,18 @@ public class SessionServlet extends HttpServlet {
 	    }
 	    session.setAttribute("reqMovieName", reqMovieName);
 	    session.setAttribute("sessionInfo", sessionInfo);
-	    rd = getServletContext().getRequestDispatcher("/booking.jsp");
+            if (session.getAttribute("loginStatus") == "staff" && session.getAttribute("loginStatus") != null) {
+                StaffBean sb = (StaffBean) session.getAttribute("staffInfo");
+                if (sb.getRole().equals("Manager")) {
+                    rd = getServletContext().getRequestDispatcher("/management-modify.jsp");
+                }
+                else {
+                    rd = getServletContext().getRequestDispatcher("/booking.jsp");
+                }
+            }
+            else {
+                rd = getServletContext().getRequestDispatcher("/booking.jsp");
+            }
 	    rd.forward(request, response);
 	    return;
 	} catch (NamingException e) {

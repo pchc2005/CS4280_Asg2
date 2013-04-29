@@ -69,7 +69,8 @@
                         <select name="section">
 			    <c:forEach items="${sessionInfo}" var="session">
                             <option value="${session.id}">${session.movie_start} (House:${session.movie_house})</option>
-			    </c:forEach>
+                            </c:forEach>
+                          
                         </select><br/>                   
                         <br/>
                         

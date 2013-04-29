@@ -34,7 +34,7 @@ public class ModifySectionServlet extends HttpServlet {
 	String movie_name = request.getParameter("movieName");
 	sess.setAttribute("movieName", movie_name);
 	
-	rd = getServletContext().getRequestDispatcher("/management-modify.jsp");
+	rd = getServletContext().getRequestDispatcher("/Session");
 	rd.forward(request, response);
 	return;
     }
