@@ -112,7 +112,7 @@
 		    </tr>
 		</table>
 		
-		<form name="ticket" class="ticket" action="booking.jsp">
+		<form name="ticket" class="ticket" action="Session">
                     <input type="hidden" value="${movie.name}" name="movieName" />
                     <input type="submit" value="Buy ticket!" class="button" />
 		</form>

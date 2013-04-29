@@ -4,14 +4,12 @@
  */
 package cs4280asg2;
 
-import cs4280asg2.dto.SessionBean;
-import cs4280asg2.dto.StaffBean;
+import cs4280asg2.dto.VacancyBean;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -27,7 +25,7 @@ import javax.sql.DataSource;
  *
  * @author PCHC
  */
-public class SessionServlet extends HttpServlet {
+public class VacancyServlet extends HttpServlet {
     Context initCtx = null;
     Context envCtx = null;
     DataSource ds = null;
@@ -35,7 +33,6 @@ public class SessionServlet extends HttpServlet {
     ResultSet rs = null;
     RequestDispatcher rd = null;
     CallableStatement cstmt = null;
-    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -54,16 +51,10 @@ public class SessionServlet extends HttpServlet {
 	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    con = ds.getConnection();
 	    HttpSession session = request.getSession(true);
-	    String procedureGetSession = "{ call getSessionDetails(?) }";
-	    cstmt = con.prepareCall(procedureGetSession, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    String reqMovieName = request.getParameter("movieName").toString();
-	    cstmt.setString(1, reqMovieName);
-            if (session.getAttribute("loginStatus") != null) {
-                cstmt.setString(2, session.getAttribute("loginStatus").toString());
-            }
-            else {
-                cstmt.setNull(2, java.sql.Types.VARCHAR);
-            }
+	    String procedureVacancy = "{ call getVacancySoldGroupByCinemaHouse(?) }";
+	    cstmt = con.prepareCall(procedureVacancy, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    int reqSectID = Integer.parseInt(request.getParameter("section").toString());
+	    cstmt.setInt(1, reqSectID);
 	    rs = cstmt.executeQuery();
 	    int numRow = 0;
 	    
@@ -71,32 +62,16 @@ public class SessionServlet extends HttpServlet {
 		numRow = rs.getRow();
 		rs.first();
 	    }
-	    ArrayList<SessionBean> sessionInfo = new ArrayList<SessionBean>();
-	    for (int i = 0; i < numRow; i++) {
-		SessionBean sessionB = new SessionBean();
-		sessionB.setId(rs.getInt(1));
-		sessionB.setMovie_name(rs.getString(3));
-		sessionB.setMovie_house(rs.getString(4));
-		sessionB.setMovie_start(rs.getString(2));
-		sessionB.setDiscount(rs.getDouble(5));
-		sessionInfo.add(sessionB);
-		rs.next();
-	    }
-	    session.setAttribute("reqMovieName", reqMovieName);
-	    session.setAttribute("sessionInfo", sessionInfo);
-            if (session.getAttribute("loginStatus") == "staff" && session.getAttribute("loginStatus") != null) {
-                StaffBean sb = (StaffBean) session.getAttribute("staffInfo");
-                if (sb.getRole().equals("Manager")) {
-                    rd = getServletContext().getRequestDispatcher("/management-modify.jsp");
-                }
-                else {
-                    rd = getServletContext().getRequestDispatcher("/booking.jsp");
-                }
-            }
-            else {
-                rd = getServletContext().getRequestDispatcher("/booking.jsp");
-            }
-	    rd.forward(request, response);
+	    
+	    VacancyBean vb = new VacancyBean();
+	    vb.setHouse_id(rs.getInt(1));
+	    vb.setTotal_sales(rs.getInt(2));
+
+	    rs.next();
+
+	    /*rd = getServletContext().getRequestDispatcher("/booking_next.jsp");
+	    rd.forward(request, response);*/
+            
 	    return;
 	} catch (NamingException e) {
 	    e.printStackTrace();
