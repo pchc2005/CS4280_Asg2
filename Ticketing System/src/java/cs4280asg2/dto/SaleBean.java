@@ -12,7 +12,7 @@ public class SaleBean {
     private int sale_id;
     private String sale_time;
     private int section_id;
-
+    private double total_price;
     /**
      * @return the sale_id
      */
@@ -53,5 +53,19 @@ public class SaleBean {
      */
     public void setSection_id(int section_id) {
         this.section_id = section_id;
+    }
+
+    /**
+     * @return the total_price
+     */
+    public double getTotal_price() {
+	return total_price;
+    }
+
+    /**
+     * @param total_price the total_price to set
+     */
+    public void setTotal_price(double total_price) {
+	this.total_price = total_price;
     }
 }

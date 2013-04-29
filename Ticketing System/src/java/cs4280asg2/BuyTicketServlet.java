@@ -43,6 +43,7 @@ public class BuyTicketServlet extends HttpServlet {
     CallableStatement setLoyalty = null;
     CallableStatement getNewSales = null;
     CallableStatement updateMemberBean = null;
+    CallableStatement updateTotal = null;
     public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
     /**
      * Processes requests for both HTTP
@@ -67,23 +68,24 @@ public class BuyTicketServlet extends HttpServlet {
 	    String currentTime = sdf.format(cal.getTime());
 	    String strTotal = request.getParameter("total").toString();
 	    double total = Double.parseDouble(strTotal);
-	    String procedureInsertSale = "{ call BuyTicketSale(?, ?) }";
+	    String procedureInsertSale = "{ call BuyTicketSale(?, ?, ?) }";
 	    String procedureInsertVacancy = "{ call BuyTicketVacancy(?, ?) }";
 	    String procedureInsertRecord = "{ call BuyTicketRecord(?, ?, ?, ?) }";
-	    String procedureGetNewSale = "{ call getNewSale(?) }";
+	    String procedureGetNewSale = "{ call getNewSale }";
 	    String procedureAddLoyalty = "{ call updateLoyaltyByCustID(?, ?)}";
 	    String procedureSetLoyalty = "{ call setLoyalty(?, ?)}";
 	    String procedureGetMemberInfo = "{ call getMemberInfoByLoginName(?) }";
+	    String procedureUpdateSaleTotal = "{ call updateSaleTotal(?) }";
 	    
 	    cstmtSale = con.prepareCall(procedureInsertSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    cstmtSale.setString(1, currentTime);
 	    String sectID = session.getAttribute("sessionID").toString();
 	    int reqSectID = Integer.parseInt(sectID);
 	    cstmtSale.setInt(2, reqSectID);
+	    cstmtSale.setDouble(3, total);
 	    cstmtSale.execute();
 	    
 	    getNewSales = con.prepareCall(procedureGetNewSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    getNewSales.setInt(1, reqSectID);
 	    rs = getNewSales.executeQuery();
 	    
 	    int numRow = 0;
@@ -97,6 +99,7 @@ public class BuyTicketServlet extends HttpServlet {
 	    sb.setSale_id(rs.getInt(1));
 	    sb.setSale_time(rs.getString(2));
 	    sb.setSection_id(rs.getInt(3));
+	    sb.setTotal_price(rs.getDouble(4));
 	    int newSale_id = rs.getInt(1);
 	    int seatsCount = Integer.parseInt(session.getAttribute("seatsCount").toString());
 	    cstmtVacancy = con.prepareCall(procedureInsertVacancy);
@@ -169,6 +172,9 @@ public class BuyTicketServlet extends HttpServlet {
 			setLoyalty.setInt(2, remainLoyalty);
 			setLoyalty.execute();
 		    }
+		    updateTotal = con.prepareCall(procedureUpdateSaleTotal);
+		    updateTotal.setDouble(1, total);
+		    updateTotal.execute();
 		}
 		updateMemberBean = con.prepareCall(procedureGetMemberInfo, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		updateMemberBean.setString(1, custName);
@@ -209,6 +215,9 @@ public class BuyTicketServlet extends HttpServlet {
 		}
 		if (updateMemberBean != null) {
 		    updateMemberBean.close();
+		}
+		if (updateTotal != null) {
+		    updateTotal.close();
 		}
 		getNewSales.close();
 	    } catch (SQLException se) {
