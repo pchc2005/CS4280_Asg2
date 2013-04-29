@@ -77,3 +77,14 @@ caption{
 form[name=book]{
     margin-top: 50px;
 }
+
+
+.sessionLabel label{
+    width:300px !important;
+    color:#3b3b3b !important;
+    font-weight: normal !important;
+}
+
+.sessionLabel input{
+    width:auto !important;
+}

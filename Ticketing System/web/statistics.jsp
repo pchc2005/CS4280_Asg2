@@ -22,6 +22,7 @@
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="movieHouseInfo" type="java.util.ArrayList" scope="application" />
     <jsp:useBean id="movieInfo" type="java.util.ArrayList" scope="application" />
+    <jsp:useBean id="statInfo" type="java.util.ArrayList" scope="session" />
     <%@ include file="include/header.jspf"%>
         
     <div id="content2">
@@ -32,47 +33,28 @@
 
 	<div id="content-right">
                 <h5>Statistics</h5>   
-                <h4>Sales statistics of movie house</h4>
+
+                <h4>Sales statistics of each house and movie show time</h4>
                 
-                <table name="house">                    
-                      <tr>
-                        <th>HOUSE NAME</th>
-                        <th>TICKET SOLD</th>
-                      </tr>
-                    <c:forEach items="${movieHouseInfo}" var="movieHouse" >
-                      <tr>
-                        <td name="houseName">${movieHouse.name}</td>
-                        <td>100</td>
-                      </tr>
-                    </c:forEach>
-                 </table>
-                
-                <h4>Sales statistics of each movie show time</h4>
                 <table name="sold-movie">
                       <tr>
-                        <th id="title" colspan="2">MOVIE NAME 111</th>
+                        <th id="title" colspan="3"></th>
                       </tr>
                       <tr>
+                        <th>House</th>
                         <th>Show Time</th>
                         <th>Ticket Sold</th>
                       </tr>
+                      <c:forEach items="${statInfo}" var="stat" begin="0">
                       <tr>
-                        <td>2013-04-26 10:00:00</td>
-                        <td>100</td>
+                        <td>${stat.movie_house}</td>
+                        <td>${stat.movie_start}</td>
+                        <td>${stat.total_sales}</td>
                       </tr>
-                      <tr>
-                        <td>2013-04-27 10:00:00</td>
-                        <td>50</td>
-                      </tr> 
-                      <tr>
-                        <td>2013-04-28 12:00:00</td>
-                        <td>30</td>
-                      </tr>
-                      <tr>
-                        <td>2013-04-26 10:00:00</td>
-                        <td>60</td>
-                      </tr>
+                      </c:forEach>
+                      
                  </table>
+               
         </div>
     </div>
     <%@ include file="include/footer.jsp"%>
