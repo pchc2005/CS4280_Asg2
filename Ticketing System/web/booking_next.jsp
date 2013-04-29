@@ -43,7 +43,7 @@ function output(elem)
     %>
     <jsp:useBean id="unavaiSeatsInfo" type="java.util.ArrayList" scope="session" />
     <%
-       }
+    }
     %>
     <%@ include file="include/header.jspf"%>
         
@@ -105,42 +105,13 @@ function output(elem)
 				    <tr>
 					<%
 					for (int j = 0; j < Integer.parseInt(session.getAttribute("col").toString()); j++) {
-					    if (session.getAttribute("unavaiSeatsInfo") == null) {
 					%>
+					
 					<td>
 					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
 					    <input onchange="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"></input>
 					</td>
 					<%
-					    }
-					    else {
-					%>
-					<c:forEach items="${unavaiSeatsInfo}" var="useats">
-					    <c:set var="UnavaiRowNo" scope="session" value="${useats.row}" />
-					    <c:set var="UnavaiColNo" scope="session" value="${useats.col}" />
-					<%
-					    if (Integer.parseInt(session.getAttribute("UnavaiRowNo").toString()) == j && Integer.parseInt(session.getAttribute("UnavaiColNo").toString()) == i) {
-					%>
-					<td>
-					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
-					    <input onchange="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" disabled="disabled" />
-					</td>
-					<%
-					    }
-					    else {
-					%>
-					<td>
-					    <label for="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>"><%= String.valueOf(Character.toChars('A'+i)) %><%= j%></label>
-					    <input onchange="output(this)" name="seats" type="checkbox" id="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" value="<%= String.valueOf(Character.toChars('A'+i)) %><%= j%>" />
-					</td>
-					<%
-					    }
-					%>
-					<c:remove var="UnavaiRowNo" scope="session"/>
-					<c:remove var="UnavaiColNo" scope="session"/>
-					</c:forEach>
-					<%
-					    }
 					}
 					%>
 				    </tr>
@@ -152,6 +123,21 @@ function output(elem)
 		    </table>
                         <input type="submit" value="Submit" class="bookbutton" />
                     </form>
+		    <%
+		    if (session.getAttribute("unavaiSeatsInfo") != null) {
+		    %>
+		    <script type="text/javascript">
+			var unavai = new Array();
+			<c:forEach var="unavaiSeats" items="${unavaiSeatsInfo}" varStatus="index">
+			unavai[index] = ${unavaiSeats.seat};
+			</c:forEach>
+			for (var i = 0; i < ${sessionScope.unavaiSeatsNo}; i++) {
+			    
+			}
+		    </script>
+		    <%
+		    }
+		    %>
               </div>	
             </div>      
     </div>

@@ -60,13 +60,7 @@ public class HouseSizeServlet extends HttpServlet {
 	    int reqSectID = Integer.parseInt(request.getParameter("section").toString());
 	    cstmt.setInt(1, reqSectID);
 	    rs = cstmt.executeQuery();
-	    int numRow = 0;
-	    
-	    if (rs != null && rs.last() != false) {
-		numRow = rs.getRow();
-		rs.first();
-	    }
-	    
+	    rs.first();
 	    SessionHouseBean shb = new SessionHouseBean();
 	    shb.setSession_id(rs.getInt(1));
 	    shb.setHouse_row(rs.getInt(2));
@@ -78,24 +72,27 @@ public class HouseSizeServlet extends HttpServlet {
 	    checkSeats = con.prepareCall(procedureCheckSeats, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    checkSeats.setInt(1, reqSectID);
 	    rs = checkSeats.executeQuery();
+	    
+	    int numRow = 0;
 	    if (rs != null && rs.last() != false) {
 		numRow = rs.getRow();
 		rs.first();
 		ArrayList<UnavaiSeatsBean> unavaiSeatsInfo = new ArrayList<UnavaiSeatsBean>();
 		for (int i = 0; i < numRow; i++) {
 		    UnavaiSeatsBean unavaiSeats = new UnavaiSeatsBean();
-		    /*String row = String.valueOf(Character.toChars('A' + rs.getInt(1)));
+		    String row = String.valueOf(Character.toChars('A' + rs.getInt(1)));
 		    String col = rs.getString(2);
-		    unavaiSeats.setSeat(row + col);*/
-		    unavaiSeats.setRow(rs.getInt(1));
-		    unavaiSeats.setCol(rs.getInt(2));
+		    unavaiSeats.setSeat(row + col);
+		    //unavaiSeats.setRow(rs.getInt(1));
+		    //unavaiSeats.setCol(rs.getInt(2));
 		    unavaiSeatsInfo.add(unavaiSeats);
 		    rs.next();
 		}
 		session.setAttribute("unavaiSeatsInfo", unavaiSeatsInfo);
+		session.setAttribute("unavaiSeatsNo", numRow);
 	    }
 	    
-	    
+	    session.setAttribute("unavaiSeatsNo", numRow);
 	    session.setAttribute("sessionHouseSize", shb);
 	    session.setAttribute("sessionID", reqSectID);
 	    rd = getServletContext().getRequestDispatcher("/booking_next.jsp");
