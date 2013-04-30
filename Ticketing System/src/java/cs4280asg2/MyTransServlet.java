@@ -149,7 +149,7 @@ public class MyTransServlet extends HttpServlet {
 		}
 		sess.setAttribute("refundInfo", refundInfo);
 	    }
-            rd = getServletContext().getRequestDispatcher("/WEB-INF/privilege pages/transaction.jsp");
+            rd = getServletContext().getRequestDispatcher("/WEB-INF/privilege/transaction.jsp");
             
 	    rd.forward(request, response);
 	    return;
