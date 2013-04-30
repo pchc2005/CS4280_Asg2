@@ -75,7 +75,7 @@ public class BuyTicketServlet extends HttpServlet {
 	    String procedureAddLoyalty = "{ call updateLoyaltyByCustID(?, ?)}";
 	    String procedureSetLoyalty = "{ call setLoyalty(?, ?)}";
 	    String procedureGetMemberInfo = "{ call getMemberInfoByLoginName(?) }";
-	    String procedureUpdateSaleTotal = "{ call updateSaleTotal(?) }";
+	    String procedureUpdateSaleTotal = "{ call updateSaleTotal(?, ?) }";
 	    
 	    cstmtSale = con.prepareCall(procedureInsertSale, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    cstmtSale.setString(1, currentTime);
@@ -174,6 +174,7 @@ public class BuyTicketServlet extends HttpServlet {
 		    }
 		    updateTotal = con.prepareCall(procedureUpdateSaleTotal);
 		    updateTotal.setDouble(1, total);
+		    updateTotal.setInt(2, newSale_id);
 		    updateTotal.execute();
 		}
 		updateMemberBean = con.prepareCall(procedureGetMemberInfo, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
