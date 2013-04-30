@@ -22,6 +22,13 @@
     <jsp:useBean id="staffInfo" class="cs4280asg2.dto.StaffBean" scope="session"/>
     <jsp:useBean id="memberInfo" class="cs4280asg2.dto.CustomerBean" scope="session"/>
     <jsp:useBean id="transInfo" type="java.util.ArrayList" scope="session" />
+    <%
+    if (session.getAttribute("refundInfo") != null) {
+    %>
+    <jsp:useBean id="refundInfo" type="java.util.ArrayList" scope="session" />
+    <%
+       }
+    %>
     <%@ include file="/include/header.jspf"%>
         
     <div id="content2">
@@ -65,9 +72,18 @@
                     </tr>  
                     <tr>
                         <td colspan="2">
-                            <form name="transaction">
-                                <input type="submit" value="Cancel Transaction" class="button" />                                
-                            </form>
+                            <form name="transaction" method="post" action="RefundRequest">
+				<c:choose>
+				<c:when test="${trans.refundable == true}">
+				    <input type="hidden" value="trans" name="refundReq" />
+				    <input type="hidden" value="${memberInfo.id}" name="reqCustID" />
+				    <input type="submit" value="Cancel Transaction" class="button" />
+				</c:when>
+				<c:otherwise>
+				    <input type="submit" value="Cancel Transaction" class="button" disabled="disabled"/>
+				</c:otherwise>
+				</c:choose>
+			    </form>
                         </td>
                     </tr>
                 </table>

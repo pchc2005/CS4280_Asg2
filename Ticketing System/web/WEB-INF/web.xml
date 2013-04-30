@@ -66,6 +66,10 @@
         <servlet-class>cs4280asg2.MyTransServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RefundRequestServlet</servlet-name>
+        <servlet-class>cs4280asg2.RefundRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>NewUserServlet</servlet-name>
         <servlet-class>cs4280asg2.NewUserServlet</servlet-class>
     </servlet>
@@ -132,6 +136,10 @@
     <servlet-mapping>
         <servlet-name>NewUserServlet</servlet-name>
         <url-pattern>/NewUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RefundRequestServlet</servlet-name>
+        <url-pattern>/RefundRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -8,7 +8,7 @@ package cs4280asg2.dto;
  *
  * @author PCHC
  */
-public class TransactionBean {
+public class RefundBean {
     private int trans_id;
     private String sale_time;
     private String house_name;
@@ -16,7 +16,8 @@ public class TransactionBean {
     private String movie_start;
     private int vacancy_sold;
     private double total_price;
-    private boolean refundable;
+    private boolean is_authorized;
+    private int customer_id;
 
     /**
      * @return the trans_id
@@ -117,16 +118,30 @@ public class TransactionBean {
     }
 
     /**
-     * @return the refundable
+     * @return the is_authorized
      */
-    public boolean isRefundable() {
-	return refundable;
+    public boolean isIs_authorized() {
+	return is_authorized;
     }
 
     /**
-     * @param refundable the refundable to set
+     * @param is_authorized the is_authorized to set
      */
-    public void setRefundable(boolean refundable) {
-	this.refundable = refundable;
+    public void setIs_authorized(boolean is_authorized) {
+	this.is_authorized = is_authorized;
+    }
+
+    /**
+     * @return the customer_id
+     */
+    public int getCustomer_id() {
+	return customer_id;
+    }
+
+    /**
+     * @param customer_id the customer_id to set
+     */
+    public void setCustomer_id(int customer_id) {
+	this.customer_id = customer_id;
     }
 }
