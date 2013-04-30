@@ -68,8 +68,8 @@
                         <br/>                       
 			    <c:forEach items="${sessionInfo}" var="section">
                                 <div class="sessionLabel">
-                                    <input type="checkbox" name="movieSession"></input>
-                                    <label for="movieSession">${section.movie_start} (House:${section.movie_house})</label>                            
+                                    <input type="checkbox" name="movieSession" id="${section.id}" value="${section.id}"></input>
+                                    <label for="${section.id}">${section.movie_start} (House:${section.movie_house})</label>                            
                                 </div>
                             
                             </c:forEach>

@@ -18,6 +18,7 @@ public class CustomerBean {
     private String password;
     private String creditcard;
     private int loyalty_pt;
+    private boolean login_status;
 
     /**
      * @return the login_name
@@ -154,6 +155,19 @@ public class CustomerBean {
     public void setId(int id) {
 	this.id = id;
     }
-        
+
+    /**
+     * @return the login_status
+     */
+    public boolean isLogin_status() {
+	return login_status;
+    }
+
+    /**
+     * @param login_status the login_status to set
+     */
+    public void setLogin_status(boolean login_status) {
+	this.login_status = login_status;
+    }
     
 }

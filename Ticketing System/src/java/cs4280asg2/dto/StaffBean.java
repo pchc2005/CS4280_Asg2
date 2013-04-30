@@ -12,6 +12,7 @@ public class StaffBean {
     private String login_name;
     private String password;
     private String role;
+    private boolean login_status;
 
     /**
      * @return the login_name
@@ -53,5 +54,19 @@ public class StaffBean {
      */
     public void setRole(String role) {
         this.role = role;
+    }
+
+    /**
+     * @return the login_status
+     */
+    public boolean isLogin_status() {
+	return login_status;
+    }
+
+    /**
+     * @param login_status the login_status to set
+     */
+    public void setLogin_status(boolean login_status) {
+	this.login_status = login_status;
     }
 }

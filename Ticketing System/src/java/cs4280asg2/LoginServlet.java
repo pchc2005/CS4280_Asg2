@@ -86,6 +86,7 @@ public class LoginServlet extends HttpServlet {
 		    memberInfo.setPassword(rs.getString(7));
 		    memberInfo.setCreditcard(rs.getString(8));
 		    memberInfo.setLoyalty_pt(rs.getInt(9));
+		    memberInfo.setLogin_status(rs.getBoolean(10));
 		    session.setAttribute("loginStatus", "member");
 		    session.setAttribute("memberInfo", memberInfo);
 		}
@@ -106,6 +107,7 @@ public class LoginServlet extends HttpServlet {
 		    staffInfo.setLogin_name(rs.getString(1));
 		    staffInfo.setPassword(rs.getString(2));
 		    staffInfo.setRole(rs.getString(3));
+		    staffInfo.setLogin_status(rs.getBoolean(4));
 		    session.setAttribute("loginStatus", "staff");
 		    session.setAttribute("staffInfo", staffInfo);
 		}
@@ -129,8 +131,12 @@ public class LoginServlet extends HttpServlet {
 	}   finally {
 	    try{
 		con.close();
-		rs.close();
-		cstmt.close();
+		if (rs != null) {
+		    rs.close();
+		}
+		if (cstmt != null) {
+		    cstmt.close();
+		}
 	    } catch (SQLException se) {
 		se.printStackTrace();
 	    }
