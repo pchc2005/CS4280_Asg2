@@ -63,13 +63,15 @@
 	<div id="content-right">
             <h5>NOW SHOWING</h5>            			
 	    <div class="movie-big">
-                <c:set var="x" value=" <%= (int) (Math.random() * 10) %>"/> 
-                <c:forEach items="${movieInfo}" var="movie" begin="9" end="9" varStatus="count">
+                
+                
+                <c:set var="x" value='<%= (int) (Math.random() * (movieInfo.size()-2)) %>'/>                
+                <c:forEach items="${movieInfo}" var="movie" begin="${x}" end="${x}" varStatus="count">
                     <img src="${movie.posterURL}" alt="movie1" />
                     <a href="movie.jsp#<c:out value="${count.index}" />"><div class="movie-big-text">${movie.name}</div></a>
                 </c:forEach>
             </div>
-		<c:forEach items="${movieInfo}" var="movie" begin="5" end="6" varStatus="smallcount">			
+		<c:forEach items="${movieInfo}" var="movie" begin="${x+1}" end="${x+2}" varStatus="smallcount">			
                     <div class="movie">
                         <img src="${movie.posterURL}" alt="movie1" />
                         <a href="movie.jsp#<c:out value="${smallcount.index}" />"><div class="movie-text">${movie.name}</div></a>
