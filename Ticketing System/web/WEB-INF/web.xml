@@ -65,6 +65,10 @@
         <servlet-name>MyTransServlet</servlet-name>
         <servlet-class>cs4280asg2.MyTransServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewUserServlet</servlet-name>
+        <servlet-class>cs4280asg2.NewUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -124,6 +128,10 @@
     <servlet-mapping>
         <servlet-name>MyTransServlet</servlet-name>
         <url-pattern>/MyTrans</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewUserServlet</servlet-name>
+        <url-pattern>/NewUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

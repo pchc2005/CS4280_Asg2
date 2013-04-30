@@ -14,7 +14,12 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/registration.css"/>
 <link rel="stylesheet" type="text/css" media="all" href="css/form.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
-
+<script type="text/javascript">
+function output()
+{
+    alert("Sign Up Successful!")
+}
+</script>
 </head>
     
 <body>
@@ -57,25 +62,27 @@
 
 	<div id="content-right">
                 <h5>Registration</h5>            			
-                    <form name="sign-up">
+                <form name="sign-up" action="NewUser" method="post">
                         <fieldset>
-                            <legend>Please Sing up here:</legend> <br/> <br/>   
-                            <label for="sign-Name">Actual Name:</label>
+                            <legend>Please Sing up here(with* field cannot be empty):</legend> <br/> <br/>   
+                            <label for="sign-Name">Actual Name*:</label>
                             <input type="text" name="sign-Name" /><br/><br/> 
-                            <label for="sign-UserName">Login Name:</label>
-                            <input type="text" name="sign-UserName" /><br/><br/> 
-                            <label for="sign-Password">Password:</label>
-                            <input type="password" name="sinPassword" /><br/><br/>                                   
+                            
+                            <label for="sign-UserName">Login Name*:</label>
+                            <input type="text" name="sign-UserName" /><br/><br/>
+                            
+                            <label for="sign-Password">Password*:</label>
+                            <input type="password" name="signPassword" /><br/><br/>                                   
                             <label for="sign-Email">Email:</label>
                             <input type="text" name="sign-Email" /><br/><br/> 
-                            <label for="sign-Phone">Phone Number:</label>
+                            <label for="sign-Phone">Phone No.*:</label>
                             <input type="text" name="Phone" /><br/><br/>
-                            <label for="sign-Phone">Credit Card:</label>
-                            <input type="text" name="Phone" /><br/><br/>
+                            <label for="sign-Phone">Credit Card*:</label>
+                            <input type="text" name="creditCard" /><br/><br/>
                             <label for="sign-Address">Address:</label>
-                            <textarea rows="4" cols="50"></textarea> <br/><br/> 
+                            <textarea rows="4" cols="50" name='addr' value=""></textarea> <br/><br/> 
                             <input type="submit" value="Submit" class="button" />
-                    		<input type="reset" onclick="formReset()" value="Reset" class="button" />
+                            <input type="reset" onclick="output()" value="Reset" class="button" />
                         </fieldset>
                     </form>
             </div>
