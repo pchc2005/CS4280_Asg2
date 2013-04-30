@@ -74,9 +74,9 @@ public class StatServlet extends HttpServlet {
 	    for (int i = 0; i < numRow; i++) {
 		StatBean sb = new StatBean();
 		sb.setSection_id(rs.getInt(1));
-		sb.setMovie_house(rs.getString(2));
-		sb.setMovie_start(rs.getString(3));
-		sb.setTotal_sales(rs.getInt(4));
+		sb.setMovie_house(rs.getString(3));
+		sb.setMovie_start(rs.getString(4));
+		sb.setTotal_sales(rs.getInt(2));
 		statInfo.add(sb);
 		rs.next();
 	    }

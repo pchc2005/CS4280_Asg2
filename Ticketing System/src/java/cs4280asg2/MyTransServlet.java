@@ -57,7 +57,7 @@ public class MyTransServlet extends HttpServlet {
 	    CustomerBean cb = (CustomerBean) sess.getAttribute("memberInfo");
 	    int custID = cb.getId();
 
-	    getTrans = con.prepareCall(procedureGetTrans);
+	    getTrans = con.prepareCall(procedureGetTrans, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    getTrans.setInt(1, custID);
 	    rs = getTrans.executeQuery();
 	    int numRow = 0;
@@ -76,6 +76,7 @@ public class MyTransServlet extends HttpServlet {
 		tb.setMovie_start(rs.getString(5));
 		tb.setVacancy_sold(rs.getInt(6));
 		tb.setTotal_price(rs.getDouble(7));
+		transInfo.add(tb);
 		rs.next();
 	    }
 	    
