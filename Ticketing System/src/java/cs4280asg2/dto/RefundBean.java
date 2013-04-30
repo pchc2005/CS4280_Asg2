@@ -17,7 +17,7 @@ public class RefundBean {
     private int vacancy_sold;
     private double total_price;
     private boolean is_authorized;
-    private int customer_id;
+    private String customer_name;
 
     /**
      * @return the trans_id
@@ -132,16 +132,17 @@ public class RefundBean {
     }
 
     /**
-     * @return the customer_id
+     * @return the customer_name
      */
-    public int getCustomer_id() {
-	return customer_id;
+    public String getCustomer_name() {
+	return customer_name;
     }
 
     /**
-     * @param customer_id the customer_id to set
+     * @param customer_name the customer_name to set
      */
-    public void setCustomer_id(int customer_id) {
-	this.customer_id = customer_id;
+    public void setCustomer_name(String customer_name) {
+	this.customer_name = customer_name;
     }
+
 }

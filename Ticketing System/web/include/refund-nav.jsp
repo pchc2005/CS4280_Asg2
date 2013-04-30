@@ -6,6 +6,6 @@
 
 <div id="nav">
                 <ul>
-                    <li><a href="refund.jsp">Refund Confirmation</a></li>
+                    <li><a href="/WEB-INF/privilege pages/refund.jsp">Refund Confirmation</a></li>
                 </ul> 
             </div>

@@ -26,7 +26,7 @@
 		%>
 		    <li><a href="index.jsp">HOME</a></li>
 		    <li><a href="movie.jsp">MOVIE</a></li>
-		    <li><a href="refund.jsp">REFUND</a></li>
+		    <li><a href="AuthRefund">REFUND</a></li>
 		<%
 		}
 		else if (session.getAttribute("loginStatus") == "staff" && staffInfo.getRole().equals("Manager")) {

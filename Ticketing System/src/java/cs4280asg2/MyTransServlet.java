@@ -70,6 +70,7 @@ public class MyTransServlet extends HttpServlet {
 	    CustomerBean cb = (CustomerBean) sess.getAttribute("memberInfo");
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    int custID = cb.getId();
+	    String custName = cb.getName();
 	    
 	    getTrans = con.prepareCall(procedureGetTrans, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    getTrans.setInt(1, custID);
@@ -121,7 +122,7 @@ public class MyTransServlet extends HttpServlet {
 	    sess.setAttribute("transInfo", transInfo);
 	    
 	    getRefund = con.prepareCall(procedureGetRefund, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    getRefund.setInt(1, custID);
+	    getRefund.setString(1, custName);
 	    rs = getRefund.executeQuery();
 	    if (rs != null && rs.last() != false) {
 		numRow = rs.getRow();
@@ -142,7 +143,7 @@ public class MyTransServlet extends HttpServlet {
 		    rb.setVacancy_sold(rs.getInt(6));
 		    rb.setTotal_price(rs.getDouble(7));
 		    rb.setIs_authorized(rs.getBoolean(8));
-		    rb.setCustomer_id(rs.getInt(9));
+		    rb.setCustomer_name(rs.getString(9));
 		    refundInfo.add(rb);
 		    rs.next();
 		}

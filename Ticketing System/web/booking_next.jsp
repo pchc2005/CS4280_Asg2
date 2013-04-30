@@ -90,9 +90,7 @@ function output(elem)
 				<input type="text" name="session" disabled="disabled" value="<c:out value="${session.movie_start} (House:${session.movie_house})" />"></input><br/>
 			    </c:if>
 			</c:forEach>
-			
                         <br/>
-			
                         <p>Please choose the seat(s) below:</p>
                    
 			<table class="seatingplan" align="center">

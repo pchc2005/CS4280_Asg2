@@ -4,18 +4,13 @@
  */
 package cs4280asg2;
 
-import cs4280asg2.dto.RefundBean;
 import cs4280asg2.dto.TransactionBean;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -31,15 +26,14 @@ import javax.sql.DataSource;
  *
  * @author PCHC
  */
-public class RefundRequestServlet extends HttpServlet {
+public class ProcRefundServlet extends HttpServlet {
     Context initCtx = null;
     Context envCtx = null;
     DataSource ds = null;
     Connection con = null;
     ResultSet rs = null;
     RequestDispatcher rd = null;
-    CallableStatement addRefund = null;
-    CallableStatement delSaleRecVac = null;
+    CallableStatement setIsAuth = null;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -57,30 +51,15 @@ public class RefundRequestServlet extends HttpServlet {
 	    envCtx = (Context)initCtx.lookup("java:comp/env");
 	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    con = ds.getConnection();
-	    String procedureAddRefund = "{ call addRefund(?, ?, ?, ?, ?, ?, ?, ?, ?) }";
-	    String procedureDelSaleRecVac = "{ call delSaleRecVac(?) }";
+	    String procedureSetRefundIsAuth = "{ call setRefundIsAuth(?) }";
 	    HttpSession sess = request.getSession(true);
-	    String custName = request.getParameter("reqCustName");
-	    TransactionBean tb = (TransactionBean) sess.getAttribute("refundReq");
+	    int transID = Integer.parseInt(request.getParameter("reqTransID"));
 	    
-	    addRefund = con.prepareCall(procedureAddRefund, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    addRefund.setInt(1, tb.getTrans_id());
-	    addRefund.setString(2, tb.getSale_time());
-	    addRefund.setString(3, tb.getHouse_name());
-	    addRefund.setString(4, tb.getMovie_name());
-	    addRefund.setString(5, tb.getMovie_start());
-	    addRefund.setInt(6, tb.getVacancy_sold());
-	    addRefund.setDouble(7, tb.getTotal_price());
-	    addRefund.setBoolean(8, false);
-	    addRefund.setString(9, custName);
+	    setIsAuth = con.prepareCall(procedureSetRefundIsAuth, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    setIsAuth.setInt(1, transID);
+	    setIsAuth.execute();
 	    
-	    addRefund.execute();
-	    
-	    delSaleRecVac = con.prepareCall(procedureDelSaleRecVac);
-	    delSaleRecVac.setInt(1, tb.getTrans_id());
-	    delSaleRecVac.execute();
-	    
-            rd = getServletContext().getRequestDispatcher("/MyTrans");
+            rd = getServletContext().getRequestDispatcher("/AuthRefund");
             
 	    rd.forward(request, response);
 	    return;
@@ -91,7 +70,7 @@ public class RefundRequestServlet extends HttpServlet {
 	} finally {
 	    try{
 		con.close();
-		addRefund.close();
+		setIsAuth.close();
 
 	    } catch (SQLException se) {
 		se.printStackTrace();

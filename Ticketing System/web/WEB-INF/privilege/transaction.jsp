@@ -74,9 +74,9 @@
                         <td colspan="2">
                             <form name="transaction" method="post" action="RefundRequest">
 				<c:choose>
-				<c:when test="${trans.refundable == true}">
-				    <input type="hidden" value="trans" name="refundReq" />
-				    <input type="hidden" value="${memberInfo.id}" name="reqCustID" />
+				<c:when test="${trans.refundable == true || sessionScope.refundInfo == null}">
+				    <c:set var="refundReq" value="${trans}" scope="session" />
+				    <input type="hidden" value="${memberInfo.name}" name="reqCustName" />
 				    <input type="submit" value="Cancel Transaction" class="button" />
 				</c:when>
 				<c:otherwise>

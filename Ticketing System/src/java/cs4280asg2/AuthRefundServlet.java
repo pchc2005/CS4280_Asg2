@@ -5,17 +5,14 @@
 package cs4280asg2;
 
 import cs4280asg2.dto.RefundBean;
-import cs4280asg2.dto.TransactionBean;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -31,15 +28,14 @@ import javax.sql.DataSource;
  *
  * @author PCHC
  */
-public class RefundRequestServlet extends HttpServlet {
+public class AuthRefundServlet extends HttpServlet {
     Context initCtx = null;
     Context envCtx = null;
     DataSource ds = null;
     Connection con = null;
     ResultSet rs = null;
     RequestDispatcher rd = null;
-    CallableStatement addRefund = null;
-    CallableStatement delSaleRecVac = null;
+    CallableStatement getRefund = null;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -57,30 +53,39 @@ public class RefundRequestServlet extends HttpServlet {
 	    envCtx = (Context)initCtx.lookup("java:comp/env");
 	    ds = (DataSource)envCtx.lookup("jdbc/ticketing_system");
 	    con = ds.getConnection();
-	    String procedureAddRefund = "{ call addRefund(?, ?, ?, ?, ?, ?, ?, ?, ?) }";
-	    String procedureDelSaleRecVac = "{ call delSaleRecVac(?) }";
+	    String procedureGetRefund = "{ call getRefundDetails(?) }";
 	    HttpSession sess = request.getSession(true);
-	    String custName = request.getParameter("reqCustName");
-	    TransactionBean tb = (TransactionBean) sess.getAttribute("refundReq");
 	    
-	    addRefund = con.prepareCall(procedureAddRefund, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    addRefund.setInt(1, tb.getTrans_id());
-	    addRefund.setString(2, tb.getSale_time());
-	    addRefund.setString(3, tb.getHouse_name());
-	    addRefund.setString(4, tb.getMovie_name());
-	    addRefund.setString(5, tb.getMovie_start());
-	    addRefund.setInt(6, tb.getVacancy_sold());
-	    addRefund.setDouble(7, tb.getTotal_price());
-	    addRefund.setBoolean(8, false);
-	    addRefund.setString(9, custName);
-	    
-	    addRefund.execute();
-	    
-	    delSaleRecVac = con.prepareCall(procedureDelSaleRecVac);
-	    delSaleRecVac.setInt(1, tb.getTrans_id());
-	    delSaleRecVac.execute();
-	    
-            rd = getServletContext().getRequestDispatcher("/MyTrans");
+	    getRefund = con.prepareCall(procedureGetRefund, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    getRefund.setNull(1, Types.VARCHAR);
+	    rs = getRefund.executeQuery();
+	    int numRow = 0;
+	    if (rs != null && rs.last() != false) {
+		numRow = rs.getRow();
+		rs.first();
+	    }
+	    else {
+		numRow = 0;
+	    }
+	    ArrayList<RefundBean> refundInfo = new ArrayList<RefundBean>();
+	    if (numRow != 0) {
+		for (int i = 0; i < numRow; i++) {
+		    RefundBean rb = new RefundBean();
+		    rb.setTrans_id(rs.getInt(1));
+		    rb.setSale_time(rs.getString(2));
+		    rb.setHouse_name(rs.getString(3));
+		    rb.setMovie_name(rs.getString(4));
+		    rb.setMovie_start(rs.getString(5));
+		    rb.setVacancy_sold(rs.getInt(6));
+		    rb.setTotal_price(rs.getDouble(7));
+		    rb.setIs_authorized(rs.getBoolean(8));
+		    rb.setCustomer_name(rs.getString(9));
+		    refundInfo.add(rb);
+		    rs.next();
+		}
+		sess.setAttribute("refundInfo", refundInfo);
+	    }
+            rd = getServletContext().getRequestDispatcher("/WEB-INF/privilege/refund.jsp");
             
 	    rd.forward(request, response);
 	    return;
@@ -91,7 +96,7 @@ public class RefundRequestServlet extends HttpServlet {
 	} finally {
 	    try{
 		con.close();
-		addRefund.close();
+		getRefund.close();
 
 	    } catch (SQLException se) {
 		se.printStackTrace();

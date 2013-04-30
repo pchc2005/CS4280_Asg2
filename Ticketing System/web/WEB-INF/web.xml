@@ -73,6 +73,14 @@
         <servlet-name>NewUserServlet</servlet-name>
         <servlet-class>cs4280asg2.NewUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AuthRefundServlet</servlet-name>
+        <servlet-class>cs4280asg2.AuthRefundServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcRefundServlet</servlet-name>
+        <servlet-class>cs4280asg2.ProcRefundServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -140,6 +148,14 @@
     <servlet-mapping>
         <servlet-name>RefundRequestServlet</servlet-name>
         <url-pattern>/RefundRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthRefundServlet</servlet-name>
+        <url-pattern>/AuthRefund</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcRefundServlet</servlet-name>
+        <url-pattern>/ProcRefund</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

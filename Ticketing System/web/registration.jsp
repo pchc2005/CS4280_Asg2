@@ -80,7 +80,7 @@ function output()
                             <label for="sign-Phone">Credit Card*:</label>
                             <input type="text" name="creditCard" /><br/><br/>
                             <label for="sign-Address">Address:</label>
-                            <textarea rows="4" cols="50" name='addr' value=""></textarea> <br/><br/> 
+                            <textarea rows="4" cols="50" name="addr"></textarea> <br/><br/> 
                             <input type="submit" value="Submit" class="button" />
                             <input type="reset" onclick="output()" value="Reset" class="button" />
                         </fieldset>
