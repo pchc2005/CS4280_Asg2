@@ -35,16 +35,23 @@ public class LoginService {
 	    String pw = null;
 	    CallableStatement cstmt = null;
 	    if (userType.equals("Member")) {
-		cstmt = con.prepareCall(procedureMember, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		cstmt = con.prepareCall(procedureMember, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 	    }
 	    else if (userType.equals("Staff")) {
-		cstmt = con.prepareCall(procedureStaff, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		cstmt = con.prepareCall(procedureStaff, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 	    }
 	    if (cstmt != null) {
 		cstmt.setString(1, userId);
 		rs = cstmt.executeQuery();
 		rs.first();
 		pw = rs.getString(1);
+		boolean status = rs.getBoolean(2);
+		if (status) {
+		    return false;
+		}
+		else {
+		    rs.updateBoolean("login_status", true);
+		}
 		if (!pw.equals(password)) {
 		    return false;
 		}
