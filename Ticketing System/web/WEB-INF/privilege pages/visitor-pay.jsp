@@ -15,10 +15,11 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/payment.css" />
 <script type="text/javascript">
-    function output(elem)
+    function sendform()
     {
         if(document.getElementById("creditcard").value==''){
-            alert('Please enter the credit card number!');
+            alert('Please enter the credit card number!!!');  
+            return false;
         }
         else{
             alert('Payment Successful!');
@@ -69,12 +70,12 @@
 	<div id="content-right">
             <h5>Payment</h5> 
             <div id="payment">
-                <form id="form-pay" action="">
+                <form id="form-pay" action="" onsubmit="return sendform()">
                     <label>Total price:</label>
                     <input type="text" name="price" disabled="disabled" value="$<c:out value="${sessionScope.total}" />"></input>  <br/>
                     <label>Credit card number:</label>
                     <input id="creditcard" type="text" name="creditCard"></input><br/>
-                    <input class="pay" type="submit" value="Confirm Payment" onclick="output(this)"></input>
+                    <input class="pay" type="submit" value="Confirm Payment" ></input>
                     
                 </form>
 		
