@@ -5,7 +5,5 @@
 --%>
 
 <div id="nav">
-                <ul>
-                    <li><a href="/WEB-INF/privilege pages/refund.jsp">Refund Confirmation</a></li>
-                </ul> 
+               
             </div>

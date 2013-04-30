@@ -92,9 +92,6 @@ public class SessionServlet extends HttpServlet {
                 if (sb.getRole().equals("Manager")) {
                     rd = getServletContext().getRequestDispatcher("/management-modify.jsp");
                 }
-                else if(sb.getRole().equals("Officer")){
-                    rd = getServletContext().getRequestDispatcher("/staff-booking.jsp");
-                }
                 else {
                     rd = getServletContext().getRequestDispatcher("/booking.jsp");
                 }

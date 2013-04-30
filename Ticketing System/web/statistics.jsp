@@ -38,7 +38,7 @@
                 
                 <table name="sold-movie">
                       <tr>
-                        <th id="title" colspan="3"></th>
+                        <th id="title" colspan="3">${movie.name}</th>
                       </tr>
                       <tr>
                         <th>House</th>
