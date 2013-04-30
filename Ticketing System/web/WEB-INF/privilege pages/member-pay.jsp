@@ -15,14 +15,19 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/payment.css" />
 <script type="text/javascript">
-    function output(elem)
+    function sendform()
     {
         if(document.getElementById("creditcard").value==''){
-            alert('Please enter the credit card number!');
+            alert('Please enter the credit card number!!!');  
+            return false;
+        }
+        else if(document.getElementById("creditcard").value!="${memberInfo.creditcard}"){
+            alert('Your credit card number is wrong!');
+            return false;
         }
         else{
             alert('Payment Successful!');
-            document.getElementById("form-pay").action="index.jsp";
+            return true;
         }
     }
 </script>
@@ -69,14 +74,12 @@
 	<div id="content-right">
             <h5>Payment</h5> 
             <div id="payment">
-                <form id="form-pay" action="">
+                <form id="form-pay" action="index.jsp" onsubmit="return sendform()">
                     <label>Total price:</label>
                     <input type="text" name="price" disabled="disabled" value="$<c:out value="${sessionScope.total}" />"></input>  <br/>
                     <label>Credit card number:</label>
                     <input id="creditcard" type="text" name="creditCard"></input><br/>
-                    <input class="pay" type="submit" value="Confirm Payment" onclick="output(this)"></input>
-                    
-                </form>
+                    <input class="pay" type="submit" value="Confirm Payment"></input>
 		
             </div>
         </div>
